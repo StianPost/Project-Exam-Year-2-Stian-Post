@@ -17,3 +17,8 @@ This site is a cabin booking site where you'll be able to book cabins from all o
 
 There must be a home, search results, details, contact and admin page.
 You'll be able to log in as an Admin and add new cabins, look at messages both from the enquiries and from the contact page. I will also see if I can add a booking system so that you can see available rooms and if they've been booked.
+
+####
+
+Links to use:
+Typeahead: https://mui.com/components/autocomplete/
