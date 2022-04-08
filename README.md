@@ -1,4 +1,4 @@
-### Project Exam
+# Project Exam
 
 ```
 login placeholder
@@ -8,4 +8,4 @@ password: password123
 
 ## Info
 
-# More info
+### More info
