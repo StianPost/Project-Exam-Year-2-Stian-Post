@@ -2,9 +2,11 @@ import React from 'react';
 
 function Resultcards(): any {
   return (
-    <div className='flex h-80 mb-6 rounded-lg'>
-      <div className='bg-slate-600 w-1/2 rounded-l-lg'>imageplaceholder</div>
-      <div className='p-6 bg-slate-100 flex flex-col justify-between rounded-r-lg'>
+    <div className='flex max-w-6xl w-full flex-col mb-6 rounded-lg md:flex-row md:h-80 '>
+      <div className='bg-slate-600 h-60  rounded-t-lg md:w-3/4  md:h-full md:rounded-l-lg md:rounded-none'>
+        imageplaceholder
+      </div>
+      <div className='p-6 bg-slate-100 flex flex-col justify-between rounded-b-lg w-full md:rounded-r-lg'>
         <h3>Enda en hytte</h3>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae,

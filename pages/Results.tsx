@@ -20,8 +20,8 @@ const Results: NextPage = () => {
           <div>Sort by menu</div>
         </div>
 
-        <div className='flex flex-col md:flex-row'>
-          <div className='pr-10'>
+        <div className='flex flex-col lg:flex-row'>
+          <div className='pr-10 mb-3 md:mb-0'>
             <h3>Filter</h3>
             <p>Placeholder</p>
             <p>Placeholder</p>
