@@ -2,7 +2,6 @@ import Footer from './layout/Footer';
 import Head from 'next/head';
 import Header from './layout/Header';
 import Homecards from './components/Homecards';
-import Image from 'next/image';
 import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
