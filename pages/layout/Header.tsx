@@ -8,21 +8,24 @@ import React from 'react';
 function Header(): any {
   const router = useRouter();
   return (
-    <header className='flex flex-col sm:justify-between sm:flex-row  py-4 px-4 items-center'>
+    <header className='flex flex-col sm:justify-between sm:flex-row  py-4 px-6 items-center'>
       <div>
         <Link href='/'>
-          <a>
+          <a className='flex flex-col'>
             <Image
               src='/cabin_fever_logo.png'
               alt='Logo for cabinfever'
               width={100}
               height={80}
             />
+            <span className='hidden mt-2 text-orange-400 logoText font-medium sm:block'>
+              Cabinfeever
+            </span>
           </a>
         </Link>
       </div>
       <div>
-        <nav>
+        <nav className='text-xl text-zinc-500'>
           <ul>
             <Link href='/'>
               <a className={router.pathname === '/' ? 'font-bold' : ''}>Home</a>
@@ -30,7 +33,7 @@ function Header(): any {
             <Link href='/Results'>
               <a
                 className={
-                  router.pathname === '/Results' ? 'font-bold pl-2' : 'pl-2'
+                  router.pathname === '/Results' ? 'font-bold pl-10' : 'pl-10'
                 }
               >
                 Cabins
@@ -39,7 +42,7 @@ function Header(): any {
             <Link href='/Contact'>
               <a
                 className={
-                  router.pathname === '/Contact' ? 'font-bold pl-2' : 'pl-2'
+                  router.pathname === '/Contact' ? 'font-bold pl-10' : 'pl-10'
                 }
               >
                 Contact
@@ -48,7 +51,7 @@ function Header(): any {
             <Link href='/Admin'>
               <a
                 className={
-                  router.pathname === '/Admin' ? 'font-bold pl-2' : 'pl-2'
+                  router.pathname === '/Admin' ? 'font-bold pl-10' : 'pl-10'
                 }
               >
                 Admin

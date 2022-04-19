@@ -2,6 +2,7 @@ import Footer from './layout/Footer';
 import Head from 'next/head';
 import Header from './layout/Header';
 import type { NextPage } from 'next';
+import Resultcards from './components/Resultcards';
 
 const Results: NextPage = () => {
   return (
@@ -10,7 +11,33 @@ const Results: NextPage = () => {
         <title>Search Results - Cabin fever</title>
       </Head>
       <Header />
-      <div>Results</div>
+      <main className='px-6'>
+        <div>search bar placeholder</div>
+        <h1>Results</h1>
+        <div className='flex justify-between mb-6'>
+          <p>Showing xx out of ??</p>
+
+          <div>Sort by menu</div>
+        </div>
+
+        <div className='flex flex-col md:flex-row'>
+          <div className='pr-10'>
+            <h3>Filter</h3>
+            <p>Placeholder</p>
+            <p>Placeholder</p>
+            <p>Placeholder</p>
+            <p>Placeholder</p>
+          </div>
+          <div>
+            <Resultcards />
+            <Resultcards />
+            <Resultcards />
+            <Resultcards />
+            <Resultcards />
+            <Resultcards />
+          </div>
+        </div>
+      </main>
       <Footer />
     </>
   );
