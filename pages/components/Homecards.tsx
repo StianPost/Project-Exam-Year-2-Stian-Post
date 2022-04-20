@@ -1,9 +1,19 @@
-import React from 'react';
+import { Icon } from '@iconify/react';
 
 function Homecards(): any {
   return (
-    <div className=' bg-blue-100 max-w-lg rounded-lg mb-6'>
-      <div className='bg-blue-300 w-full h-60 rounded-t-lg'></div>
+    <div className=' bg-secondary max-w-lg rounded-lg mb-6'>
+      <div className='bg-blue-300 w-full h-60 rounded-t-lg flex flex-col items-end p-3'>
+        <div className='flex items-center justify-center h-12 w-12 mb-2 rounded-full bg-gray-900 text-white'>
+          <Icon className='text-2xl' icon='fa-solid:skiing' />
+        </div>
+        <div className='flex items-center justify-center h-12 w-12 mb-2 rounded-full bg-gray-900 text-white'>
+          <Icon className='text-2xl' icon='fa-solid:skiing' />
+        </div>
+        <div className='flex items-center justify-center h-12 w-12 mb-2 rounded-full bg-gray-900 text-white'>
+          <Icon className='text-2xl' icon='fa-solid:skiing' />
+        </div>
+      </div>
       <div className='p-3'>
         <h4 className='font-bold'>Hytte ute i Naturen</h4>
         <p>
@@ -14,11 +24,9 @@ function Homecards(): any {
         </p>
         <div className='flex justify-between mt-2'>
           <div>icons</div>
-          <div className='font-bold'>Price</div>
+          <div className='font-bold text-primary text-2xl'>Price</div>
         </div>
-        <button className='mt-3 mb-1 bg-slate-700 text-white p-3 sm:p-2 w-full rounded-lg'>
-          Placeholder
-        </button>
+        <button className='button__primary'>Book</button>
       </div>
     </div>
   );

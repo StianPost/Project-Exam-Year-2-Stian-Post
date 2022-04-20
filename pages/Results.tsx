@@ -11,7 +11,7 @@ const Results: NextPage = () => {
         <title>Search Results - Cabin fever</title>
       </Head>
       <Header />
-      <main className='px-6'>
+      <main className='px-10'>
         <div>search bar placeholder</div>
         <h1>Results</h1>
         <div className='flex justify-between mb-6'>
@@ -21,7 +21,7 @@ const Results: NextPage = () => {
         </div>
 
         <div className='flex flex-col lg:flex-row'>
-          <div className='pr-10 mb-3 md:mb-0'>
+          <div className='mb-3 w-80 md:mb-0'>
             <h3>Filter</h3>
             <p>Placeholder</p>
             <p>Placeholder</p>

@@ -8,7 +8,7 @@ import React from 'react';
 function Header(): any {
   const router = useRouter();
   return (
-    <header className='flex flex-col sm:justify-between sm:flex-row  py-4 px-6 items-center'>
+    <header className='flex flex-col sm:justify-between sm:flex-row  py-4 px-10 items-center'>
       <div>
         <Link href='/'>
           <a className='flex flex-col'>

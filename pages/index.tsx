@@ -2,6 +2,7 @@ import Footer from './layout/Footer';
 import Head from 'next/head';
 import Header from './layout/Header';
 import Homecards from './components/Homecards';
+import Link from 'next/link';
 import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
@@ -43,7 +44,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className=' mt-9 max-w-5xl text-center m-auto'>
+      <div className='flex flex-col items-center mt-9 max-w-5xl text-center m-auto'>
         <h2>Explore Norway</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ligula etiam
@@ -52,9 +53,11 @@ const Home: NextPage = () => {
           enim mattis lacus, semper at in viverra orci. Luctus purus volutpat in
           maecenas ut libero ornare.
         </p>
-        <button className=' bg-slate-600 p-2 text-white mt-2'>
-          placeholder
-        </button>
+        <div className='button__primary max-w-xs'>
+          <Link href='/Results'>
+            <a>Book Cabins</a>
+          </Link>
+        </div>
       </div>
       <div className='homeCards mt-8 max-w-7xl m-auto flex flex-wrap lg:justify-between justify-center px-2'>
         <Homecards />

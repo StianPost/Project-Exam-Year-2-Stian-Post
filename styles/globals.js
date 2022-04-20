@@ -42,9 +42,9 @@ const GlobalStyle = createGlobalStyle`
   --color-white: #fff;
   --color-black: #282828;
   --c-action: var(--color-primary);
-  --c-danger: var(--color-ed7c00);
-  --c-success: var(--color-2a7a8c);
-  --c-info: var(--color-ed7c00);
+  --c-danger: var(--color-quaternary);
+  --c-success: var(--color-primary);
+  --c-info: var(--color-quaternary);
   --c-bg: var(--color-primary);
   --c-bg--secondary: var(--color-secondary);
   --c-text: black;

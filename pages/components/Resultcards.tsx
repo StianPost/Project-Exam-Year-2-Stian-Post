@@ -6,7 +6,7 @@ function Resultcards(): any {
       <div className='bg-slate-600 h-60  rounded-t-lg md:w-3/4  md:h-full md:rounded-l-lg md:rounded-none'>
         imageplaceholder
       </div>
-      <div className='p-6 bg-slate-100 flex flex-col justify-between rounded-b-lg w-full md:rounded-r-lg'>
+      <div className='p-6 bg-secondary flex flex-col justify-between rounded-b-lg w-full md:rounded-r-lg'>
         <h3>Enda en hytte</h3>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae,
@@ -19,7 +19,7 @@ function Resultcards(): any {
             <p>icon</p>
             <p>icon</p>
           </div>
-          <div>Button</div>
+          <button className='button__primary max-w-xs'>Button</button>
         </div>
       </div>
     </div>
