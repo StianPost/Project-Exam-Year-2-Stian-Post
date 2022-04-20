@@ -1,4 +1,5 @@
 import { Icon } from '@iconify/react';
+import Link from 'next/link';
 
 function Footer() {
   return (
@@ -24,7 +25,9 @@ function Footer() {
         <p className='mx-2 hover:underline hover:cursor-pointer'>
           Terms of use
         </p>
-        <p className='hover:underline hover:cursor-pointer'>About us</p>
+        <Link href='/Contact'>
+          <a className='hover:underline hover:cursor-pointer'>About us</a>
+        </Link>
       </div>
     </footer>
   );

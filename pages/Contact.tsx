@@ -14,10 +14,10 @@ const Contact: NextPage = () => {
         <div className='heroImg bg-pink-400 flex items-center justify-center'>
           <h1 className='text-white'>Contact us</h1>
         </div>
-        <div className='flex flex-col-reverse mb-4 items-center md:items-start md:justify-between px-10 mt-8 md:flex-row'>
+        <div className='flex flex-col-reverse mb-4 items-center md:items-start md:justify-evenly px-10 mt-8 md:flex-row'>
           <div className='md:w-1/2 pr-8'>
-            <div>
-              <h2>Learn More</h2>
+            <div className='mb-6'>
+              <h2 className='mb-4'>Learn More</h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Est,
                 tortor purus rutrum morbi placerat. Pellentesque donec leo,
@@ -35,7 +35,7 @@ const Contact: NextPage = () => {
               </p>
             </div>
             <div>
-              <h3>About us</h3>
+              <h3 className='mb-4'>About us</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Est,
                 tortor purus rutrum morbi placerat. Pellentesque donec leo,
@@ -48,7 +48,7 @@ const Contact: NextPage = () => {
               </p>
             </div>
           </div>
-          <div className='w-full md:w-1/2 bg-secondary p-3 rounded-lg max-w-xl h-full'>
+          <div className='w-full md:w-1/2 bg-secondary p-4 rounded-lg max-w-xl h-full'>
             <h3 className='text-center'>Contact</h3>
             <form action='' className='flex flex-col'>
               <div>

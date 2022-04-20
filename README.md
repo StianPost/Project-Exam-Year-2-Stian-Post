@@ -1,9 +1,19 @@
 # Project Exam
 
 ```
-login placeholder
-email: Something@mail.com
-password: password123
+Admin login
+email: admin@admin.com
+password: Pass123
+```
+
+```
+Super Admin
+email: super@admin.com
+password: Password1234
+```
+
+```
+Strapi uses Yarn
 ```
 
 ## Info
@@ -23,5 +33,7 @@ You'll be able to log in as an Admin and add new cabins, look at messages both f
 Links to use:
 
 Typeahead: https://mui.com/components/autocomplete/
+
 Slider: https://mui.com/components/slider/
+
 DatePicker: https://www.npmjs.com/package/react-datepicker

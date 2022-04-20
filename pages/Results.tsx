@@ -17,7 +17,7 @@ const Results: NextPage = () => {
         <div className='flex justify-between mb-6'>
           <p>Showing xx out of ??</p>
 
-          <div>Sort by menu</div>
+          <div className='button__secondary'>Sort by menu</div>
         </div>
 
         <div className='flex flex-col lg:flex-row'>

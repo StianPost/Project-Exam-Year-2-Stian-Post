@@ -33,7 +33,7 @@ function Header(): any {
             <Link href='/Results'>
               <a
                 className={
-                  router.pathname === '/Results' ? 'font-bold pl-10' : 'pl-10'
+                  router.pathname === '/Results' ? 'font-bold ml-10' : 'ml-10'
                 }
               >
                 Cabins
@@ -42,7 +42,7 @@ function Header(): any {
             <Link href='/Contact'>
               <a
                 className={
-                  router.pathname === '/Contact' ? 'font-bold pl-10' : 'pl-10'
+                  router.pathname === '/Contact' ? 'font-bold ml-10' : 'ml-10'
                 }
               >
                 Contact
@@ -51,7 +51,7 @@ function Header(): any {
             <Link href='/Admin'>
               <a
                 className={
-                  router.pathname === '/Admin' ? 'font-bold pl-10' : 'pl-10'
+                  router.pathname === '/Admin' ? 'font-bold ml-10' : 'ml-10'
                 }
               >
                 Admin

@@ -8,10 +8,10 @@ function Homecards(): any {
           <Icon className='text-2xl' icon='fa-solid:skiing' />
         </div>
         <div className='flex items-center justify-center h-12 w-12 mb-2 rounded-full bg-gray-900 text-white'>
-          <Icon className='text-2xl' icon='fa-solid:skiing' />
+          <Icon className='text-2xl' icon='map:waterskiing' />
         </div>
         <div className='flex items-center justify-center h-12 w-12 mb-2 rounded-full bg-gray-900 text-white'>
-          <Icon className='text-2xl' icon='fa-solid:skiing' />
+          <Icon className='text-2xl' icon='map:jet-skiing' />
         </div>
       </div>
       <div className='p-3'>
