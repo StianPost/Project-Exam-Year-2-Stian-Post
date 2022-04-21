@@ -16,7 +16,7 @@ const Home: NextPage = () => {
       <main>
         <div className='heroImg bg-slate-400'>
           <div className='overlay w-full h-full relative'>
-            <div className='md:absolute md:bottom-52 md:left-20 flex flex-col pt-32'>
+            <div className='md:absolute md:bottom-52 md:left-20 flex flex-col py-10'>
               <h1>Enjoy Norway</h1>
               <div>
                 <form className='flex flex-col md:flex-row mt-10  sm:mt-5 max-w-md'>

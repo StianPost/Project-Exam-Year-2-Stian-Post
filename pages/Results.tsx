@@ -11,7 +11,7 @@ const Results: NextPage = () => {
         <title>Search Results - Cabin fever</title>
       </Head>
       <Header />
-      <main className='px-10'>
+      <main className='px-2 sm:px-10'>
         <div>search bar placeholder</div>
         <h1>Results</h1>
         <div className='flex justify-between mb-6'>
