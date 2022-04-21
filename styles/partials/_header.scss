@@ -1,3 +1,14 @@
 .logoText {
   font-family: 'Poppins', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.active {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+.inActive {
+  color: var(--color-primary);
+  &:hover {
+    font-weight: bold;
+  }
+}

@@ -1,15 +1,15 @@
 # Project Exam
 
 ```
-Admin login
-email: admin@admin.com
-password: Pass123
+Super admin:
+Email: admin@admin.com
+Password: Pass1234
 ```
 
 ```
-Super Admin
-email: super@admin.com
-password: Password1234
+Admin:
+Email: user@admin.com
+Password: Pass123
 ```
 
 ```

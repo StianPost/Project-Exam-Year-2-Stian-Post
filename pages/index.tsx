@@ -19,7 +19,7 @@ const Home: NextPage = () => {
             <div className='md:absolute md:bottom-52 md:left-20 flex flex-col pt-32'>
               <h1>Enjoy Norway</h1>
               <div>
-                <form className='flex flex-col flex-wrap md:flex-row mt-10  sm:mt-5 p-2 max-w-md'>
+                <form className='flex flex-col md:flex-row mt-10  sm:mt-5 max-w-md'>
                   <input
                     className='border border-solid border-black md:mr-2 mt-2 p-2'
                     type='text'

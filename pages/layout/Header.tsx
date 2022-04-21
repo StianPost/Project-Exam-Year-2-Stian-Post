@@ -25,15 +25,19 @@ function Header(): any {
         </Link>
       </div>
       <div>
-        <nav className='text-xl text-zinc-500'>
+        <nav className='text-xl '>
           <ul>
             <Link href='/'>
-              <a className={router.pathname === '/' ? 'font-bold' : ''}>Home</a>
+              <a className={router.pathname === '/' ? 'active' : 'inActive'}>
+                Home
+              </a>
             </Link>
             <Link href='/Results'>
               <a
                 className={
-                  router.pathname === '/Results' ? 'font-bold ml-10' : 'ml-10'
+                  router.pathname === '/Results'
+                    ? 'active ml-10'
+                    : 'inActive ml-10'
                 }
               >
                 Cabins
@@ -42,7 +46,9 @@ function Header(): any {
             <Link href='/Contact'>
               <a
                 className={
-                  router.pathname === '/Contact' ? 'font-bold ml-10' : 'ml-10'
+                  router.pathname === '/Contact'
+                    ? 'active ml-10'
+                    : 'inActive ml-10'
                 }
               >
                 Contact
@@ -51,7 +57,9 @@ function Header(): any {
             <Link href='/Admin'>
               <a
                 className={
-                  router.pathname === '/Admin' ? 'font-bold ml-10' : 'ml-10'
+                  router.pathname === '/Admin'
+                    ? 'active ml-10'
+                    : 'inActive ml-10'
                 }
               >
                 Admin

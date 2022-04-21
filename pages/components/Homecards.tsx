@@ -24,7 +24,7 @@ function Homecards(): any {
         </p>
         <div className='flex justify-between mt-2'>
           <div>icons</div>
-          <div className='font-bold text-primary text-2xl'>Price</div>
+          <div className='font-bold text-primary text-2xl'>350 nok/day</div>
         </div>
         <button className='button__primary'>Book</button>
       </div>
