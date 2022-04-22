@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Router, useRouter } from 'next/router';
 
 import type { AppProps } from 'next/app';
+import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -30,16 +31,25 @@ function Header(): any {
           </Link>
         </div>
         <div
-          className={`fixed w-full flex justify-center z-20 left-0 top-0 p-2 rounded-b-full  sm:hidden ${
+          className={`fixed w-full z-20 left-0 top-0 p-2 sm:hidden ${
             menuActive ? 'bg-secondary' : 'bg-white'
           }`}
         >
-          <div>
-            <Image
-              src='/cabin_fever_logo.png'
-              alt='Logo for cabinfever'
-              width={80}
-              height={60}
+          <div className='flex justify-between items-center px-2'>
+            <Link href='/'>
+              <a>
+                <Image
+                  src='/cabin_fever_logo.png'
+                  alt='Logo for cabinfever'
+                  width={80}
+                  height={60}
+                />
+              </a>
+            </Link>
+
+            <Icon
+              className='text-6xl text-primary'
+              icon='charm:menu-hamburger'
               onClick={() => {
                 toggleMenu();
               }}
