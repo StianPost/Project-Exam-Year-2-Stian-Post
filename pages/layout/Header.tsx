@@ -29,13 +29,17 @@ function Header(): any {
             </a>
           </Link>
         </div>
-        <div className='fixed w-full flex justify-center z-20 left-0 top-4 sm:hidden'>
-          <div>
+        <div
+          className={`fixed w-full flex justify-center z-20 left-0 top-0 p-2  sm:hidden ${
+            menuActive ? 'bg-secondary' : 'bg-white'
+          }`}
+        >
+          <div className='z-20'>
             <Image
               src='/cabin_fever_logo.png'
               alt='Logo for cabinfever'
-              width={100}
-              height={80}
+              width={80}
+              height={60}
               onClick={() => {
                 toggleMenu();
               }}
