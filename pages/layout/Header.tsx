@@ -12,7 +12,7 @@ function Header(): any {
   };
   const router = useRouter();
   return (
-    <header className='flex flex-col sm:justify-between sm:flex-row py-14  sm:py-4 px-10 items-center relative'>
+    <header className='flex flex-col sm:justify-between sm:flex-row py-12  sm:py-4 px-10 items-center relative'>
       <div>
         <div className='hidden sm:block'>
           <Link href='/'>
@@ -30,11 +30,11 @@ function Header(): any {
           </Link>
         </div>
         <div
-          className={`fixed w-full flex justify-center z-20 left-0 top-0 p-2  sm:hidden ${
+          className={`fixed w-full flex justify-center z-20 left-0 top-0 p-2 rounded-b-full  sm:hidden ${
             menuActive ? 'bg-secondary' : 'bg-white'
           }`}
         >
-          <div className='z-20'>
+          <div>
             <Image
               src='/cabin_fever_logo.png'
               alt='Logo for cabinfever'
