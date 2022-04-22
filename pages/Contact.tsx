@@ -14,7 +14,7 @@ const Contact: NextPage = () => {
         <div className='heroImg bg-pink-400 flex items-center justify-center'>
           <h1 className='text-white'>Contact us</h1>
         </div>
-        <div className='flex flex-col-reverse mb-4 items-center md:items-start md:justify-evenly px-10 mt-8 md:flex-row'>
+        <div className='flex flex-col-reverse mb-4 items-center md:items-start md:justify-evenly px-2 mt-8 md:flex-row sm:px-10'>
           <div className='md:w-1/2 pr-8'>
             <div className='mb-6'>
               <h2 className='mb-4'>Learn More</h2>

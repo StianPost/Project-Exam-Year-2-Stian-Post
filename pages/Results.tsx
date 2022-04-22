@@ -13,7 +13,7 @@ const Results: NextPage = () => {
       <Header />
       <main className='px-2 sm:px-10'>
         <div>search bar placeholder</div>
-        <h1>Results</h1>
+        <h1 className='font-semibold text-primary'>Results</h1>
         <div className='flex justify-between mb-6'>
           <p>Showing xx out of ??</p>
 

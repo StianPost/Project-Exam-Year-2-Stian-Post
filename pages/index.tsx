@@ -17,7 +17,7 @@ const Home: NextPage = () => {
         <div className='heroImg bg-slate-400'>
           <div className='overlay w-full h-full relative'>
             <div className='md:absolute md:bottom-52 md:left-20 flex flex-col py-10'>
-              <h1>Enjoy Norway</h1>
+              <h1 className='text-white'>Enjoy Norway Today</h1>
               <div>
                 <form className='flex flex-col md:flex-row mt-10  sm:mt-5 max-w-md'>
                   <input
@@ -54,9 +54,9 @@ const Home: NextPage = () => {
             Vitae rutrum enim mattis lacus, semper at in viverra orci. Luctus
             purus volutpat in maecenas ut libero ornare.
           </p>
-          <div className='button__primary max-w-xs'>
+          <div className='mt-4'>
             <Link href='/Results'>
-              <a>Book Cabins</a>
+              <a className='button__primary'>Book Cabins</a>
             </Link>
           </div>
         </div>

@@ -1,5 +1,6 @@
 .button {
   &__primary {
+    transition: 0.3s ease-in;
     background-color: var(--color-primary);
     color: var(--color-white);
     width: 100%;
@@ -16,6 +17,7 @@
     }
   }
   &__secondary {
+    transition: 0.3s;
     background-color: var(--color-white);
     color: var(--color-primary);
     border: 3px solid var(--color-primary);
