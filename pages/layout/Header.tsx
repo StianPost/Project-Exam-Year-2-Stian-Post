@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 function Header(): any {
   const [menuActive, setMenuState] = useState(false);
-  const toggleMenu = () => {
+  const toggleMenu = (): void => {
     setMenuState(!menuActive);
   };
   const router = useRouter();
@@ -35,7 +35,7 @@ function Header(): any {
             menuActive ? 'bg-secondary' : 'bg-white'
           }`}
         >
-          <div className='flex justify-between items-center px-2'>
+          <div className='flex justify-between items-center'>
             <Link href='/'>
               <a>
                 <Image
@@ -48,7 +48,7 @@ function Header(): any {
             </Link>
 
             <Icon
-              className='text-6xl text-primary'
+              className='text-5xl text-primary'
               icon='charm:menu-hamburger'
               onClick={() => {
                 toggleMenu();
@@ -61,7 +61,7 @@ function Header(): any {
             menuActive ? '' : 'hidden'
           }`}
         >
-          <div className='h-full pt-28'>
+          <div className='h-full py-24'>
             <ul className='flex flex-col h-full text-primary items-center justify-evenly text-2xl'>
               <Link href='/'>
                 <a
