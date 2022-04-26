@@ -75,10 +75,10 @@ function Header(): any {
                   Home
                 </a>
               </Link>
-              <Link href='/Results'>
+              <Link href='/cabins'>
                 <a
                   className={
-                    router.pathname === '/Results'
+                    router.pathname === '/cabins'
                       ? 'font-bold'
                       : 'hover:font-bold'
                   }
@@ -129,10 +129,10 @@ function Header(): any {
                 Home
               </a>
             </Link>
-            <Link href='/Results'>
+            <Link href='/cabins'>
               <a
                 className={
-                  router.pathname === '/Results'
+                  router.pathname === '/cabins'
                     ? 'active ml-10'
                     : 'inActive ml-10'
                 }

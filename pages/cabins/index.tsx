@@ -1,10 +1,21 @@
-import Footer from './layout/Footer';
+import Footer from '../layout/Footer';
 import Head from 'next/head';
-import Header from './layout/Header';
+import Header from '../layout/Header';
+import Link from 'next/link';
 import type { NextPage } from 'next';
-import Resultcards from './components/Resultcards';
+import Resultcards from '../../components/Resultcards';
+import { apiCall } from '../../lib/const';
+import { getCabins } from '../../lib/api';
 
-const Results: NextPage = () => {
+export async function getStaticProps() {
+  const cabinArray = await getCabins(apiCall);
+
+  return {
+    props: { cabins: cabinArray },
+  };
+}
+
+const Results = ({ cabins }: any) => {
   return (
     <>
       <Head>
@@ -12,6 +23,15 @@ const Results: NextPage = () => {
       </Head>
       <Header />
       <main className='px-2 sm:px-10'>
+        <div>
+          {cabins.map((elm: any) => {
+            return (
+              <Link href={`/cabins/${elm.id}`} key={elm.id}>
+                <a>{elm.title}</a>
+              </Link>
+            );
+          })}
+        </div>
         <div>search bar placeholder</div>
         <h1 className='font-semibold text-primary'>Results</h1>
         <div className='flex justify-between mb-6'>
