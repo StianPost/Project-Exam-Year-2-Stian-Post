@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-function Resultcards({ title, heroImg, id, price }): any {
+function Resultcards({ title, heroImg, id, price }) {
   const myLoader = ({ src, width }) => {
     return heroImg;
   };
