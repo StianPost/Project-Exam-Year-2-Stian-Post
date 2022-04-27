@@ -1,13 +1,11 @@
-import { apiCall } from "./const";
+import { apiCall } from './const';
 
-const axios = require("axios").default;
+const axios = require('axios').default;
 
-export async function getCabins(url:string) {
-    const {data} = await axios.get(url)
-    try {
-    } catch (error) {
-    }
-    return data
+export async function getCabins(url: string) {
+  const response = await fetch(url);
+  const data = await response.json();
+  try {
+  } catch (error) {}
+  return data;
 }
-
-
