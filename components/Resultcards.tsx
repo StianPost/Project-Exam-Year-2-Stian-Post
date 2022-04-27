@@ -2,7 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-function Resultcards({ title, heroImg, id, price }) {
+interface cardInfo {
+  title: string;
+  heroImg: string;
+  id: number;
+  price: number;
+}
+
+function Resultcards({ title, heroImg, id, price }: cardInfo) {
   const myLoader = ({ src, width }) => {
     return heroImg;
   };
