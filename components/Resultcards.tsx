@@ -1,13 +1,29 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
-function Resultcards(): any {
+function Resultcards({ title, heroImg, id, price }): any {
+  const myLoader = ({ src, width }) => {
+    return heroImg;
+  };
+  console.log(id);
+
   return (
-    <div className='flex max-w-6xl w-full flex-col mb-6 rounded-lg md:flex-row md:h-80 '>
-      <div className='bg-slate-600 h-60  rounded-t-lg md:w-3/4  md:h-full md:rounded-l-lg md:rounded-none'>
-        imageplaceholder
+    <div className='flex max-w-6xl w-full flex-col mb-6 rounded-lg md:flex-row '>
+      <div className='bg-slate-600  rounded-t-lg md:w-3/4  md:h-full md:rounded-l-lg md:rounded-none'>
+        <Image
+          className='rounded-t-lg md:w-3/4  md:h-full md:rounded-l-lg md:rounded-none'
+          loader={myLoader}
+          src={heroImg}
+          alt={`image of ${heroImg}`}
+          height={120}
+          width={150}
+          layout='responsive'
+          unoptimized={false}
+        />
       </div>
       <div className='p-3 bg-secondary flex flex-col justify-between rounded-b-lg w-full md:rounded-r-lg'>
-        <h3>Enda en hytte</h3>
+        <h3>{title}</h3>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae,
           praesent quam aliquet nunc ac dui, egestas non rutrum. Odio pharetra
@@ -20,11 +36,15 @@ function Resultcards(): any {
               <p>icon</p>
               <p>icon</p>
             </div>
-            <div className='font-bold text-primary text-2xl'>350 nok/day</div>
+            <div className='font-bold text-primary text-2xl'>
+              {price} nok/day
+            </div>
           </div>
-          <button className='button__primary self-end h-fit sm:max-w-xs md:ml-2'>
-            Button
-          </button>
+          <Link href={`/cabins/${id}`}>
+            <a className='button__primary text-center self-end h-fit sm:max-w-xs md:ml-2'>
+              Button
+            </a>
+          </Link>
         </div>
       </div>
     </div>

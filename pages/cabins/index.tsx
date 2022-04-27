@@ -23,15 +23,6 @@ const Results = ({ cabins }: any) => {
       </Head>
       <Header />
       <main className='px-2 sm:px-10'>
-        <div>
-          {cabins.map((elm: any) => {
-            return (
-              <Link href={`/cabins/${elm.id}`} key={elm.id}>
-                <a>{elm.title}</a>
-              </Link>
-            );
-          })}
-        </div>
         <div>search bar placeholder</div>
         <h1 className='font-semibold text-primary'>Results</h1>
         <div className='flex justify-between mb-6'>
@@ -49,12 +40,17 @@ const Results = ({ cabins }: any) => {
             <p>Placeholder</p>
           </div>
           <div>
-            <Resultcards />
-            <Resultcards />
-            <Resultcards />
-            <Resultcards />
-            <Resultcards />
-            <Resultcards />
+            {cabins.map(({ id, title, heroImg, price }: any): any => {
+              return (
+                <Resultcards
+                  key={id}
+                  title={title}
+                  heroImg={heroImg}
+                  id={id}
+                  price={price}
+                />
+              );
+            })}
           </div>
         </div>
       </main>
