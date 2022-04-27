@@ -10,7 +10,7 @@ interface cardInfo {
 }
 
 function Resultcards({ title, heroImg, id, price }: cardInfo) {
-  const myLoader = ({ src, width }) => {
+  const myLoader = () => {
     return heroImg;
   };
   console.log(id);
