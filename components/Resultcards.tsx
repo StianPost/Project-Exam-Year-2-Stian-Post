@@ -1,19 +1,26 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { cardInfo } from '../lib/types';
 
-interface cardInfo {
-  title: string;
-  heroImg: string;
-  id: number;
-  price: number;
-}
-
-function Resultcards({ title, heroImg, id, price }: cardInfo) {
+function Resultcards({
+  title,
+  id,
+  description,
+  extra_description,
+  short_description,
+  price,
+  adress,
+  heroImg,
+  map,
+  imgArray,
+  county,
+  people_rooms,
+  dates,
+}: cardInfo) {
   const myLoader = () => {
     return heroImg;
   };
-  console.log(id);
 
   return (
     <div className='flex max-w-6xl w-full flex-col mb-6 rounded-lg md:flex-row '>
@@ -31,12 +38,7 @@ function Resultcards({ title, heroImg, id, price }: cardInfo) {
       </div>
       <div className='p-3 bg-secondary flex flex-col justify-between rounded-b-lg w-full md:rounded-r-lg'>
         <h3>{title}</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae,
-          praesent quam aliquet nunc ac dui, egestas non rutrum. Odio pharetra
-          id eros, integer habitasse fames commodo aliquam, imperdiet. Sed vitae
-          condimentum ultrices risus aliquam sit mauris. Aenean turpis.
-        </p>
+        <p>{short_description}</p>
         <div className='flex flex-col justify-between sm:flex-row py-0 sm:pt:2'>
           <div className='flex justify-between items-center sm:block py-2 sm:py-0'>
             <div className='flex'>
