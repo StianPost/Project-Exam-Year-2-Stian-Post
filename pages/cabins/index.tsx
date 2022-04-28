@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import Dropdown from '../../components/Dropdown';
 import Footer from '../layout/Footer';
 import Head from 'next/head';
 import Header from '../layout/Header';
@@ -20,26 +21,15 @@ export async function getStaticProps() {
 }
 
 const Results = ({ cabins }: any) => {
-  const [searchValue, setSearchValue] = useState('');
-
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    setSearchValue(event.target.value);
-  };
-
-  const onSearchClick = (searchTerm): void => {
-    setSearchValue(searchTerm);
-  };
-
-  return (
-    <>
-      <Head>
-        <title>Search Results - Cabin fever</title>
-      </Head>
-      <Header />
-      <main className='px-2 md:px-4 lg:px-10'>
-        <div>
-          <div>
-            <input
+  // const [searchValue, setSearchValue] = useState('');
+  // const onChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  //   setSearchValue(event.target.value);
+  // };
+  // const onSearchClick = (searchTerm: string): void => {
+  //   setSearchValue(searchTerm);
+  // };
+  {
+    /* <input
               type='text'
               name='searchBar'
               id='searchBar'
@@ -49,24 +39,26 @@ const Results = ({ cabins }: any) => {
               }}
               value={searchValue}
             />
-            <button>Search</button>
-          </div>
-          <div className='dropDown'>
+            <button>Search</button> */
+  }
+  {
+    /* <div className='dropDown'>
             {cabins
               .filter((cabin: cardInfo): boolean | string => {
                 const searchTerm = searchValue.toLowerCase().trim();
                 const cabinName = cabin.title.toLowerCase();
 
                 return (
-                  searchTerm &&
-                  cabinName.includes(searchTerm) &&
-                  cabinName !== searchTerm
+                  (searchTerm &&
+                    cabinName.includes(searchTerm) &&
+                    cabinName !== searchTerm) ||
+                  searchTerm === ''
                 );
               })
               .slice(0, 10)
               .map(({ id, title }: { id: number; title: string }) => {
                 return (
-                  <div key={id}>
+                  <div key={id} tabIndex={id}>
                     <p
                       onClick={() => {
                         onSearchClick(title);
@@ -77,6 +69,26 @@ const Results = ({ cabins }: any) => {
                   </div>
                 );
               })}
+          </div> */
+  }
+
+  const [searchValue, setSearchValue] = useState(null);
+
+  return (
+    <>
+      <Head>
+        <title>Search Results - Cabin fever</title>
+      </Head>
+      <Header />
+      <main className='px-2 md:px-4 lg:px-10'>
+        <div>
+          <div style={{ width: 200 }}>
+            <Dropdown
+              cabins={cabins}
+              searchValue={searchValue}
+              onChange={(val) => setSearchValue(val)}
+              prompt='Select cabin...'
+            />
           </div>
         </div>
         <h1 className='font-semibold text-primary'>Results</h1>
