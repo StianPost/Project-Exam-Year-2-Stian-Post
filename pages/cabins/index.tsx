@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from 'react';
+
 import Footer from '../layout/Footer';
 import Head from 'next/head';
 import Header from '../layout/Header';
@@ -18,6 +20,16 @@ export async function getStaticProps() {
 }
 
 const Results = ({ cabins }: any) => {
+  const [searchValue, setSearchValue] = useState('');
+
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    setSearchValue(event.target.value);
+  };
+
+  const onSearchClick = (searchTerm): void => {
+    setSearchValue(searchTerm);
+  };
+
   return (
     <>
       <Head>
@@ -25,7 +37,48 @@ const Results = ({ cabins }: any) => {
       </Head>
       <Header />
       <main className='px-2 md:px-4 lg:px-10'>
-        <div>search bar placeholder</div>
+        <div>
+          <div>
+            <input
+              type='text'
+              name='searchBar'
+              id='searchBar'
+              className='border border-solid border-black'
+              onChange={(event) => {
+                onChange(event);
+              }}
+              value={searchValue}
+            />
+            <button>Search</button>
+          </div>
+          <div className='dropDown'>
+            {cabins
+              .filter((cabin: cardInfo): boolean | string => {
+                const searchTerm = searchValue.toLowerCase().trim();
+                const cabinName = cabin.title.toLowerCase();
+
+                return (
+                  searchTerm &&
+                  cabinName.includes(searchTerm) &&
+                  cabinName !== searchTerm
+                );
+              })
+              .slice(0, 10)
+              .map(({ id, title }: { id: number; title: string }) => {
+                return (
+                  <div key={id}>
+                    <p
+                      onClick={() => {
+                        onSearchClick(title);
+                      }}
+                    >
+                      {title}
+                    </p>
+                  </div>
+                );
+              })}
+          </div>
+        </div>
         <h1 className='font-semibold text-primary'>Results</h1>
         <div className='flex justify-between mb-6'>
           <p>Showing xx out of ??</p>
