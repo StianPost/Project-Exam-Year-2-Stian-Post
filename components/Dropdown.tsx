@@ -9,11 +9,17 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
   const ref = useRef(null);
 
   useEffect(() => {
-    document.addEventListener('click', close);
-    return () => document.addEventListener('click', close);
+    ['click', 'touchend'].forEach((e) => {
+      document.addEventListener(e, toggle);
+    });
+
+    return () =>
+      ['click', 'touchend'].forEach((e) => {
+        document.addEventListener(e, toggle);
+      });
   }, []);
 
-  function close(e) {
+  function toggle(e) {
     setOpen(e && e.target === ref.current);
   }
 
@@ -24,14 +30,21 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
     );
   }
 
+  function displayValue() {
+    if (query.length > 0) return query;
+    if (searchValue) return searchValue.title;
+    return '';
+  }
+
+  function selectCabin(cabin) {
+    setQuery('');
+    onChange(cabin);
+    setOpen(false);
+  }
+
   return (
     <div className='dropdown'>
-      <div
-        className='control flex'
-        onClick={() => {
-          setOpen((prev) => !prev);
-        }}
-      >
+      <div className='control flex'>
         <div className='selected-value'>
           <input
             type='text'
@@ -39,14 +52,13 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
             id='searchBar'
             ref={ref}
             placeholder={searchValue ? searchValue.title : prompt}
-            value={searchValue.title || query}
+            value={displayValue()}
             onChange={(e) => {
               setQuery(e.target.value);
               onChange(null);
             }}
-            onClick={(e) => {
-              setOpen((prev) => !prev);
-            }}
+            onClick={toggle}
+            onTouchEnd={toggle}
           />
         </div>
         <span>
@@ -59,9 +71,10 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
             <div
               key={cabin.id}
               onClick={() => {
-                setQuery('');
-                onChange(cabin);
-                setOpen(false);
+                selectCabin(cabin);
+              }}
+              onTouchEnd={() => {
+                selectCabin(cabin);
               }}
             >
               {cabin.title}

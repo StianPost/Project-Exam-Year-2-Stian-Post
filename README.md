@@ -39,3 +39,5 @@ Slider: https://mui.com/components/slider/
 DatePicker: https://www.npmjs.com/package/react-datepicker
 
 apiCAll: https://www.youtube.com/watch?v=zueyEdRZQlk
+
+typeAhead: https://www.youtube.com/watch?v=elC357w9VOA
