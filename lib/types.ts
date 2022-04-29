@@ -10,6 +10,14 @@ export type dateObj = {
   toDate: Date;
 };
 
+export type ImgObj = {
+  id: number;
+  imgUrl: string;
+};
+export type ImgProp = {
+  imgArray: ImgObj[];
+};
+
 export interface cardInfo {
   title: string;
   heroImg: string;

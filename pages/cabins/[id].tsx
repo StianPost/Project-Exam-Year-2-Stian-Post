@@ -5,6 +5,7 @@ import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import type { NextPage } from 'next';
 import React from 'react';
+import Slider from '../../components/Slider';
 import { apiCall } from '../../lib/const';
 import { getCabins } from '../../lib/api';
 
@@ -60,6 +61,16 @@ const Cabin = ({
     <>
       <Head>
         <title>Cabin title</title>
+        <link
+          rel='stylesheet'
+          type='text/css'
+          href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css'
+        />
+        <link
+          rel='stylesheet'
+          type='text/css'
+          href='https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css'
+        />
       </Head>
       <Header />
       <main>
@@ -94,6 +105,7 @@ const Cabin = ({
             );
           })}
         </div>
+        <Slider imgArray={imgArray} heroImg={heroImg} />
         <div className='flex flex-col-reverse items-start px-2  md:justify-between md:px-4 lg:px-10 md:flex-row'>
           <div>
             <h1>{title}</h1>

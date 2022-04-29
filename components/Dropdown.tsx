@@ -23,7 +23,7 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
     setOpen(e && e.target === ref.current);
   }
 
-  function filter(cabins) {
+  function filterCabins(cabins) {
     return cabins.filter(
       (cabin: cardInfo) =>
         cabin.title.toLowerCase().indexOf(query.toLocaleLowerCase()) > -1
@@ -66,7 +66,7 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
         </span>
       </div>
       <div className={open ? '' : 'hidden'}>
-        {filter(cabins).map((cabin: cardInfo) => {
+        {filterCabins(cabins).map((cabin: cardInfo) => {
           return (
             <div
               key={cabin.id}
