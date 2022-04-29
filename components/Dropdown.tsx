@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { TouchEvent, useEffect, useRef, useState } from 'react';
 
 import { Icon } from '@iconify/react';
 import { cardInfo } from '../lib/types';
@@ -19,7 +19,7 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
       });
   }, []);
 
-  function toggle(e) {
+  function toggle(e): void {
     setOpen(e && e.target === ref.current);
   }
 
@@ -30,13 +30,13 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
     );
   }
 
-  function displayValue() {
+  function displayValue(): string {
     if (query.length > 0) return query;
     if (searchValue) return searchValue.title;
     return '';
   }
 
-  function selectCabin(cabin) {
+  function selectCabin(cabin: cardInfo): void {
     setQuery('');
     onChange(cabin);
     setOpen(false);

@@ -4,6 +4,7 @@ import Header from '../layout/Header';
 import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import type { NextPage } from 'next';
+import React from 'react';
 import { apiCall } from '../../lib/const';
 import { getCabins } from '../../lib/api';
 
@@ -48,6 +49,13 @@ const Cabin = ({
   const myLoader = () => {
     return heroImg;
   };
+
+  type imgArrObj = {
+    id: number;
+    imgUrl: string;
+    alt?: string;
+  };
+
   return (
     <>
       <Head>
@@ -66,6 +74,25 @@ const Cabin = ({
               layout={'responsive'}
             />
           </div>
+        </div>
+        <div className='flex'>
+          {imgArray.map((elm: imgArrObj) => {
+            const secondaryLoader = () => {
+              return elm.imgUrl;
+            };
+            return (
+              <div key={elm.id}>
+                {elm.id}
+                <Image
+                  loader={secondaryLoader}
+                  src={elm.imgUrl}
+                  alt={`Image of cabin`}
+                  width={125}
+                  height={80}
+                />
+              </div>
+            );
+          })}
         </div>
         <div className='flex flex-col-reverse items-start px-2  md:justify-between md:px-4 lg:px-10 md:flex-row'>
           <div>
