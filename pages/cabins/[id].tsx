@@ -47,8 +47,8 @@ const Cabin = ({
     dates,
   },
 }: any) => {
-  const myLoader = () => {
-    return heroImg;
+  const myLoader = ({ width = 200, quality = 100 }) => {
+    return `${heroImg}?w=${width}&q=${quality || 75}`;
   };
 
   type imgArrObj = {
@@ -83,13 +83,14 @@ const Cabin = ({
               width={1000}
               height={500}
               layout={'responsive'}
+              quality={70}
             />
           </div>
         </div>
         <div className='flex'>
           {imgArray.map((elm: imgArrObj) => {
-            const secondaryLoader = () => {
-              return elm.imgUrl;
+            const secondaryLoader = ({ width = 200, quality = 100 }) => {
+              return `${elm.imgUrl}?w=${width}&q=${quality || 75}`;
             };
             return (
               <div key={elm.id}>
@@ -100,12 +101,13 @@ const Cabin = ({
                   alt={`Image of cabin`}
                   width={125}
                   height={80}
+                  quality={70}
                 />
               </div>
             );
           })}
         </div>
-        <Slider imgArray={imgArray} heroImg={heroImg} />
+        {/* <Slider imgArray={imgArray} heroImg={heroImg} /> */}
         <div className='flex flex-col-reverse items-start px-2  md:justify-between md:px-4 lg:px-10 md:flex-row'>
           <div>
             <h1>{title}</h1>

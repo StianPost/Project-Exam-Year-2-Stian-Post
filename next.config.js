@@ -7,7 +7,7 @@ module.exports = {
     includePaths: [path.join(__dirname, 'styles')],
   },
   images: {
-    domains: ['netlify.app'],
+    domains: ['netlify.app', 'super-elf-132559.netlify.app'],
   },
 };
 

@@ -27,7 +27,7 @@ const Home = ({ cabins }: any) => {
       <main>
         <div className='heroImg bg-slate-400'>
           <div className='overlay w-full h-full relative'>
-            <div className='md:absolute md:bottom-52 md:left-20 flex flex-col py-10'>
+            <div className=' flex flex-col py-10 md:absolute md:top-52 md:left-20'>
               <h1 className='text-white'>Enjoy Norway Today</h1>
               <div>
                 <form className='flex flex-col md:flex-row mt-10  sm:mt-5 max-w-md'>

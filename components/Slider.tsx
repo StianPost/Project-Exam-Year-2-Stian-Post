@@ -3,7 +3,13 @@ import React, { useRef, useState } from 'react';
 
 import Image from 'next/image';
 
-function Slider({ imgArray, heroImg }) {
+function Slider({
+  imgArray,
+  heroImg,
+}: {
+  imgArray: string[];
+  heroImg: string;
+}) {
   const [image, setImage] = useState('');
 
   const myLoader = () => {
@@ -41,7 +47,7 @@ function Slider({ imgArray, heroImg }) {
               }}
             />
           </li>
-          {imgArray.map((elm: ImgObj) => {
+          {imgArray.map((elm: any) => {
             const secondaryLoader = () => {
               return elm.imgUrl;
             };
