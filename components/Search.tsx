@@ -2,6 +2,7 @@ import React, { TouchEvent, useEffect, useRef, useState } from 'react';
 
 import FilterDDowns from './FilterDDowns';
 import { Icon } from '@iconify/react';
+import MinimumDistanceSlider from './testSlider';
 import Resultcards from './Resultcards';
 import { cardInfo } from '../lib/types';
 
@@ -9,7 +10,7 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const ref = useRef(null);
-  const [count, setCount] = useState(0);
+  // const [count, setCount] = useState(0);
 
   useEffect(() => {
     ['click', 'touchend'].forEach((e) => {
@@ -47,7 +48,52 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
 
   return (
     <div>
-      <div className='dropdown'>
+      <div className='flex'>
+        <div className='w-72'>
+          <FilterDDowns
+            selectOptions={[
+              { value: 'agder', label: 'Agder' },
+              { value: 'finnmark', label: 'Finnmark' },
+              { value: 'innlandet', label: 'Innlandet' },
+              { value: 'moreogRomsdal', label: 'Møre og Romsdal' },
+              { value: 'nordland', label: 'Nordland' },
+              { value: 'oslo', label: 'Oslo' },
+              { value: 'rogaland', label: 'Rogaland' },
+              { value: 'vestfold', label: 'Vestfold' },
+              { value: 'telemark', label: 'Telemark' },
+              { value: 'troms', label: 'Troms' },
+              { value: 'trondelag', label: 'Trøndelag' },
+              { value: 'vestland', label: 'Vestland' },
+              { value: 'viken', label: 'Viken' },
+            ]}
+            filterType={'Activities'}
+            isMulti={true}
+          />
+        </div>
+        <div>DATE</div>
+        <div className='w-32'>
+          <FilterDDowns
+            selectOptions={[
+              { value: 'agder', label: 'Agder' },
+              { value: 'finnmark', label: 'Finnmark' },
+              { value: 'innlandet', label: 'Innlandet' },
+              { value: 'moreogRomsdal', label: 'Møre og Romsdal' },
+              { value: 'nordland', label: 'Nordland' },
+              { value: 'oslo', label: 'Oslo' },
+              { value: 'rogaland', label: 'Rogaland' },
+              { value: 'vestfold', label: 'Vestfold' },
+              { value: 'telemark', label: 'Telemark' },
+              { value: 'troms', label: 'Troms' },
+              { value: 'trondelag', label: 'Trøndelag' },
+              { value: 'vestland', label: 'Vestland' },
+              { value: 'viken', label: 'Viken' },
+            ]}
+            filterType={'Activities'}
+            isMulti={false}
+          />
+        </div>
+      </div>
+      <div className='dropdown mt-4'>
         <div className='control flex'>
           <div className='selected-value'>
             <input
@@ -101,10 +147,10 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
       </div>
 
       <div className='flex flex-col lg:flex-row'>
-        <div className='mb-3 md:w-72 md:pr-4 md:mb-0'>
+        <div className='mb-3 md:w-1/2 lg:w-72 md:pr-4 md:mb-0'>
           <h3>Filter</h3>
-          <div className='flex  md:flex-col'>
-            <div className='pr-4 md:p-0'>
+          <div className='flex flex-col  md:flex-row lg:flex-col'>
+            <div>
               <FilterDDowns
                 selectOptions={[
                   { value: 'isFire', label: 'Fireplace' },
@@ -114,9 +160,10 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
                   { value: 'isToilet', label: 'Toilet' },
                 ]}
                 filterType={'Amenities'}
+                isMulti={true}
               />
             </div>
-            <div className='pr-4 md:p-0'>
+            <div>
               <FilterDDowns
                 selectOptions={[
                   { value: 'isBeach', label: 'Beach' },
@@ -126,6 +173,7 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
                   { value: 'isSea', label: 'Sea' },
                 ]}
                 filterType={'Locations'}
+                isMulti={true}
               />
             </div>
             <div>
@@ -138,8 +186,12 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
                   { value: 'isHiking', label: 'Hiking' },
                 ]}
                 filterType={'Activities'}
+                isMulti={true}
               />
             </div>
+          </div>
+          <div className='w-full px-4'>
+            <MinimumDistanceSlider />
           </div>
         </div>
         <div>

@@ -1,3 +1,4 @@
+import FeaturedCards from '../components/FeaturedCards';
 import Footer from './layout/Footer';
 import Head from 'next/head';
 import Header from './layout/Header';
@@ -81,10 +82,7 @@ const Home = ({ cabins }: any) => {
           </div>
         </div>
         <div className='homeCards mt-8 max-w-7xl m-auto flex flex-wrap lg:justify-between justify-center px-2'>
-          <Homecards />
-          <Homecards />
-          <Homecards />
-          <Homecards />
+          <FeaturedCards />
         </div>
         <div className='max-w-7xl text-center m-auto my-6'>
           <div>
