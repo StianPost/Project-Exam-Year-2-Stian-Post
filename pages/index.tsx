@@ -82,7 +82,7 @@ const Home = ({ cabins }: any) => {
           </div>
         </div>
         <div className='homeCards mt-8 max-w-7xl m-auto flex flex-wrap lg:justify-between justify-center px-2'>
-          <FeaturedCards />
+          <FeaturedCards cabinArray={cabins} />
         </div>
         <div className='max-w-7xl text-center m-auto my-6'>
           <div>

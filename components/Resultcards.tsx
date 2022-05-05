@@ -18,8 +18,8 @@ function Resultcards({
   people_rooms,
   dates,
 }: cardInfo) {
-  const myLoader = () => {
-    return heroImg;
+  const myLoader = ({ width = 200, quality = 100 }) => {
+    return `${heroImg}?w=${width}&q=${quality || 75}`;
   };
 
   return (
@@ -34,6 +34,7 @@ function Resultcards({
           width={150}
           layout='responsive'
           unoptimized={false}
+          priority
         />
       </div>
       <div className='p-3 bg-secondary flex flex-col justify-between rounded-b-lg w-full md:rounded-r-lg'>

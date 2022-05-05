@@ -33,3 +33,7 @@ export interface cardInfo {
   dates?: dateObj;
   short_description: string;
 }
+
+export type cabinArray = {
+  cabinArray: cardInfo[];
+};

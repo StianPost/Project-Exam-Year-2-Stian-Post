@@ -2,21 +2,37 @@ import React, { useState } from 'react';
 
 import Select from 'react-select';
 
-function FilterDDowns({ selectOptions, filterType, isMulti }: any) {
+function FilterDDowns({
+  selectOptions,
+  filterType,
+  isMulti,
+  handleOnChange,
+}: any) {
   const [selectedOption, setSelectedOption]: any = useState(null);
 
+  let newFilterType = '';
+
+  if (filterType) {
+    newFilterType = filterType;
+  }
+
+  function onChange(val: any) {
+    setSelectedOption(val);
+    handleOnChange(val);
+  }
+
   return (
-    <div>
-      <label htmlFor={filterType}>{filterType}</label>
+    <>
+      {filterType ? <p>{filterType}</p> : ''}
       <Select
-        id={filterType}
         defaultValue={selectedOption}
-        onChange={setSelectedOption}
+        onChange={onChange}
         options={selectOptions}
         isMulti={isMulti}
         blurInputOnSelect
+        value={selectedOption}
       />
-    </div>
+    </>
   );
 }
 

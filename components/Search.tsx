@@ -6,11 +6,17 @@ import MinimumDistanceSlider from './testSlider';
 import Resultcards from './Resultcards';
 import { cardInfo } from '../lib/types';
 
-function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
+function Dropdown({
+  cabins,
+  prompt,
+  searchValue,
+  onChange,
+  handleOnSearch,
+}: any) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
   const ref = useRef(null);
-  // const [count, setCount] = useState(0);
+  const [filters, setFilters] = useState({});
 
   useEffect(() => {
     ['click', 'touchend'].forEach((e) => {
@@ -27,7 +33,7 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
     setOpen(e && e.target === ref.current);
   }
 
-  function filterCabins(cabins: any) {
+  function filterCabins(cabins: cardInfo[]) {
     return cabins.filter(
       (cabin: cardInfo) =>
         cabin.title.toLowerCase().indexOf(query.toLocaleLowerCase()) > -1
@@ -52,48 +58,76 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
         <div className='w-72'>
           <FilterDDowns
             selectOptions={[
-              { value: 'agder', label: 'Agder' },
-              { value: 'finnmark', label: 'Finnmark' },
-              { value: 'innlandet', label: 'Innlandet' },
-              { value: 'moreogRomsdal', label: 'Møre og Romsdal' },
-              { value: 'nordland', label: 'Nordland' },
-              { value: 'oslo', label: 'Oslo' },
-              { value: 'rogaland', label: 'Rogaland' },
-              { value: 'vestfold', label: 'Vestfold' },
-              { value: 'telemark', label: 'Telemark' },
-              { value: 'troms', label: 'Troms' },
-              { value: 'trondelag', label: 'Trøndelag' },
-              { value: 'vestland', label: 'Vestland' },
-              { value: 'viken', label: 'Viken' },
+              { value: 'Agder', label: 'Agder' },
+              { value: 'Finnmark', label: 'Finnmark' },
+              { value: 'Innlandet', label: 'Innlandet' },
+              { value: 'More og Romsdal', label: 'Møre og Romsdal' },
+              { value: 'Nordland', label: 'Nordland' },
+              { value: 'Oslo', label: 'Oslo' },
+              { value: 'Rogaland', label: 'Rogaland' },
+              { value: 'Vestfold', label: 'Vestfold' },
+              { value: 'Telemark', label: 'Telemark' },
+              { value: 'Troms', label: 'Troms' },
+              { value: 'Trondelag', label: 'Trøndelag' },
+              { value: 'Vestland', label: 'Vestland' },
+              { value: 'Viken', label: 'Viken' },
             ]}
-            filterType={'Activities'}
             isMulti={true}
+            handleOnChange={(value: any) => {
+              const locations = value.map((val: any) => {
+                return val.value;
+              });
+              setFilters({ ...filters, county: locations });
+              console.log('county', locations);
+            }}
           />
         </div>
-        <div>DATE</div>
-        <div className='w-32'>
+        <div className='ml-4 w-32'>DATE</div>
+        <div className='ml-4 w-32'>
           <FilterDDowns
             selectOptions={[
-              { value: 'agder', label: 'Agder' },
-              { value: 'finnmark', label: 'Finnmark' },
-              { value: 'innlandet', label: 'Innlandet' },
-              { value: 'moreogRomsdal', label: 'Møre og Romsdal' },
-              { value: 'nordland', label: 'Nordland' },
-              { value: 'oslo', label: 'Oslo' },
-              { value: 'rogaland', label: 'Rogaland' },
-              { value: 'vestfold', label: 'Vestfold' },
-              { value: 'telemark', label: 'Telemark' },
-              { value: 'troms', label: 'Troms' },
-              { value: 'trondelag', label: 'Trøndelag' },
-              { value: 'vestland', label: 'Vestland' },
-              { value: 'viken', label: 'Viken' },
+              { value: 1, label: '1 Bed' },
+              { value: 2, label: '2 Bed' },
+              { value: 3, label: '3 Bed' },
+              { value: 4, label: '4 Bed' },
+              { value: 5, label: '5 Bed' },
+              { value: 6, label: '6 Bed' },
+              { value: 7, label: '7 Bed' },
             ]}
-            filterType={'Activities'}
             isMulti={false}
+            handleOnChange={({ value }: any) => {
+              setFilters({ ...filters, bed: value });
+            }}
           />
         </div>
+        <div className='ml-4 w-32'>
+          <FilterDDowns
+            selectOptions={[
+              { value: 1, label: '1 Room' },
+              { value: 2, label: '2 Room' },
+              { value: 3, label: '3 Room' },
+              { value: 4, label: '4 Room' },
+              { value: 5, label: '5 Room' },
+              { value: 6, label: '6 Room' },
+              { value: 7, label: '7 Room' },
+            ]}
+            isMulti={false}
+            handleOnChange={({ value }: any) => {
+              setFilters({ ...filters, room: value });
+            }}
+          />
+        </div>
+        <div>
+          <button
+            onClick={() => {
+              handleOnSearch(filters);
+            }}
+          >
+            TEST
+          </button>
+        </div>
       </div>
-      <div className='dropdown mt-4'>
+      {/* <div className='dropdown mt-4 hover:cursor-pointer'>
         <div className='control flex'>
           <div className='selected-value'>
             <input
@@ -132,6 +166,20 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
             );
           })}
         </div>
+      </div> */}
+      <div className='mt-4'>
+        <FilterDDowns
+          selectOptions={[
+            { value: undefined, label: 'Search....' },
+            { value: 'Tronds murder cabin', label: 'Tronds murder cabin' },
+            { value: 'Haunted Cabin', label: 'Haunted Cabin' },
+            { value: 'testCabin', label: 'testCabin' },
+          ]}
+          isMulti={false}
+          handleOnChange={function () {
+            console.log('denne functionen skal displaye stuff');
+          }}
+        />
       </div>
       <h1 className='font-semibold text-primary'>Results</h1>
       <div className='flex justify-between mb-6'>
@@ -161,6 +209,14 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
                 ]}
                 filterType={'Amenities'}
                 isMulti={true}
+                handleOnChange={(value: any) => {
+                  const ame = value.map((val: any) => {
+                    console.log('Amenities', val.value);
+                    // setFilters({ ...filters, value: true });
+                    return val.value;
+                  });
+                  console.log('Array', ame);
+                }}
               />
             </div>
             <div>
@@ -190,7 +246,7 @@ function Dropdown({ cabins, prompt, searchValue, onChange }: any) {
               />
             </div>
           </div>
-          <div className='w-full px-4'>
+          <div className='w-full px-4 mt-4'>
             <MinimumDistanceSlider />
           </div>
         </div>
