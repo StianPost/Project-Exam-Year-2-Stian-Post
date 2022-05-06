@@ -52,8 +52,6 @@ function Dropdown({
     setOpen(false);
   }
 
-  const bed = <Icon icon='fa-solid:door-closed' className='text-4xl  ml-2' />;
-
   return (
     <div>
       <div className='flex'>
@@ -179,13 +177,13 @@ function Dropdown({
       <div className='mt-4'>
         <FilterDDowns
           selectOptions={[
-            { value: undefined, label: 'Search....' },
             { value: 'Tronds murder cabin', label: 'Tronds murder cabin' },
             { value: 'Haunted Cabin', label: 'Haunted Cabin' },
             { value: 'testCabin', label: 'testCabin' },
           ]}
           isMulti={false}
-          handleOnChange={function () {
+          handleOnChange={(val) => {
+            console.log('value', val.value);
             console.log('denne functionen skal displaye stuff');
           }}
         />
@@ -204,7 +202,7 @@ function Dropdown({
       </div>
 
       <div className='flex flex-col lg:flex-row'>
-        <div className='mb-3 md:w-1/2 lg:w-72 md:pr-4 md:mb-0'>
+        <div className='mb-3 lg:w-72 md:pr-4 md:mb-0'>
           <h3>Filter</h3>
           <div className='flex flex-col  md:flex-row lg:flex-col'>
             <div>
@@ -212,8 +210,7 @@ function Dropdown({
                 selectOptions={[
                   { value: 'isFire', label: 'Fireplace' },
                   { value: 'isPool', label: 'Pool' },
-                  { value: 'isElec', label: 'Electricity' },
-                  { value: 'isBeach', label: 'Beach' },
+                  { value: 'isElectricity', label: 'Electricity' },
                   { value: 'isToilet', label: 'Toilet' },
                 ]}
                 filterType={'Amenities'}
@@ -222,7 +219,6 @@ function Dropdown({
                   const Amenities = value.map((val: any) => {
                     console.log('neAmenitiesnities', val.value);
                     setFilters({ ...filters, [val.value]: true });
-                    return val.value;
                   });
                   console.log('Array', Amenities);
                 }}
@@ -239,6 +235,11 @@ function Dropdown({
                 ]}
                 filterType={'Locations'}
                 isMulti={true}
+                handleOnChange={(value: any) => {
+                  const Locations = value.map(({ val }: any) => {
+                    setFilters({ ...filters, [val]: true });
+                  });
+                }}
               />
             </div>
             <div>
@@ -248,14 +249,25 @@ function Dropdown({
                   { value: 'isSkiing', label: 'Skiing' },
                   { value: 'isVolley', label: 'Volleyball' },
                   { value: 'isWateractives', label: 'Water Activities' },
+                  { value: 'isWinterActivities', label: 'Winter Activities' },
                   { value: 'isHiking', label: 'Hiking' },
                 ]}
                 filterType={'Activities'}
                 isMulti={true}
+                handleOnChange={(value: any) => {
+                  const Activities = value.map((val: any) => {
+                    if (filters) {
+                      console.log('value', val.value);
+                    }
+                    setFilters({ ...filters, [val.value]: true });
+                    console.log('filters', filters);
+                  });
+                  console.log('Array', Activities);
+                }}
               />
             </div>
           </div>
-          <div className='w-full px-4 mt-4'>
+          <div className='w-full px-4 mt-4 md:w-2/3 lg:w-full'>
             <MinimumDistanceSlider />
           </div>
         </div>
