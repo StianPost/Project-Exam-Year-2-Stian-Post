@@ -51,7 +51,7 @@ function Resultcards({
             </div>
           </div>
           <Link href={`/cabins/${id}`}>
-            <a className='button__primary text-center self-end h-fit sm:max-w-xs md:ml-2'>
+            <a className='button button__primary text-center self-end h-fit sm:max-w-xs md:ml-2'>
               Button
             </a>
           </Link>

@@ -24,7 +24,7 @@ function Homecards({ id, title, heroImg, short_description, price }: any) {
         </div>
         <Link href={`/cabins/${id}`}>
           <a>
-            <button className='button__primary'>Book</button>
+            <button className='button button__primary mt-2'>Book</button>
           </a>
         </Link>
       </div>

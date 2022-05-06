@@ -43,7 +43,8 @@ const Cabin = ({
     map,
     imgArray,
     county,
-    people_rooms: { rooms, people },
+    rooms,
+    beds,
     dates,
   },
 }: any) => {
@@ -105,8 +106,8 @@ const Cabin = ({
             <h3>{adress}</h3>
           </div>
           <div className='flex'>
-            <div className='button__primary h-fit'>Book Now</div>
-            <div className='button__secondary h-fit ml-4'>Contact</div>
+            <div className='button button__primary h-fit'>Book Now</div>
+            <div className='button button__secondary h-fit ml-4'>Contact</div>
           </div>
         </div>
         <div className='px-2 md:px-4 lg:px-10 mb-10'>
@@ -116,7 +117,7 @@ const Cabin = ({
               <div className='flex text-primary items-end'>
                 <div className='flex items-end'>
                   <Icon icon='fa-solid:bed' className='text-4xl  ml-4 mr-1' />
-                  <p className='font-bold text-2xl'>{people}</p>
+                  <p className='font-bold text-2xl'>{beds}</p>
                 </div>
                 <div className='flex items-end'>
                   <Icon

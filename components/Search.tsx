@@ -52,6 +52,8 @@ function Dropdown({
     setOpen(false);
   }
 
+  const bed = <Icon icon='fa-solid:door-closed' className='text-4xl  ml-2' />;
+
   return (
     <div>
       <div className='flex'>
@@ -83,42 +85,49 @@ function Dropdown({
           />
         </div>
         <div className='ml-4 w-32'>DATE</div>
-        <div className='ml-4 w-32'>
+        <div className='ml-4 w-72'>
           <FilterDDowns
             selectOptions={[
-              { value: 1, label: '1 Bed' },
-              { value: 2, label: '2 Bed' },
-              { value: 3, label: '3 Bed' },
-              { value: 4, label: '4 Bed' },
-              { value: 5, label: '5 Bed' },
-              { value: 6, label: '6 Bed' },
-              { value: 7, label: '7 Bed' },
+              { value: 1, label: `1 Bed` },
+              { value: 2, label: `2 Bed` },
+              { value: 3, label: `3 Bed` },
+              { value: 4, label: `4 Bed` },
+              { value: 5, label: `5 Bed` },
+              { value: 6, label: `6 Bed` },
+              { value: 7, label: `7 Bed` },
             ]}
-            isMulti={false}
-            handleOnChange={({ value }: any) => {
-              setFilters({ ...filters, bed: value });
+            isMulti={true}
+            handleOnChange={(value: any) => {
+              const bedAmmount = value.map((val: any) => {
+                return val.value;
+              });
+              setFilters({ ...filters, beds: bedAmmount });
             }}
           />
         </div>
-        <div className='ml-4 w-32'>
+        <div className='ml-4 w-72'>
           <FilterDDowns
             selectOptions={[
               { value: 1, label: '1 Room' },
-              { value: 2, label: '2 Room' },
-              { value: 3, label: '3 Room' },
-              { value: 4, label: '4 Room' },
-              { value: 5, label: '5 Room' },
-              { value: 6, label: '6 Room' },
-              { value: 7, label: '7 Room' },
+              { value: 2, label: '2 Rooms' },
+              { value: 3, label: '3 Rooms' },
+              { value: 4, label: '4 Rooms' },
+              { value: 5, label: '5 Rooms' },
+              { value: 6, label: '6 Rooms' },
+              { value: 7, label: '7 Rooms' },
             ]}
-            isMulti={false}
-            handleOnChange={({ value }: any) => {
-              setFilters({ ...filters, room: value });
+            isMulti={true}
+            handleOnChange={(value: any) => {
+              const roomAmmount = value.map((val: any) => {
+                return val.value;
+              });
+              setFilters({ ...filters, rooms: roomAmmount });
             }}
           />
         </div>
         <div>
           <button
+            className='button button__primary'
             onClick={() => {
               handleOnSearch(filters);
             }}
@@ -185,7 +194,7 @@ function Dropdown({
       <div className='flex justify-between mb-6'>
         <p>Showing xx out of ??</p>
 
-        <div className='button__secondary flex items-center'>
+        <div className='button button__secondary flex items-center'>
           Sort
           <Icon
             className=' text-primary text-2xl'
@@ -210,12 +219,12 @@ function Dropdown({
                 filterType={'Amenities'}
                 isMulti={true}
                 handleOnChange={(value: any) => {
-                  const ame = value.map((val: any) => {
-                    console.log('Amenities', val.value);
-                    // setFilters({ ...filters, value: true });
+                  const Amenities = value.map((val: any) => {
+                    console.log('neAmenitiesnities', val.value);
+                    setFilters({ ...filters, [val.value]: true });
                     return val.value;
                   });
-                  console.log('Array', ame);
+                  console.log('Array', Amenities);
                 }}
               />
             </div>

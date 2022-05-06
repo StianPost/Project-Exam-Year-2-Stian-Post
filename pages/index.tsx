@@ -48,7 +48,7 @@ const Home = ({ cabins }: any) => {
                     placeholder='Date'
                   />
                   <input
-                    className='button__primary md:ml-2'
+                    className='button__primary button md:ml-2'
                     type='submit'
                     value='Search'
                   />
@@ -77,7 +77,7 @@ const Home = ({ cabins }: any) => {
           </p>
           <div className='mt-4'>
             <Link href='/Results'>
-              <a className='button__primary'>Book Cabins</a>
+              <a className='button button__primary'>Book Cabins</a>
             </Link>
           </div>
         </div>

@@ -31,6 +31,7 @@ function FilterDDowns({
         isMulti={isMulti}
         blurInputOnSelect
         value={selectedOption}
+        placeholder={'test'}
       />
     </>
   );

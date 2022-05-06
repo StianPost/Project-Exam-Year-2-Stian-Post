@@ -1,3 +1,4 @@
+import ContactForm from '../components/ContactForm';
 import Footer from './layout/Footer';
 import Head from 'next/head';
 import Header from './layout/Header';
@@ -49,48 +50,7 @@ const Contact: NextPage = () => {
             </div>
           </div>
           <div className='w-full md:w-1/2 bg-secondary p-4 rounded-lg max-w-xl h-full'>
-            <h3 className='text-center'>Contact</h3>
-            <form action='' className='flex flex-col'>
-              <div>
-                <label className='block' htmlFor=''>
-                  Email*:
-                </label>
-                <input
-                  className='w-full p-2 border-solid border-primary border-2 rounded-lg'
-                  type='text'
-                  name=''
-                  id=''
-                />
-              </div>
-              <div>
-                <label className='block mt-2' htmlFor=''>
-                  Subject*:
-                </label>
-                <input
-                  className='w-full p-2 border-solid border-primary border-2 rounded-lg'
-                  type='text'
-                  name=''
-                  id=''
-                />
-              </div>
-              <div>
-                <label className='block mt-2' htmlFor=''>
-                  Message*:
-                </label>
-                <textarea
-                  className='w-full p-2 border-solid border-primary border-2 rounded-lg'
-                  name=''
-                  id=''
-                  cols={5}
-                  rows={10}
-                ></textarea>
-              </div>
-              <input
-                className='button__primary max-w-xs self-center'
-                type='submit'
-                value='Submit'
-              />
-            </form>
+            <ContactForm />
           </div>
         </div>
       </main>
