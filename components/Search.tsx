@@ -182,7 +182,7 @@ function Dropdown({
             { value: 'testCabin', label: 'testCabin' },
           ]}
           isMulti={false}
-          handleOnChange={(val) => {
+          handleOnChange={(val: any) => {
             console.log('value', val.value);
             console.log('denne functionen skal displaye stuff');
           }}
