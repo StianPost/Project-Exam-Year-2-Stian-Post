@@ -1,10 +1,13 @@
+import React, { useState } from 'react';
+
+import Bookingmodal from '../../components/Bookingmodal';
+import Enquirymodal from '../../components/Enquirymodal';
 import Footer from '../layout/Footer';
 import Head from 'next/head';
 import Header from '../layout/Header';
 import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import type { NextPage } from 'next';
-import React from 'react';
 import Slider from '../../components/Slider';
 import { apiCall } from '../../lib/const';
 import { getCabins } from '../../lib/api';
@@ -31,8 +34,12 @@ export const getStaticProps = async (context: any) => {
   };
 };
 
-const Cabin = ({
-  cabin: {
+const Cabin = ({ cabin }: any) => {
+  const myLoader = ({ width = 200, quality = 100 }) => {
+    return `${heroImg}?w=${width}&q=${quality || 75}`;
+  };
+  const destructuredCabin = cabin;
+  const {
     title,
     id,
     description,
@@ -46,11 +53,7 @@ const Cabin = ({
     rooms,
     beds,
     dates,
-  },
-}: any) => {
-  const myLoader = ({ width = 200, quality = 100 }) => {
-    return `${heroImg}?w=${width}&q=${quality || 75}`;
-  };
+  } = destructuredCabin;
 
   type imgArrObj = {
     id: number;
@@ -58,12 +61,23 @@ const Cabin = ({
     alt?: string;
   };
 
+  const [isBooking, setIsBooking] = useState(false);
+  const [isEnquiry, setIsEnquiry] = useState(false);
+
   return (
     <>
       <Head>
         <title>Cabin title</title>
       </Head>
       <Header />
+      <Bookingmodal
+        open={isBooking}
+        onClose={() => {
+          setIsBooking(false);
+        }}
+        cabin={cabin}
+      />
+      <Enquirymodal />
       <main>
         <div className='md:px-4 lg:px-10'>
           <div className=''>
@@ -106,8 +120,22 @@ const Cabin = ({
             <h3>{adress}</h3>
           </div>
           <div className='flex'>
-            <div className='button button__primary h-fit'>Book Now</div>
-            <div className='button button__secondary h-fit ml-4'>Contact</div>
+            <div
+              className='button button__primary h-fit'
+              onClick={() => {
+                setIsBooking(true);
+              }}
+            >
+              Book Now
+            </div>
+            <div
+              className='button button__secondary h-fit ml-4'
+              onClick={() => {
+                setIsEnquiry(true);
+              }}
+            >
+              Contact
+            </div>
           </div>
         </div>
         <div className='px-2 md:px-4 lg:px-10 mb-10'>

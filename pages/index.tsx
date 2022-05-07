@@ -59,15 +59,6 @@ const Home = ({ cabins }: any) => {
         </div>
         <div className='flex flex-col items-center mt-9 max-w-5xl text-center m-auto'>
           <h2>Explore Norway</h2>
-          <div>
-            {cabins.map((elm: any) => {
-              return (
-                <Link href={`/cabins/${elm.id}`} key={elm.id}>
-                  <a className='font-bold'>{elm.title}</a>
-                </Link>
-              );
-            })}
-          </div>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ligula
             etiam purus proin amet neque, lobortis accumsan. Eget libero enim
