@@ -39,12 +39,18 @@ function Bookingmodal({ open, onClose, cabin }: any) {
   if (!open) return null;
 
   const amenetiesFiller = (cabinObject): any => {
-    const amenitiesArray = ['test'];
+    const amenitiesArray = [];
     if (cabinObject.isPool) {
-      console.log('hello');
+      amenitiesArray.push({ isPool: true });
     }
     if (cabinObject.isFire) {
-      console.log('fire');
+      amenitiesArray.push({ isFire: true });
+    }
+    if (cabinObject.isToilet) {
+      amenitiesArray.push({ isToilet: true });
+    }
+    if (cabinObject.isElectricity) {
+      amenitiesArray.push({ isElectricity: true });
     }
     return amenitiesArray;
   };
