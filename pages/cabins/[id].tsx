@@ -67,7 +67,7 @@ const Cabin = ({ cabin }: any) => {
   return (
     <>
       <Head>
-        <title>Cabin title</title>
+        <title>{title} || Cabin fever</title>
       </Head>
       <Header />
       <Bookingmodal

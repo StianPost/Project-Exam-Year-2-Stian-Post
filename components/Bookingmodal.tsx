@@ -3,6 +3,9 @@ import * as Yup from 'yup';
 import { Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 
+import { Icon } from '@iconify/react';
+import Image from 'next/image';
+
 interface bookingDetails {
   date: string;
   people: number;
@@ -35,17 +38,65 @@ function Bookingmodal({ open, onClose, cabin }: any) {
   const [paymentInfo, setPaymentInfo] = useState({});
   if (!open) return null;
 
+  const amenetiesFiller = (cabinObject): any => {
+    const amenitiesArray = ['test'];
+    if (cabinObject.isPool) {
+      console.log('hello');
+    }
+    if (cabinObject.isFire) {
+      console.log('fire');
+    }
+    return amenitiesArray;
+  };
+
+  const test = amenetiesFiller(cabin);
+
+  console.log(test);
+
+  const myLoader = ({ width = 200, quality = 100 }) => {
+    return `${cabin.heroImg}?w=${width}&q=${quality || 75}`;
+  };
+
   return (
     <>
       <div className='modalOverlay'></div>
       <div className='modal'>
-        <h3 className='text-center'>Checkout</h3>
-        <div className='flex'>
-          <div>
-            <h4>{cabin.title}</h4>
-            {bookingInfo ? bookingInfo.date : ''}
+        <h2 className='text-center'>Checkout</h2>
+        <div className='flex flex-col w-full sm:flex-row'>
+          <div className='w-full md:w-1/2 modal__part sm:pr-1'>
+            <div className='w-full'>
+              <Image
+                src={cabin.heroImg}
+                alt={`image of ${cabin.title}`}
+                width={250}
+                height={150}
+                loader={myLoader}
+                layout={'responsive'}
+              />
+            </div>
+            <div className=''>
+              <h3 className='font-medium'>{cabin.title}</h3>
+              <div className='flex text-primary mb-4'>
+                <div className='flex items-end'>
+                  <Icon icon='fa-solid:door-closed' className='text-4xl mr-1' />
+                  <p className='font-medium'>{cabin.rooms} Rooms</p>
+                </div>
+
+                {cabin.isPets ? (
+                  <div className='flex items-end'>
+                    <Icon icon='fa-paw' className='text-4xl ml-8 mr-1' />
+                    <p>Pets allowed</p>
+                  </div>
+                ) : (
+                  ''
+                )}
+              </div>
+              <div>
+                <h3>Amenities</h3>
+              </div>
+            </div>
           </div>
-          <div>
+          <div className='w-full md:w-1/2 modal__part sm:pl-1'>
             <BookingInfo
               handleBooking={(val: any) => {
                 setBookingInfo(val);
@@ -72,8 +123,8 @@ function Bookingmodal({ open, onClose, cabin }: any) {
               open={isBooked}
               cabin={cabin}
             />
-            <button className='button button__primary' onClick={onClose}>
-              Close
+            <button className='button button__secondary mt-4' onClick={onClose}>
+              Cancel
             </button>
           </div>
         </div>
@@ -100,27 +151,28 @@ function BookingInfo({ handleBooking, closed, open }) {
       .min(1, 'There must be atleast 1 person!')
       .max(25, 'Waaay too many!')
       .required('Required'),
-    date: Yup.date().required('You must pick a date!'),
+    dateFrom: Yup.date().required('You must pick a date!'),
+    dateTo: Yup.date().required('You must pick a date!'),
   });
 
-  function onSubmit(val: bookingDetails) {
+  function onSubmit(val: any) {
     handleBooking(val);
   }
   if (open) return null;
 
   return (
     <>
-      <h3 className='text-center'>Contact</h3>
       <Formik
         initialValues={{
-          date: '',
+          dateFrom: '',
+          dateTo: '',
           people: 0,
           firstName: '',
           lastName: '',
           email: '',
         }}
         validationSchema={SignupSchema}
-        onSubmit={(values: bookingDetails) => {
+        onSubmit={(values: any) => {
           // same shape as initial values
           onSubmit(values);
           closed(true);
@@ -128,41 +180,59 @@ function BookingInfo({ handleBooking, closed, open }) {
       >
         {({ errors, touched }) => (
           <Form>
-            <div className='flex'>
-              <div>
-                <label htmlFor='date'>Date:</label>
+            <div className='flex flex-wrap justify-between sm:flex-row'>
+              <div className='w-1/2 pr-1'>
+                <label htmlFor='dateFrom' className='block'>
+                  From:
+                </label>
                 <Field
-                  id='date'
-                  name='date'
+                  id='dateFrom'
+                  name='dateFrom'
                   type='date'
                   className='w-full p-2 border-solid border-primary border-2 rounded-lg'
                 />
-                {errors.date && touched.date ? (
+                {errors.dateFrom && touched.dateFrom ? (
                   <div className='text-red-600 font-semibold'>
-                    {errors.date}
+                    {errors.dateFrom}
                   </div>
                 ) : null}
               </div>
-              <div>
-                <label htmlFor='people' className='mt-4'>
-                  People:
+              <div className='w-1/2 pl-1'>
+                <label htmlFor='dateTo' className='block'>
+                  To:
                 </label>
                 <Field
-                  id='people'
-                  name='people'
-                  type='number'
+                  id='dateTo'
+                  name='dateTo'
+                  type='date'
                   className='w-full p-2 border-solid border-primary border-2 rounded-lg'
                 />
-                {errors.people && touched.people ? (
+                {errors.dateTo && touched.dateTo ? (
                   <div className='text-red-600 font-semibold'>
-                    {errors.people}
+                    {errors.dateTo}
                   </div>
                 ) : null}
               </div>
             </div>
-            <div className='flex'>
-              <div>
-                <label htmlFor='firstName'>Firstname:</label>
+            <div className='mt-2'>
+              <label htmlFor='people' className='mt-4'>
+                People:
+              </label>
+              <Field
+                id='people'
+                name='people'
+                type='number'
+                className='w-full p-2 border-solid border-primary border-2 rounded-lg'
+              />
+              {errors.people && touched.people ? (
+                <div className='text-red-600 font-semibold'>
+                  {errors.people}
+                </div>
+              ) : null}
+            </div>
+            <div className='flex flex-col md:flex-row mt-2'>
+              <div className='md:pr-1'>
+                <label htmlFor='firstName'>First name:</label>
                 <Field
                   id='firstName'
                   name='firstName'
@@ -175,7 +245,7 @@ function BookingInfo({ handleBooking, closed, open }) {
                   </div>
                 ) : null}
               </div>
-              <div>
+              <div className='mt-2 md:mt-0 md:pl-1'>
                 <label htmlFor='lastName' className='mt-4'>
                   Last name:
                 </label>
@@ -191,7 +261,7 @@ function BookingInfo({ handleBooking, closed, open }) {
                 ) : null}
               </div>
             </div>
-            <div>
+            <div className='mt-2'>
               <label htmlFor='email'>Email:</label>
               <Field
                 id='email'
@@ -270,7 +340,7 @@ function CardDetails({ handlePayment, closed, open }) {
         {({ errors, touched }) => (
           <Form>
             <div className='flex'>
-              <div>
+              <div className='pr-1'>
                 <label htmlFor='paymentType'>Payment-type:</label>
                 <Field
                   as='select'
@@ -291,7 +361,7 @@ function CardDetails({ handlePayment, closed, open }) {
                   </div>
                 ) : null}
               </div>
-              <div>
+              <div className='pl-1'>
                 <label htmlFor='price' className='mt-4'>
                   Price:
                 </label>
@@ -308,13 +378,14 @@ function CardDetails({ handlePayment, closed, open }) {
                 ) : null}
               </div>
             </div>
-            <div className=''>
+            <div className='mt-2'>
               <div>
                 <label htmlFor='cardNumber'>Card Number:</label>
                 <Field
                   id='cardNumber'
                   name='cardNumber'
                   type='text'
+                  placeholder='1234123412341234'
                   className='w-full p-2 border-solid border-primary border-2 rounded-lg'
                 />
                 {errors.cardNumber && touched.cardNumber ? (
@@ -324,8 +395,8 @@ function CardDetails({ handlePayment, closed, open }) {
                 ) : null}
               </div>
             </div>
-            <div className='flex'>
-              <div>
+            <div className='flex mt-2'>
+              <div className='pr-1'>
                 <label htmlFor='cvc'>cvc/cvv:</label>
                 <Field
                   id='cvc'
@@ -337,7 +408,7 @@ function CardDetails({ handlePayment, closed, open }) {
                   <div className='text-red-600 font-semibold'>{errors.cvc}</div>
                 ) : null}
               </div>
-              <div>
+              <div className='pl-1'>
                 <label htmlFor='expDate' className='mt-4'>
                   Exp Date:
                 </label>
@@ -354,7 +425,7 @@ function CardDetails({ handlePayment, closed, open }) {
                 ) : null}
               </div>
             </div>
-            <div>
+            <div className='mt-2'>
               <label htmlFor='email'>Email:</label>
               <Field
                 id='email'
