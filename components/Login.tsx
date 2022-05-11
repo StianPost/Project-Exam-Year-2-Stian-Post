@@ -75,6 +75,7 @@ function Login() {
           <button
             onClick={() => {
               setToggleModal(false);
+              console.log(toggleModal);
             }}
           >
             Exit

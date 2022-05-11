@@ -169,7 +169,6 @@ function Dropdown({
           {filterCabins(cabins).map((cabin: cardInfo) => {
             return (
               <li
-                tabIndex={cabin.id}
                 key={cabin.id}
                 onClick={() => {
                   selectCabin(cabin);
