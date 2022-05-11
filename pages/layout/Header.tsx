@@ -5,6 +5,7 @@ import type { AppProps } from 'next/app';
 import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import Login from '../../components/Login';
 
 function Header(): any {
   const [menuActive, setMenuState] = useState(false);
@@ -117,6 +118,7 @@ function Header(): any {
                   Admin
                 </a>
               </Link>
+              <Login />
             </ul>
           </div>
         </div>
@@ -162,6 +164,7 @@ function Header(): any {
                 Admin
               </a>
             </Link>
+            <Login />
           </ul>
         </nav>
       </div>

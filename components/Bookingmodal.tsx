@@ -4,7 +4,9 @@ import { Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 
 import { Icon } from '@iconify/react';
+import { IconObj } from './IconObj';
 import Image from 'next/image';
+import moment from 'moment';
 
 interface bookingDetails {
   date: string;
@@ -38,27 +40,6 @@ function Bookingmodal({ open, onClose, cabin }: any) {
   const [paymentInfo, setPaymentInfo] = useState({});
   if (!open) return null;
 
-  const amenetiesFiller = (cabinObject): any => {
-    const amenitiesArray = [];
-    if (cabinObject.isPool) {
-      amenitiesArray.push({ isPool: true });
-    }
-    if (cabinObject.isFire) {
-      amenitiesArray.push({ isFire: true });
-    }
-    if (cabinObject.isToilet) {
-      amenitiesArray.push({ isToilet: true });
-    }
-    if (cabinObject.isElectricity) {
-      amenitiesArray.push({ isElectricity: true });
-    }
-    return amenitiesArray;
-  };
-
-  const test = amenetiesFiller(cabin);
-
-  console.log(test);
-
   const myLoader = ({ width = 200, quality = 100 }) => {
     return `${cabin.heroImg}?w=${width}&q=${quality || 75}`;
   };
@@ -83,22 +64,35 @@ function Bookingmodal({ open, onClose, cabin }: any) {
             <div className=''>
               <h3 className='font-medium'>{cabin.title}</h3>
               <div className='flex text-primary mb-4'>
-                <div className='flex items-end'>
-                  <Icon icon='fa-solid:door-closed' className='text-4xl mr-1' />
-                  <p className='font-medium'>{cabin.rooms} Rooms</p>
-                </div>
+                <IconObj
+                  additionalInfo={' Rooms'}
+                  iconString={'fa-solid:door-closed'}
+                  object={cabin.rooms}
+                />
 
                 {cabin.isPets ? (
-                  <div className='flex items-end'>
-                    <Icon icon='fa-paw' className='text-4xl ml-8 mr-1' />
-                    <p>Pets allowed</p>
-                  </div>
+                  <IconObj
+                    additionalInfo={' Pets allowed'}
+                    iconString={'fa-paw'}
+                    object={''}
+                  />
                 ) : (
                   ''
                 )}
               </div>
               <div>
                 <h3>Amenities</h3>
+                <div>
+                  {cabin.isFire ? (
+                    <IconObj
+                      additionalInfo={' Pets allowed'}
+                      iconString={'fa-paw'}
+                      object={''}
+                    />
+                  ) : (
+                    ''
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -122,6 +116,8 @@ function Bookingmodal({ open, onClose, cabin }: any) {
                 setCardClosed(true);
               }}
               open={cardClosed}
+              bookingInfo={bookingInfo}
+              cabinInfo={cabin}
             />
             <BookingMessage
               paymentInfo={paymentInfo}
@@ -164,6 +160,7 @@ function BookingInfo({ handleBooking, closed, open }) {
   function onSubmit(val: any) {
     handleBooking(val);
   }
+
   if (open) return null;
 
   return (
@@ -290,11 +287,11 @@ function BookingInfo({ handleBooking, closed, open }) {
   );
 }
 
-function CardDetails({ handlePayment, closed, open }) {
-  const [bookingInfo, setBookingInfo] = useState({});
+function CardDetails({ handlePayment, closed, open, bookingInfo, cabinInfo }) {
+  const [totalPrice, setTotalPrice] = useState(0);
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email Required'),
-    paymentType: Yup.string().required('You must have a first name'),
+    paymentType: Yup.string().required('Payment type required'),
     price: Yup.number().required('You must pay a price'),
     cardNumber: Yup.string()
       .min(16, 'Invalid, too few chars')
@@ -309,6 +306,7 @@ function CardDetails({ handlePayment, closed, open }) {
       .max(6, "that's too much wrong")
       .required('you need an expiery date'),
   });
+  if (open) return null;
 
   interface paymentDetails {
     paymentType: string;
@@ -322,7 +320,17 @@ function CardDetails({ handlePayment, closed, open }) {
   function onSubmit(val: bookingDetails) {
     handlePayment(val);
   }
-  if (open) return null;
+  if (totalPrice === 0) {
+    function calculateStay(val) {
+      const startDate = moment(val.dateFrom);
+      const endDate = moment(val.dateTo);
+      const totalDate = endDate.diff(startDate, 'days');
+
+      const calculation = cabinInfo.price * totalDate;
+      setTotalPrice(calculation);
+    }
+    calculateStay(bookingInfo);
+  }
 
   return (
     <>
@@ -337,7 +345,7 @@ function CardDetails({ handlePayment, closed, open }) {
           expDate: '',
         }}
         validationSchema={SignupSchema}
-        onSubmit={(values) => {
+        onSubmit={(values: any): void => {
           // same shape as initial values
           onSubmit(values);
           closed(true);
@@ -375,6 +383,8 @@ function CardDetails({ handlePayment, closed, open }) {
                   id='price'
                   name='price'
                   type='number'
+                  value={totalPrice}
+                  disabled
                   className='w-full p-2 border-solid border-primary border-2 rounded-lg'
                 />
                 {errors.price && touched.price ? (

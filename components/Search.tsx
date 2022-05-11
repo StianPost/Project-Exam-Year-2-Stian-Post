@@ -123,7 +123,7 @@ function Dropdown({
             }}
           />
         </div>
-        <div>
+        <div className='flex'>
           <button
             className='button button__primary'
             onClick={() => {
@@ -132,9 +132,18 @@ function Dropdown({
           >
             TEST
           </button>
+          <button
+            className='button button__secondary'
+            onClick={() => {
+              setQuery(' ');
+              displayValue();
+            }}
+          >
+            clear
+          </button>
         </div>
       </div>
-      {/* <div className='dropdown mt-4 hover:cursor-pointer'>
+      <div className='dropdown mt-4 hover:cursor-pointer'>
         <div className='control flex'>
           <div className='selected-value'>
             <input
@@ -156,10 +165,11 @@ function Dropdown({
             <Icon icon={`ant-design:caret-${open ? 'up' : 'down'}-outlined`} />
           </span>
         </div>
-        <div className={open ? '' : 'hidden'}>
+        <ul className={open ? '' : 'hidden'}>
           {filterCabins(cabins).map((cabin: cardInfo) => {
             return (
-              <div
+              <li
+                tabIndex={cabin.id}
                 key={cabin.id}
                 onClick={() => {
                   selectCabin(cabin);
@@ -169,11 +179,11 @@ function Dropdown({
                 }}
               >
                 {cabin.title}
-              </div>
+              </li>
             );
           })}
-        </div>
-      </div> */}
+        </ul>
+      </div>
       <div className='mt-4'>
         <FilterDDowns
           selectOptions={[
