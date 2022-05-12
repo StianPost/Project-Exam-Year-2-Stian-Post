@@ -77,7 +77,13 @@ const Cabin = ({ cabin }: any) => {
         }}
         cabin={cabin}
       />
-      <Enquirymodal />
+      <Enquirymodal
+        open={isEnquiry}
+        onClose={() => {
+          setIsEnquiry(false);
+        }}
+      />
+
       <main>
         <div className='md:px-4 lg:px-10'>
           <div className=''>
@@ -120,22 +126,22 @@ const Cabin = ({ cabin }: any) => {
             <h3>{adress}</h3>
           </div>
           <div className='flex'>
-            <div
+            <button
               className='button button__primary h-fit'
               onClick={() => {
                 setIsBooking(true);
               }}
             >
               Book Now
-            </div>
-            <div
+            </button>
+            <button
               className='button button__secondary h-fit ml-4'
               onClick={() => {
                 setIsEnquiry(true);
               }}
             >
               Contact
-            </div>
+            </button>
           </div>
         </div>
         <div className='px-2 md:px-4 lg:px-10 mb-10'>

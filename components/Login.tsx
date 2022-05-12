@@ -1,17 +1,6 @@
-import * as Yup from 'yup';
-
-import { Field, Form, Formik } from 'formik';
-
+import LoginComponent from './LoginComponent';
 import React from 'react';
 import { useState } from 'react';
-
-const SignupSchema = Yup.object().shape({
-  password: Yup.string()
-    .min(2, 'Password is too short')
-    .max(15, 'Password is too long')
-    .required('Required'),
-  email: Yup.string().email('Invalid email').required('Required'),
-});
 
 function Login() {
   const [toggleModal, setToggleModal] = useState(false);
@@ -19,66 +8,18 @@ function Login() {
   function LoginModal() {
     return (
       <div className='modalOverlay'>
-        <div className='modal'>
-          <h2 className='text-center'>Testing</h2>
+        <div className='modal relative'>
+          <h2 className='text-center mt-2'>Admin</h2>
           <div>
-            <Formik
-              initialValues={{
-                email: '',
-                password: '',
-              }}
-              validationSchema={SignupSchema}
-              onSubmit={(values: any): void => {
-                // same shape as initial values
-                console.log(values);
-              }}
-            >
-              {({ errors, touched }) => (
-                <Form>
-                  <div className='mt-2'>
-                    <label htmlFor='email'>Email:</label>
-                    <Field
-                      id='email'
-                      name='email'
-                      type='email'
-                      className='w-full p-2 border-solid border-primary border-2 rounded-lg'
-                    />
-                    {errors.email && touched.email ? (
-                      <div className='text-red-600 font-semibold'>
-                        {errors.email}
-                      </div>
-                    ) : null}
-                  </div>
-                  <div className='mt-2'>
-                    <div>
-                      <label htmlFor='password'>Password:</label>
-                      <Field
-                        id='password'
-                        name='password'
-                        type='password'
-                        className='w-full p-2 border-solid border-primary border-2 rounded-lg'
-                      />
-                      {errors.password && touched.password ? (
-                        <div className='text-red-600 font-semibold'>
-                          {errors.password}
-                        </div>
-                      ) : null}
-                    </div>
-                  </div>
-                  <button className='button button__primary mt-4' type='submit'>
-                    Login
-                  </button>
-                </Form>
-              )}
-            </Formik>
+            <LoginComponent />
           </div>
           <button
+            className='absolute top-2 right-3 hover:cursor-pointer'
             onClick={() => {
               setToggleModal(false);
-              console.log(toggleModal);
             }}
           >
-            Exit
+            X
           </button>
         </div>
       </div>
@@ -101,3 +42,55 @@ function Login() {
 }
 
 export default Login;
+
+{
+  /* <Formik
+initialValues={{
+  email: '',
+  password: '',
+}}
+validationSchema={SignupSchema}
+onSubmit={(values: any): void => {
+  same shape as initial values
+  console.log(values);
+}}
+>
+{({ errors, touched }) => (
+  <Form>
+    <div className='mt-2'>
+      <label htmlFor='email'>Email:</label>
+      <Field
+        id='email'
+        name='email'
+        type='email'
+        className='w-full p-2 border-solid border-primary border-2 rounded-lg'
+      />
+      {errors.email && touched.email ? (
+        <div className='text-red-600 font-semibold'>
+          {errors.email}
+        </div>
+      ) : null}
+    </div>
+    <div className='mt-2'>
+      <div>
+        <label htmlFor='password'>Password:</label>
+        <Field
+          id='password'
+          name='password'
+          type='password'
+          className='w-full p-2 border-solid border-primary border-2 rounded-lg'
+        />
+        {errors.password && touched.password ? (
+          <div className='text-red-600 font-semibold'>
+            {errors.password}
+          </div>
+        ) : null}
+      </div>
+    </div>
+    <button className='button button__primary mt-4' type='submit'>
+      Login
+    </button>
+  </Form>
+)}
+</Formik> */
+}

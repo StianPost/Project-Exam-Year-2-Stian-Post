@@ -9,10 +9,11 @@ import Login from '../../components/Login';
 
 function Header(): any {
   const [menuActive, setMenuState] = useState(false);
+  const router = useRouter();
   const toggleMenu = (): void => {
     setMenuState(!menuActive);
   };
-  const router = useRouter();
+
   return (
     <header className='flex flex-col sm:justify-between sm:flex-row py-12  sm:py-4 px-10 items-center relative'>
       <div>

@@ -48,42 +48,30 @@ function Bookingmodal({ open, onClose, cabin }: any) {
     <>
       <div className='modalOverlay'></div>
       <div className='modal'>
-        <h2 className='text-center'>Checkout</h2>
-        <div className='flex flex-col w-full sm:flex-row'>
-          <div className='w-full md:w-1/2 modal__part sm:pr-1'>
-            <div className='w-full'>
-              <Image
-                src={cabin.heroImg}
-                alt={`image of ${cabin.title}`}
-                width={250}
-                height={150}
-                loader={myLoader}
-                layout={'responsive'}
-              />
-            </div>
-            <div className=''>
-              <h3 className='font-medium'>{cabin.title}</h3>
-              <div className='flex text-primary mb-4'>
-                <IconObj
-                  additionalInfo={' Rooms'}
-                  iconString={'fa-solid:door-closed'}
-                  object={cabin.rooms}
+        <div className='relative'>
+          <h2 className='text-center'>Checkout</h2>
+          <div className='flex flex-col w-full sm:flex-row'>
+            <div className='w-full md:w-1/2 modal__part sm:pr-1'>
+              <div className='w-full'>
+                <Image
+                  src={cabin.heroImg}
+                  alt={`image of ${cabin.title}`}
+                  width={250}
+                  height={150}
+                  loader={myLoader}
+                  layout={'responsive'}
                 />
-
-                {cabin.isPets ? (
-                  <IconObj
-                    additionalInfo={' Pets allowed'}
-                    iconString={'fa-paw'}
-                    object={''}
-                  />
-                ) : (
-                  ''
-                )}
               </div>
-              <div>
-                <h3>Amenities</h3>
-                <div>
-                  {cabin.isFire ? (
+              <div className=''>
+                <h3 className='font-medium'>{cabin.title}</h3>
+                <div className='flex text-primary mb-4'>
+                  <IconObj
+                    additionalInfo={' Rooms'}
+                    iconString={'fa-solid:door-closed'}
+                    object={cabin.rooms}
+                  />
+
+                  {cabin.isPets ? (
                     <IconObj
                       additionalInfo={' Pets allowed'}
                       iconString={'fa-paw'}
@@ -93,41 +81,55 @@ function Bookingmodal({ open, onClose, cabin }: any) {
                     ''
                   )}
                 </div>
+                <div>
+                  <h3>Amenities</h3>
+                  <div>
+                    {cabin.isFire ? (
+                      <IconObj
+                        additionalInfo={' Pets allowed'}
+                        iconString={'fa-paw'}
+                        object={''}
+                      />
+                    ) : (
+                      ''
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-          <div className='w-full md:w-1/2 modal__part sm:pl-1'>
-            <BookingInfo
-              handleBooking={(val: any) => {
-                setBookingInfo(val);
-                setCardClosed(false);
-              }}
-              closed={() => {
-                setBookingClosed(true);
-              }}
-              open={bookingClosed}
-            />
-            <CardDetails
-              handlePayment={(val: any) => {
-                setPaymentInfo(val);
-                setIsBooked(true);
-              }}
-              closed={() => {
-                setCardClosed(true);
-              }}
-              open={cardClosed}
-              bookingInfo={bookingInfo}
-              cabinInfo={cabin}
-            />
-            <BookingMessage
-              paymentInfo={paymentInfo}
-              bookingInfo={bookingInfo}
-              open={isBooked}
-              cabin={cabin}
-            />
-            <button className='button button__secondary mt-4' onClick={onClose}>
-              Cancel
-            </button>
+            <div className='w-full md:w-1/2 modal__part sm:pl-1'>
+              <BookingInfo
+                handleBooking={(val: any) => {
+                  setBookingInfo(val);
+                  setCardClosed(false);
+                }}
+                closed={() => {
+                  setBookingClosed(true);
+                }}
+                open={bookingClosed}
+              />
+              <CardDetails
+                handlePayment={(val: any) => {
+                  setPaymentInfo(val);
+                  setIsBooked(true);
+                }}
+                closed={() => {
+                  setCardClosed(true);
+                }}
+                open={cardClosed}
+                bookingInfo={bookingInfo}
+                cabinInfo={cabin}
+              />
+              <BookingMessage
+                paymentInfo={paymentInfo}
+                bookingInfo={bookingInfo}
+                open={isBooked}
+                cabin={cabin}
+              />
+              <button className='absolute top-2 right-3' onClick={onClose}>
+                <Icon icon='bi:x-lg' className='text-3xl' />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -137,7 +139,7 @@ function Bookingmodal({ open, onClose, cabin }: any) {
 
 export default Bookingmodal;
 
-function BookingInfo({ handleBooking, closed, open }) {
+function BookingInfo({ handleBooking, closed, open }: any) {
   const [bookingInfo, setBookingInfo] = useState({});
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Required'),
@@ -287,7 +289,13 @@ function BookingInfo({ handleBooking, closed, open }) {
   );
 }
 
-function CardDetails({ handlePayment, closed, open, bookingInfo, cabinInfo }) {
+function CardDetails({
+  handlePayment,
+  closed,
+  open,
+  bookingInfo,
+  cabinInfo,
+}: any) {
   const [totalPrice, setTotalPrice] = useState(0);
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email Required'),
@@ -321,7 +329,7 @@ function CardDetails({ handlePayment, closed, open, bookingInfo, cabinInfo }) {
     handlePayment(val);
   }
   if (totalPrice === 0) {
-    function calculateStay(val) {
+    function calculateStay(val: any) {
       const startDate = moment(val.dateFrom);
       const endDate = moment(val.dateTo);
       const totalDate = endDate.diff(startDate, 'days');
@@ -466,13 +474,18 @@ function CardDetails({ handlePayment, closed, open, bookingInfo, cabinInfo }) {
   );
 }
 
-function BookingMessage({ paymentInfo, bookingInfo, open, cabin }) {
-  if (!open) return <div></div>;
+function BookingMessage({ paymentInfo, bookingInfo, open, cabin }: any) {
+  if (!open) return null;
   return (
     <div>
-      <h5>
+      <h4 className='mb-2'>
         Thank you {bookingInfo.firstName} for your booking {cabin.title}
-      </h5>
+      </h4>
+      <p className='mb-2'>
+        You booked <span className='font-bold'>{cabin.title}</span>
+      </p>
+      <p>From: {moment(bookingInfo.dateFrom).format('dddd, MMMM Do YYYY')}</p>
+      <p>To: {moment(bookingInfo.dateTo).format('dddd, MMMM Do YYYY')}</p>
     </div>
   );
 }
