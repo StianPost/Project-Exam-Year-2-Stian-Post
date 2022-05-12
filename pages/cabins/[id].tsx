@@ -82,6 +82,7 @@ const Cabin = ({ cabin }: any) => {
         onClose={() => {
           setIsEnquiry(false);
         }}
+        cabin={cabin}
       />
 
       <main>

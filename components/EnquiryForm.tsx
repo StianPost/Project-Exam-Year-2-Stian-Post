@@ -25,7 +25,7 @@ interface MyFormValueTypes {
   message: string;
 }
 
-const EnquiryForm = () => {
+const EnquiryForm = ({ cabin }) => {
   const router = useRouter();
   const [isError, setIsError] = useState(false);
 
@@ -47,7 +47,10 @@ const EnquiryForm = () => {
     <>
       <Formik
         initialValues={{
+          firstName: '',
+          lastName: '',
           email: '',
+          phoneNumber: '',
           subject: '',
           message: '',
         }}
@@ -59,19 +62,69 @@ const EnquiryForm = () => {
       >
         {({ errors, touched }) => (
           <Form>
-            <div>
-              <label htmlFor='email'>Email*:</label>
-              <Field
-                id='email'
-                name='email'
-                type='email'
-                className='w-full p-2 border-solid border-primary border-2 rounded-lg'
-              />
-              {errors.email && touched.email ? (
-                <div className='text-red-600 font-semibold'>{errors.email}</div>
-              ) : null}
+            <div className='flex flex-col sm:flex-row'>
+              <div className='pr-0 sm:pr-2'>
+                <label htmlFor='firstName'>First Name*:</label>
+                <Field
+                  id='firstName'
+                  name='firstName'
+                  type='firstName'
+                  className='w-full p-2 border-solid border-primary border-2 rounded-lg'
+                />
+                {errors.firstName && touched.firstName ? (
+                  <div className='text-red-600 font-semibold'>
+                    {errors.firstName}
+                  </div>
+                ) : null}
+              </div>
+              <div className='pl-0 sm:pl-2'>
+                <label htmlFor='lastName' className='mt-4'>
+                  Last Name*:
+                </label>
+                <Field
+                  id='lastName'
+                  name='lastName'
+                  className='w-full p-2 border-solid border-primary border-2 rounded-lg'
+                />
+                {errors.lastName && touched.lastName ? (
+                  <div className='text-red-600 font-semibold'>
+                    {errors.lastName}
+                  </div>
+                ) : null}
+              </div>
             </div>
-            <div className='mt-2'>
+            <div className='flex flex-col sm:flex-row'>
+              <div className='pr-0 sm:pr-2'>
+                <label htmlFor='email'>Email*:</label>
+                <Field
+                  id='email'
+                  name='email'
+                  type='email'
+                  className='w-full p-2 border-solid border-primary border-2 rounded-lg'
+                />
+                {errors.email && touched.email ? (
+                  <div className='text-red-600 font-semibold'>
+                    {errors.email}
+                  </div>
+                ) : null}
+              </div>
+              <div className='pl-0 sm:pl-2'>
+                <label htmlFor='subject' className='mt-4'>
+                  Subject*:
+                </label>
+                <Field
+                  id='subject'
+                  name='subject'
+                  className='w-full p-2 border-solid border-primary border-2 rounded-lg'
+                />
+                {errors.subject && touched.subject ? (
+                  <div className='text-red-600 font-semibold'>
+                    {errors.subject}
+                  </div>
+                ) : null}
+              </div>
+            </div>
+            <div>
               <label htmlFor='subject' className='mt-4'>
                 Subject*:
               </label>

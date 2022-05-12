@@ -26,7 +26,6 @@ interface MyFormValueTypes {
 }
 
 const ContactForm = () => {
-  const router = useRouter();
   const [isError, setIsError] = useState(false);
 
   const handleSubmit = async (values: any) => {
