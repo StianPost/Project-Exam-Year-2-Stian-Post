@@ -25,7 +25,7 @@ interface MyFormValueTypes {
   message: string;
 }
 
-const ContactForm = () => {
+const EnquiryForm = () => {
   const router = useRouter();
   const [isError, setIsError] = useState(false);
 
@@ -45,7 +45,6 @@ const ContactForm = () => {
   };
   return (
     <>
-      <h3 className='text-center'>Contact</h3>
       <Formik
         initialValues={{
           email: '',
@@ -112,4 +111,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default EnquiryForm;
