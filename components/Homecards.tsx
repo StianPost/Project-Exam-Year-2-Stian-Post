@@ -1,7 +1,25 @@
 import { Icon } from '@iconify/react';
 import Link from 'next/link';
 
-function Homecards({ id, title, heroImg, short_description, price }: any) {
+function Homecards({
+  title,
+  id,
+  short_description,
+  price,
+  heroImg,
+  isFire,
+  isElectricity,
+  isPool,
+  isToilet,
+  isHiking,
+  isSlalom,
+  isSkiing,
+  isWinterActivities,
+  isWateractives,
+  isPets,
+  rooms,
+  beds,
+}: any) {
   return (
     <div className=' bg-secondary max-w-lg rounded-lg mb-6'>
       <div className='bg-blue-300 w-full h-60 rounded-t-lg flex flex-col items-end p-3'>
@@ -19,7 +37,19 @@ function Homecards({ id, title, heroImg, short_description, price }: any) {
         <h4 className='font-bold'>{title}</h4>
         <p>{short_description}</p>
         <div className='flex justify-between mt-2'>
-          <div>icons</div>
+          <div className='flex text-primary items-end'>
+            <div className='flex items-end'>
+              <Icon icon='fa-solid:bed' className='text-4xl mr-1' />
+              <p className='font-bold text-1xl'>{beds}</p>
+            </div>
+            <div className='flex items-end'>
+              <Icon
+                icon='fa-solid:door-closed'
+                className='text-4xl  ml-3 mr-1'
+              />
+              <p className='font-bold text-1xl'>{rooms}</p>
+            </div>
+          </div>
           <div className='font-bold text-primary text-2xl'>{price} nok/day</div>
         </div>
         <Link href={`/cabins/${id}`}>
