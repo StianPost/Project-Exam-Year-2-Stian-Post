@@ -8,15 +8,27 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 
 const SignupSchema = Yup.object().shape({
-  email: Yup.string().email('Invalid email').required('Required'),
-  subject: Yup.string()
+  firstName: Yup.string()
     .min(2, 'Too Short!')
     .max(15, 'Too Long!')
+    .required('Required'),
+  lastName: Yup.string()
+    .min(2, 'Too Short!')
+    .max(15, 'Too Long!')
+    .required('Required'),
+  email: Yup.string().email('Invalid email').required('Required'),
+  subject: Yup.string()
+    .min(5, 'Too Short!')
+    .max(25, 'Too Long!')
     .required('Required'),
   message: Yup.string()
     .min(2, 'Too Short!')
     .max(50, 'Too Long!')
     .required('Required'),
+  phoneNumber: Yup.string()
+    .min(8, 'number too short')
+    .max(8, 'number too long')
+    .notRequired(),
 });
 
 interface MyFormValueTypes {
@@ -33,7 +45,7 @@ const EnquiryForm = ({ cabin }) => {
     console.log(values);
     try {
       let response = await axios.post(
-        'http://localhost:1337/contact-messages',
+        'http://localhost:1337/enquiries',
         values
       );
       setIsError(false);
@@ -109,17 +121,18 @@ const EnquiryForm = ({ cabin }) => {
                 ) : null}
               </div>
               <div className='pl-0 sm:pl-2'>
-                <label htmlFor='subject' className='mt-4'>
-                  Subject*:
+                <label htmlFor='phoneNumber' className='mt-4'>
+                  Phone:
                 </label>
                 <Field
-                  id='subject'
-                  name='subject'
+                  id='phoneNumber'
+                  name='phoneNumber'
+                  type='phone'
                   className='w-full p-2 border-solid border-primary border-2 rounded-lg'
                 />
-                {errors.subject && touched.subject ? (
+                {errors.phoneNumber && touched.phoneNumber ? (
                   <div className='text-red-600 font-semibold'>
-                    {errors.subject}
+                    {errors.phoneNumber}
                   </div>
                 ) : null}
               </div>
@@ -154,6 +167,13 @@ const EnquiryForm = ({ cabin }) => {
                 </div>
               ) : null}
             </div>
+            {isError ? (
+              <div className='text-red-600 font-semibold'>
+                something went wrong, please try again later
+              </div>
+            ) : (
+              ''
+            )}
             <button className='button button__primary mt-4' type='submit'>
               Submit
             </button>

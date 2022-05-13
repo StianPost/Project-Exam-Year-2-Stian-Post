@@ -15,7 +15,7 @@ import { getCabins } from '../lib/api';
 import nookies from 'nookies';
 import { useRouter } from 'next/router';
 
-export function LabTabs({ cabinArray }) {
+export function LabTabs({ cabinArray, contactArray, enquiryArray }) {
   const [value, setValue] = useState('1');
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -41,7 +41,7 @@ export function LabTabs({ cabinArray }) {
           <table className='table-auto'>
             <thead>
               <tr className='text-left'>
-                <th className='w-52 text-left'>#ID</th>
+                <th className='w-32'>#ID</th>
                 <th className='w-52'>Name</th>
                 <th className='w-52'>Price</th>
                 <th className='w-52'>Edit</th>
@@ -71,15 +71,83 @@ export function LabTabs({ cabinArray }) {
             </tbody>
           </table>
         </TabPanel>
-        <TabPanel value='2'>Enquiries</TabPanel>
-        <TabPanel value='3'>Messages</TabPanel>
+        <TabPanel value='2'>
+          <table className='table-auto'>
+            <thead>
+              <tr className='text-left'>
+                <th className='w-32'>#ID</th>
+                <th className='w-52'>First Name:</th>
+                <th className='w-52'>Last Name:</th>
+                <th className='w-52'>Subject:</th>
+                <th className='w-52'>Number:</th>
+                <th className='w-52'>Read</th>
+                <th className='w-52'>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {enquiryArray.map((elm: any) => {
+                return (
+                  <tr key={elm.id}>
+                    <td>{elm.id}</td>
+                    <td>{elm.firstName}</td>
+                    <td>{elm.lastName}</td>
+                    <td>{elm.subject}</td>
+                    <td>{elm.phoneNumber ? elm.phoneNumber : ''}</td>
+                    <td>
+                      <Icon icon='fa-solid:eye' />
+                    </td>
+                    <td>
+                      <Icon icon='fa-solid:trash-alt' />
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </TabPanel>
+        <TabPanel value='3'>
+          {' '}
+          <table className='table-auto'>
+            <thead>
+              <tr className='text-left'>
+                <th className='w-32'>#ID</th>
+                <th className='w-52'>Email</th>
+                <th className='w-52'>Subject</th>
+                <th className='w-52'>Read</th>
+                <th className='w-52'>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              {contactArray.map((elm: any) => {
+                return (
+                  <tr key={elm.id}>
+                    <td>{elm.id}</td>
+                    <td>{elm.email}</td>
+                    <td>{elm.subject}</td>
+                    <td>
+                      <Icon
+                        icon='fa-solid:eye'
+                        onClick={() => {
+                          console.log(elm.id);
+                        }}
+                      />
+                    </td>
+                    <td>
+                      <Icon icon='fa-solid:trash-alt' />
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </TabPanel>
         <TabPanel value='4'>Bookings</TabPanel>
       </TabContext>
     </Box>
   );
 }
 
-const Admin = ({ user, cabins }: any): any => {
+const Admin = ({ user, cabins, enquiries, messages }: any): any => {
   // Log Out
   const router = useRouter();
   const { email, username } = user;
@@ -112,7 +180,11 @@ const Admin = ({ user, cabins }: any): any => {
           </div>
         </div>
         <div></div>
-        <LabTabs cabinArray={cabins} />
+        <LabTabs
+          cabinArray={cabins}
+          enquiryArray={enquiries}
+          contactArray={messages}
+        />
       </main>
       <Footer />
     </>
@@ -125,6 +197,8 @@ export const getServerSideProps = async (ctx: any) => {
   const cookies = nookies.get(ctx);
   let user = null;
   let cabins = null;
+  let messages = null;
+  let enquiries = null;
 
   if (cookies?.jwt) {
     try {
@@ -134,8 +208,14 @@ export const getServerSideProps = async (ctx: any) => {
         },
       });
       const cabinData = await axios.get(apiCall);
+      const contactData = await axios.get(
+        'http://localhost:1337/contact-messages'
+      );
+      const enquiryData = await axios.get('http://localhost:1337/enquiries/');
       cabins = cabinData.data;
       user = data;
+      enquiries = enquiryData.data;
+      messages = contactData.data;
     } catch (e) {
       console.log(e);
     }
@@ -154,6 +234,8 @@ export const getServerSideProps = async (ctx: any) => {
     props: {
       user,
       cabins,
+      enquiries,
+      messages,
     },
   };
 };

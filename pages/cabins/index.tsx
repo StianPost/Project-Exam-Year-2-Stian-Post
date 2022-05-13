@@ -48,7 +48,7 @@ const Results = ({ cabins }: any) => {
         <title>Search Results - Cabin fever</title>
       </Head>
       <Header />
-      <main className='px-2 md:px-4 lg:px-10'>
+      <main className='px-2 lg:px-4 xl:px-10'>
         <Dropdown
           cabins={filteredCabins}
           searchValue={searchValue}

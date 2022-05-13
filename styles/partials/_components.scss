@@ -56,3 +56,46 @@
     min-width: 250px;
   }
 }
+
+.searchBar {
+  border: 1px solid #cccccc;
+  background: #fff;
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  &:focus {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+  &:active {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+
+  &__label {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+  }
+
+  &__arrow {
+    color: #cccccc;
+  }
+  &__dropDown {
+    width: 100%;
+    border: 1px solid #cccccc;
+    border-top: 0px;
+    border-bottom-right-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    background: #fff;
+    &__li {
+      padding: 0.5rem;
+
+      &:hover {
+        @apply bg-secondary;
+      }
+    }
+  }
+}

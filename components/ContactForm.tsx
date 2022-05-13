@@ -27,6 +27,7 @@ interface MyFormValueTypes {
 
 const ContactForm = () => {
   const [isError, setIsError] = useState(false);
+  const [isSent, setIsSent] = useState(false);
 
   const handleSubmit = async (values: any) => {
     console.log(values);
@@ -36,10 +37,12 @@ const ContactForm = () => {
         values
       );
       setIsError(false);
+      setIsSent(true);
       console.log(response);
     } catch (err: any) {
       console.log(err.response.data.message);
       setIsError(true);
+      setIsSent(false);
     }
   };
   return (
@@ -98,6 +101,18 @@ const ContactForm = () => {
               {errors.message && touched.message ? (
                 <div className='text-red-600 font-semibold'>
                   {errors.message}
+                </div>
+              ) : null}
+            </div>
+            <div>
+              {isSent ? (
+                <div className='text-green-600 font-bold'>
+                  Your message got sent safely!
+                </div>
+              ) : null}
+              {isError ? (
+                <div className='text-red-600 font-bold'>
+                  Something went wrong, please try again later
                 </div>
               ) : null}
             </div>

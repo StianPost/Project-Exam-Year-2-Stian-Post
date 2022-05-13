@@ -20,9 +20,10 @@ const LoginComponent = () => {
 
   const handleSubmit = async (values: any) => {
     try {
-      await axios.post('/api/login', { ...values });
+      const response = await axios.post('/api/login', { ...values });
       router.push('/Admin');
       setIsError(false);
+      console.log(response);
     } catch (err: any) {
       console.log(err.response.data.message);
       setIsError(true);

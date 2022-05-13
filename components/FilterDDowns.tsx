@@ -7,6 +7,7 @@ function FilterDDowns({
   filterType,
   isMulti,
   handleOnChange,
+  placeholderText,
 }: any) {
   const [selectedOption, setSelectedOption]: any = useState(null);
 
@@ -31,7 +32,7 @@ function FilterDDowns({
         isMulti={isMulti}
         blurInputOnSelect
         value={selectedOption}
-        placeholder={'test'}
+        placeholder={placeholderText}
       />
     </>
   );
