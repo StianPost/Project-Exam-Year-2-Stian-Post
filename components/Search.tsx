@@ -310,6 +310,8 @@ function Search({
               isWinterActivities,
               isWateractives,
               isPets,
+              rooms,
+              beds,
             }): any => {
               return (
                 <Resultcards
@@ -336,6 +338,8 @@ function Search({
                   isWinterActivities={isWinterActivities}
                   isWateractives={isWateractives}
                   isPets={isPets}
+                  rooms={rooms}
+                  beds={beds}
                 />
               );
             }

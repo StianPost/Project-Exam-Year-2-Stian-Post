@@ -20,6 +20,8 @@ function Resultcards({
   isWinterActivities,
   isWateractives,
   isPets,
+  rooms,
+  beds,
 }: any) {
   const myLoader = ({ width = 200, quality = 100 }) => {
     return `${heroImg}?w=${width}&q=${quality || 75}`;
@@ -89,13 +91,24 @@ function Resultcards({
         <h3>{title}</h3>
         <p>{short_description}</p>
         <div className='flex flex-col justify-between sm:flex-row py-0 sm:pt:2'>
-          <div className='flex justify-between items-center sm:block py-2 sm:py-0'>
-            <div className='flex'>
-              <p>icon</p>
-              <p>icon</p>
+          <div className='flex justify-between items-center sm:block py-3 sm:py-0'>
+            <div className='flex text-primary items-end'>
+              <div className='flex items-end'>
+                <Icon icon='fa-solid:bed' className='text-4xl mr-1' />
+                <p className='font-bold text-1xl'>{beds}</p>
+              </div>
+              <div className='flex items-end'>
+                <Icon
+                  icon='fa-solid:door-closed'
+                  className='text-4xl  ml-3 mr-1'
+                />
+                <p className='font-bold text-1xl'>{rooms}</p>
+              </div>
             </div>
-            <div className='font-bold text-primary text-2xl'>
-              {price} nok/day
+            <div>
+              <p className='font-bold text-primary text-2xl md:mt-2'>
+                {price} nok/Day
+              </p>
             </div>
           </div>
           <Link href={`/cabins/${id}`}>
