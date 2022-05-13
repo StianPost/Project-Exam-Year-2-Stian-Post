@@ -300,7 +300,17 @@ function Search({
               people_rooms,
               dates,
               short_description,
-            }: cardInfo): any => {
+              isFire,
+              isElectricity,
+              isPool,
+              isToilet,
+              isHiking,
+              isSlalom,
+              isSkiing,
+              isWinterActivities,
+              isWateractives,
+              isPets,
+            }): any => {
               return (
                 <Resultcards
                   key={id}
@@ -316,6 +326,16 @@ function Search({
                   imgArray={imgArray}
                   county={county}
                   people_rooms={people_rooms}
+                  isFire={isFire}
+                  isElectricity={isElectricity}
+                  isPool={isPool}
+                  isToilet={isToilet}
+                  isHiking={isHiking}
+                  isSlalom={isSlalom}
+                  isSkiing={isSkiing}
+                  isWinterActivities={isWinterActivities}
+                  isWateractives={isWateractives}
+                  isPets={isPets}
                 />
               );
             }

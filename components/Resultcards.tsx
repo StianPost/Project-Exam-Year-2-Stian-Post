@@ -1,3 +1,4 @@
+import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -6,25 +7,28 @@ import { cardInfo } from '../lib/types';
 function Resultcards({
   title,
   id,
-  description,
-  extra_description,
   short_description,
   price,
-  adress,
   heroImg,
-  map,
-  imgArray,
-  county,
-  people_rooms,
-  dates,
-}: cardInfo) {
+  isFire,
+  isElectricity,
+  isPool,
+  isToilet,
+  isHiking,
+  isSlalom,
+  isSkiing,
+  isWinterActivities,
+  isWateractives,
+  isPets,
+}: any) {
   const myLoader = ({ width = 200, quality = 100 }) => {
     return `${heroImg}?w=${width}&q=${quality || 75}`;
   };
+  console.log(isPets);
 
   return (
     <div className='flex max-w-6xl w-full flex-col mb-6 rounded-lg md:flex-row '>
-      <div className='bg-slate-600  rounded-t-lg md:w-3/4  md:h-full md:rounded-l-lg md:rounded-none'>
+      <div className='bg-slate-600  rounded-t-lg md:w-3/4  md:h-full md:rounded-l-lg md:rounded-none relative'>
         <Image
           className='rounded-t-lg md:w-3/4  md:h-full md:rounded-l-lg md:rounded-none'
           loader={myLoader}
@@ -36,6 +40,50 @@ function Resultcards({
           unoptimized={false}
           priority
         />
+        <div className='absolute top-1 right-1 flex flex-col'>
+          {isPets ? (
+            <div className='IconBG'>
+              <Icon icon='mdi:paw' />
+            </div>
+          ) : (
+            ''
+          )}
+          {isSlalom ? (
+            <div className='IconBG'>
+              <Icon icon='fa-solid:skiing' />
+            </div>
+          ) : (
+            ''
+          )}
+          {isHiking ? (
+            <div className='IconBG'>
+              <Icon icon='fa-solid:hiking' className='text-3xl' />
+            </div>
+          ) : (
+            ''
+          )}
+          {isSkiing ? (
+            <div className='IconBG'>
+              <Icon icon='fa-solid:skiing-nordic' />
+            </div>
+          ) : (
+            ''
+          )}
+          {isWateractives ? (
+            <div className='IconBG'>
+              <Icon icon='map:jet-skiing' />
+            </div>
+          ) : (
+            ''
+          )}
+          {isWinterActivities ? (
+            <div className='IconBG'>
+              <Icon icon='map:snowmobile' />
+            </div>
+          ) : (
+            ''
+          )}
+        </div>
       </div>
       <div className='p-3 bg-secondary flex flex-col justify-between rounded-b-lg w-full md:rounded-r-lg'>
         <h3>{title}</h3>
@@ -52,7 +100,7 @@ function Resultcards({
           </div>
           <Link href={`/cabins/${id}`}>
             <a className='button button__primary text-center self-end h-fit sm:max-w-xs md:ml-2'>
-              Button
+              View Cabin
             </a>
           </Link>
         </div>
