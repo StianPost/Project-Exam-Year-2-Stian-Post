@@ -1,12 +1,12 @@
 import React, { TouchEvent, useEffect, useRef, useState } from 'react';
 
-import FilterDDowns from './FilterDDowns';
+import DropDownFilter from './DropDownFilter';
 import { Icon } from '@iconify/react';
-import MinimumDistanceSlider from './testSlider';
+import MoneySlider from './MoneySlider';
 import Resultcards from './Resultcards';
 import { cardInfo } from '../lib/types';
 
-function Dropdown({
+function Search({
   cabins,
   prompt,
   searchValue,
@@ -58,7 +58,7 @@ function Dropdown({
         <div className='w-full max-w-5xl flex flex-col justify-between'>
           <div className='flex flex-col justify-between w-full sm:flex-row'>
             <div className='w-full sm:max-w-xs'>
-              <FilterDDowns
+              <DropDownFilter
                 selectOptions={[
                   { value: 'Agder', label: 'Agder' },
                   { value: 'Finnmark', label: 'Finnmark' },
@@ -86,7 +86,7 @@ function Dropdown({
               />
             </div>
             <div className='w-full mt-2 sm:max-w-xs  sm:mt-0 sm:ml-4'>
-              <FilterDDowns
+              <DropDownFilter
                 selectOptions={[
                   { value: 1, label: `1 Bed` },
                   { value: 2, label: `2 Bed` },
@@ -107,7 +107,7 @@ function Dropdown({
               />
             </div>
             <div className='w-full mt-2 sm:max-w-xs sm:mt-0 sm:ml-4'>
-              <FilterDDowns
+              <DropDownFilter
                 selectOptions={[
                   { value: 1, label: '1 Room' },
                   { value: 2, label: '2 Rooms' },
@@ -220,7 +220,7 @@ function Dropdown({
           <h3>Filter</h3>
           <div className='flex flex-col  md:flex-row lg:flex-col'>
             <div className='w-full md:max-w-xs md:mr-1 lg:mr-0'>
-              <FilterDDowns
+              <DropDownFilter
                 selectOptions={[
                   { value: 'isFire', label: 'Fireplace' },
                   { value: 'isPool', label: 'Pool' },
@@ -237,7 +237,7 @@ function Dropdown({
               />
             </div>
             <div className='w-full mt-2 md:mt-0 md:max-w-xs md:ml-1 md:mr-1 lg:ml-0 lg:mr-0 lg:mt-2'>
-              <FilterDDowns
+              <DropDownFilter
                 selectOptions={[
                   { value: 'isBeach', label: 'Beach' },
                   { value: 'isWater', label: 'Lake' },
@@ -255,7 +255,7 @@ function Dropdown({
               />
             </div>
             <div className='w-full mt-2 md:mt-0 md:max-w-xs md:ml-1 lg:ml-0 lg:mt-2'>
-              <FilterDDowns
+              <DropDownFilter
                 selectOptions={[
                   { value: 'isSlalom', label: 'Slalom' },
                   { value: 'isSkiing', label: 'Skiing' },
@@ -281,7 +281,7 @@ function Dropdown({
           </div>
           <p className=' mt-4'>Price/day:</p>
           <div className='w-full px-4 md:w-2/3 lg:w-full'>
-            <MinimumDistanceSlider />
+            <MoneySlider />
           </div>
         </div>
         <div>
@@ -326,4 +326,4 @@ function Dropdown({
   );
 }
 
-export default Dropdown;
+export default Search;

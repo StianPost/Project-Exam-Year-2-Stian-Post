@@ -7,7 +7,7 @@ function valuetext(value: number) {
   return `${value} Nok`;
 }
 
-export default function MinimumDistanceSlider() {
+export default function MoneySlider() {
   const [value, setValue] = React.useState<number[]>([0, 500]);
   const minDistance: number = 10;
 

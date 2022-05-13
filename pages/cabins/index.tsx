@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import Dropdown from '../../components/Search';
 import Footer from '../layout/Footer';
 import Head from 'next/head';
 import Header from '../layout/Header';
@@ -8,8 +7,8 @@ import { Icon } from '@iconify/react';
 import Link from 'next/link';
 import type { NextPage } from 'next';
 import Resultcards from '../../components/Resultcards';
+import Search from '../../components/Search';
 import { apiCall } from '../../lib/const';
-import { cardInfo } from '../../lib/types';
 import { getCabins } from '../../lib/api';
 import { stringify } from 'query-string';
 
@@ -49,7 +48,7 @@ const Results = ({ cabins }: any) => {
       </Head>
       <Header />
       <main className='px-2 lg:px-4 xl:px-10'>
-        <Dropdown
+        <Search
           cabins={filteredCabins}
           searchValue={searchValue}
           onChange={(val: any) => setSearchValue(val)}
