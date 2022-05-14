@@ -15,7 +15,14 @@ import { getCabins } from '../lib/api';
 import nookies from 'nookies';
 import { useRouter } from 'next/router';
 
-export function LabTabs({ cabinArray, contactArray, enquiryArray }) {
+export function Tabs({
+  cabinArray,
+  contactArray,
+  enquiryArray,
+  openModal,
+  onClose,
+  id,
+}: any): any {
   const [value, setValue] = useState('1');
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -55,12 +62,14 @@ export function LabTabs({ cabinArray, contactArray, enquiryArray }) {
                     <td>{elm.id}</td>
                     <td>{elm.title}</td>
                     <td>{elm.price}</td>
-                    <td
-                      onClick={() => {
-                        console.log(elm.id);
-                      }}
-                    >
-                      <Icon icon='fa-solid:edit' />
+                    <td>
+                      <Icon
+                        className='hover:cursor-pointer'
+                        icon='fa-solid:edit'
+                        onClick={() => {
+                          openModal(elm);
+                        }}
+                      />
                     </td>
                     <td>
                       <Icon icon='fa-solid:trash-alt' />
@@ -106,7 +115,6 @@ export function LabTabs({ cabinArray, contactArray, enquiryArray }) {
           </table>
         </TabPanel>
         <TabPanel value='3'>
-          {' '}
           <table className='table-auto'>
             <thead>
               <tr className='text-left'>
@@ -147,7 +155,16 @@ export function LabTabs({ cabinArray, contactArray, enquiryArray }) {
   );
 }
 
-const Admin = ({ user, cabins, enquiries, messages }: any): any => {
+const Admin = ({
+  user,
+  cabins,
+  enquiries,
+  messages,
+  Open,
+  OnClose,
+}: any): any => {
+  const [modal, setModal] = useState(false);
+  const [cabin, setCabin] = useState();
   // Log Out
   const router = useRouter();
   const { email, username } = user;
@@ -167,6 +184,13 @@ const Admin = ({ user, cabins, enquiries, messages }: any): any => {
         <title>Admin - Cabin fever</title>
       </Head>
       <Header />
+      <AdminModal
+        open={modal}
+        closeModal={() => {
+          setModal(false);
+        }}
+        cabin={cabin}
+      />
       <main className='px-2 md:px-4 lg:px-10'>
         <h1>Admin</h1>
         <div>
@@ -180,10 +204,14 @@ const Admin = ({ user, cabins, enquiries, messages }: any): any => {
           </div>
         </div>
         <div></div>
-        <LabTabs
+        <Tabs
           cabinArray={cabins}
           enquiryArray={enquiries}
           contactArray={messages}
+          openModal={(val) => {
+            setModal(true);
+            setCabin(val);
+          }}
         />
       </main>
       <Footer />
@@ -192,6 +220,18 @@ const Admin = ({ user, cabins, enquiries, messages }: any): any => {
 };
 
 export default Admin;
+
+export const AdminModal = ({ open, closeModal, cabin }) => {
+  if (!open) return null;
+  return (
+    <div className='modalOverlay'>
+      <div className='modal'>
+        <h3>You are editing: {cabin.title}</h3>
+        <button onClick={closeModal}>Close</button>
+      </div>
+    </div>
+  );
+};
 
 export const getServerSideProps = async (ctx: any) => {
   const cookies = nookies.get(ctx);
