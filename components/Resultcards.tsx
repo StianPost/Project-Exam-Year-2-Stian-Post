@@ -48,7 +48,9 @@ function Resultcards({
               <Icon icon='mdi:paw' />
             </div>
           ) : (
-            ''
+            <div className='IconBG'>
+              <Icon icon='mdi:paw-off' />
+            </div>
           )}
           {isSlalom ? (
             <div className='IconBG'>

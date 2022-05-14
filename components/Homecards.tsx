@@ -1,4 +1,5 @@
 import { Icon } from '@iconify/react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 function Homecards({
@@ -20,17 +21,68 @@ function Homecards({
   rooms,
   beds,
 }: any) {
+  const myLoader = ({ width = 200, quality = 100 }) => {
+    return `${heroImg}?w=${width}&q=${quality || 75}`;
+  };
   return (
     <div className=' bg-secondary max-w-lg rounded-lg mb-6'>
-      <div className='bg-blue-300 w-full h-60 rounded-t-lg flex flex-col items-end p-3'>
-        <div className='flex items-center justify-center h-12 w-12 mb-2 rounded-full bg-gray-900 text-white'>
-          <Icon className='text-2xl' icon='fa-solid:skiing' />
-        </div>
-        <div className='flex items-center justify-center h-12 w-12 mb-2 rounded-full bg-gray-900 text-white'>
-          <Icon className='text-2xl' icon='map:waterskiing' />
-        </div>
-        <div className='flex items-center justify-center h-12 w-12 mb-2 rounded-full bg-gray-900 text-white'>
-          <Icon className='text-2xl' icon='map:jet-skiing' />
+      <div className='bg-blue-300 w-full h-72 rounded-t-lg relative'>
+        <Image
+          className='rounded-t-lg md:w-3/4  md:h-full'
+          loader={myLoader}
+          src={heroImg}
+          alt={`image of ${heroImg}`}
+          height={100}
+          width={100}
+          layout='fill'
+          unoptimized={false}
+          priority
+        />
+        <div className='absolute top-1 right-1 flex flex-col'>
+          {isPets ? (
+            <div className='IconBG'>
+              <Icon icon='mdi:paw' />
+            </div>
+          ) : (
+            <div className='IconBG'>
+              <Icon icon='mdi:paw-off' />
+            </div>
+          )}
+          {isSlalom ? (
+            <div className='IconBG'>
+              <Icon icon='fa-solid:skiing' />
+            </div>
+          ) : (
+            ''
+          )}
+          {isHiking ? (
+            <div className='IconBG'>
+              <Icon icon='fa-solid:hiking' className='text-3xl' />
+            </div>
+          ) : (
+            ''
+          )}
+          {isSkiing ? (
+            <div className='IconBG'>
+              <Icon icon='fa-solid:skiing-nordic' />
+            </div>
+          ) : (
+            ''
+          )}
+          {isWateractives ? (
+            <div className='IconBG'>
+              <Icon icon='map:jet-skiing' />
+            </div>
+          ) : (
+            ''
+          )}
+          {isWinterActivities ? (
+            <div className='IconBG'>
+              <Icon icon='map:snowmobile' />
+            </div>
+          ) : (
+            ''
+          )}
         </div>
       </div>
       <div className='p-3'>
