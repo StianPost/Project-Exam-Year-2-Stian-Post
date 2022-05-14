@@ -211,7 +211,7 @@ const Admin = ({
           cabinArray={cabins}
           enquiryArray={enquiries}
           contactArray={messages}
-          openModal={(val) => {
+          openModal={(val: any) => {
             setModal(true);
             setCabin(val);
           }}
@@ -551,10 +551,12 @@ export const getServerSideProps = async (ctx: any) => {
         'http://localhost:1337/contact-messages'
       );
       const enquiryData = await axios.get('http://localhost:1337/enquiries/');
-      cabins = cabinData.data;
+
       user = data;
-      enquiries = enquiryData.data;
+
+      cabins = cabinData.data;
       messages = contactData.data;
+      enquiries = enquiryData.data;
     } catch (e) {
       console.log(e);
     }
