@@ -165,13 +165,13 @@ const Admin = ({
   messages,
   Open,
   OnClose,
+  JWT,
 }: any): any => {
   const [modal, setModal] = useState(false);
   const [cabin, setCabin] = useState();
   // Log Out
   const router = useRouter();
-  // const { email, username } = user;
-  console.log(user);
+  const { email, username } = user;
   const logout = async () => {
     try {
       await axios.get('/api/logout');
@@ -193,12 +193,13 @@ const Admin = ({
           setModal(false);
         }}
         cabin={cabin}
+        JWT={JWT}
       />
       <main className='px-2 md:px-4 lg:px-10'>
         <h1>Admin</h1>
         <div>
-          {/* <div>Username: {username}</div>
-          <div>Email: {email}</div> */}
+          <div>Username: {username}</div>
+          <div>Email: {email}</div>
           <button onClick={logout}>Logout</button>
         </div>
         <div className='flex justify-between'>
@@ -224,7 +225,10 @@ const Admin = ({
 
 export default Admin;
 
-export const AdminModal = ({ open, closeModal, cabin }) => {
+export const AdminModal = ({ open, closeModal, cabin, JWT }) => {
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const router = useRouter();
   const SignupSchema = Yup.object().shape({
     title: Yup.string()
       .min(2, 'Longer title needed')
@@ -311,11 +315,23 @@ export const AdminModal = ({ open, closeModal, cabin }) => {
                 try {
                   const response = await axios.put(
                     `http://localhost:1337/cabins/${cabin.id}`,
-                    editedCabin
+                    editedCabin,
+                    {
+                      headers: {
+                        Authorization: `Bearer ${JWT}`,
+                      },
+                    }
                   );
-                  console.log('it worked!', editedCabin);
+                  router.replace(router.asPath);
+                  setTimeout(() => {
+                    closeModal();
+                  }, 1000);
+                  setSuccess(true);
+                  setError(false);
                 } catch (error) {
                   console.log('error', error);
+                  setSuccess(false);
+                  setError(true);
                 }
               }
               editProd(values);
@@ -518,7 +534,14 @@ export const AdminModal = ({ open, closeModal, cabin }) => {
                     ) : null}
                   </div>
                 </div>
-
+                {success ? (
+                  <div className='text-green-600 font-bold'>
+                    Your message got sent safely!
+                  </div>
+                ) : null}
+                {error ? (
+                  <div className='text-red-600 font-bold'>Shit hit the fan</div>
+                ) : null}
                 <button className='button button__primary mt-4' type='submit'>
                   Edit Cabin
                 </button>
@@ -538,6 +561,7 @@ export const getServerSideProps = async (ctx: any) => {
   let cabins = null;
   let messages = null;
   let enquiries = null;
+  const JWT = parseCookies(ctx).jwt;
 
   if (cookies?.jwt) {
     try {
@@ -577,6 +601,7 @@ export const getServerSideProps = async (ctx: any) => {
       cabins,
       enquiries,
       messages,
+      JWT,
     },
   };
 };
