@@ -1,3 +1,5 @@
+import { BaseURL, apiCall } from '../lib/const';
+
 import FeaturedCards from '../components/FeaturedCards';
 import Footer from './layout/Footer';
 import Head from 'next/head';
@@ -5,12 +7,11 @@ import Header from './layout/Header';
 import Homecards from '../components/Homecards';
 import Link from 'next/link';
 import type { NextPage } from 'next';
-import { apiCall } from '../lib/const';
 import { getCabins } from '../lib/api';
 import { useRouter } from 'next/router';
 
 export async function getStaticProps() {
-  const cabinArray = await getCabins(apiCall);
+  const cabinArray = await getCabins(BaseURL + '/cabins');
 
   return {
     props: { cabins: cabinArray },

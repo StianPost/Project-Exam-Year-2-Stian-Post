@@ -1,5 +1,6 @@
 import * as Yup from 'yup';
 
+import { BaseURL, apiCall } from '../lib/const';
 import { Field, FieldArray, Form, Formik, getIn } from 'formik';
 import nookies, { destroyCookie, parseCookies, setCookie } from 'nookies';
 import { useEffect, useState } from 'react';
@@ -13,7 +14,6 @@ import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
-import { apiCall } from '../lib/const';
 import axios from 'axios';
 import { getCabins } from '../lib/api';
 import { useRouter } from 'next/router';
@@ -170,6 +170,8 @@ const Admin = ({
 }: any): any => {
   const [editModal, setEditModal] = useState(false);
   const [addModal, setAddModal] = useState(false);
+  const [enquiryModal, setEnquiryModal] = useState(false);
+  const [messageModal, setMessageModal] = useState(false);
   const [cabin, setCabin] = useState();
   // Log Out
   const router = useRouter();
@@ -202,8 +204,13 @@ const Admin = ({
         closeModal={() => {
           setAddModal(false);
         }}
-        cabin={cabin}
         JWT={JWT}
+      />
+      <MessageModal
+        open={messageModal}
+        closeModal={() => {
+          setMessageModal(false);
+        }}
       />
       <main className='px-2 md:px-4 lg:px-10'>
         <div className='flex justify-between items-center'>
@@ -243,11 +250,21 @@ const Admin = ({
 
 export default Admin;
 
-export const EditCabinModal = ({ open, closeModal, cabin, JWT }) => {
+export const EditCabinModal = ({
+  open,
+  closeModal,
+  cabin,
+  JWT,
+}: {
+  open: boolean;
+  closeModal: any;
+  cabin: any;
+  JWT: string;
+}) => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const router = useRouter();
-  const SignupSchema = Yup.object().shape({
+  const SignupSchema: any = Yup.object().shape({
     title: Yup.string()
       .min(2, 'Longer title needed')
       .max(25, 'Title is too long')
@@ -298,13 +315,9 @@ export const EditCabinModal = ({ open, closeModal, cabin, JWT }) => {
       .required('You must have images')
       .min(3, 'Minimum of 3 Image urls'),
   });
-  // function onSubmit(val: any) {
-  //   console.log(val);
-  // }
-
-  const ErrorMessage = ({ imgUrl }) => (
+  const ErrorMessage = ({ imgUrl }: any) => (
     <Field name={imgUrl}>
-      {({ form }) => {
+      {({ form }: any) => {
         const error = getIn(form.errors, imgUrl);
         const touch = getIn(form.touched, imgUrl);
         return touch || error ? (
@@ -353,15 +366,11 @@ export const EditCabinModal = ({ open, closeModal, cabin, JWT }) => {
             }}
             validationSchema={SignupSchema}
             onSubmit={(values, errors: any) => {
-              // same shape as initial values
-              // onSubmit(values);
-              console.log(values);
-              console.log(errors);
-              async function editProd(editedCabin: any) {
+              async function editProd(newCabin: any) {
                 try {
                   const response = await axios.put(
-                    `http://localhost:1337/cabins/${cabin.id}`,
-                    editedCabin,
+                    `${BaseURL}/cabins/${cabin.id}`,
+                    newCabin,
                     {
                       headers: {
                         Authorization: `Bearer ${JWT}`,
@@ -384,7 +393,7 @@ export const EditCabinModal = ({ open, closeModal, cabin, JWT }) => {
               editProd(values);
             }}
           >
-            {({ errors, touched, values }) => (
+            {({ errors, touched, values }: any) => (
               <Form>
                 <div className='flex flex-wrap justify-between sm:flex-row'>
                   <div className='w-1/2 pr-1'>
@@ -668,7 +677,7 @@ export const EditCabinModal = ({ open, closeModal, cabin, JWT }) => {
                     <div>
                       <p className='text-center mt-4 mb-2'>ImgArray</p>
                       {values.imgArray && values.imgArray.length > 0 ? (
-                        values.imgArray.map((imgObj, index) => (
+                        values.imgArray.map((imgObj: any, index: number) => (
                           <div className='mb-4' key={index}>
                             <Field
                               className='w-full p-2 border-solid border-primary border-2 rounded-lg'
@@ -741,11 +750,19 @@ export const EditCabinModal = ({ open, closeModal, cabin, JWT }) => {
   );
 };
 
-export const AddCabinModal = ({ open, closeModal, cabin, JWT }) => {
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
+export const AddCabinModal = ({
+  open,
+  closeModal,
+  JWT,
+}: {
+  open: boolean;
+  closeModal: any;
+  JWT: string;
+}) => {
+  const [success, setSuccess] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
   const router = useRouter();
-  const SignupSchema = Yup.object().shape({
+  const SignupSchema: any = Yup.object().shape({
     title: Yup.string()
       .min(2, 'Longer title needed')
       .max(25, 'Title is too long')
@@ -781,7 +798,33 @@ export const AddCabinModal = ({ open, closeModal, cabin, JWT }) => {
       .min(2, 'This adress is too short')
       .max(50, 'There is no adress this long')
       .required('The cabin must have an adress'),
+    imgArray: Yup.array()
+      .of(
+        Yup.object().shape({
+          imgUrl: Yup.string()
+            .required('Required')
+            .min(5, 'Link must be longer')
+            .matches(
+              /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+              'Enter correct url!'
+            ),
+        })
+      )
+      .required('You must have images')
+      .min(3, 'Minimum of 3 Image urls'),
   });
+
+  const ErrorMessage = ({ imgUrl }: any) => (
+    <Field name={imgUrl}>
+      {({ form }: any) => {
+        const error = getIn(form.errors, imgUrl);
+        const touch = getIn(form.touched, imgUrl);
+        return touch || error ? (
+          <div className='text-red-600 font-semibold'>{error}</div>
+        ) : null;
+      }}
+    </Field>
+  );
 
   if (!open) return null;
 
@@ -819,18 +862,15 @@ export const AddCabinModal = ({ open, closeModal, cabin, JWT }) => {
               isWaterActivities: false,
               isHiking: false,
               isPets: false,
+              imgArray: [],
             }}
             validationSchema={SignupSchema}
             onSubmit={(values: any) => {
-              // same shape as initial values
-              // onSubmit(values);
-              console.log(values);
-              async function editProd(editedCabin: any) {
-                console.log(editedCabin);
+              async function editProd(newCabin: any) {
                 try {
                   const response = await axios.post(
-                    `http://localhost:1337/cabins/`,
-                    editedCabin,
+                    `${BaseURL}/cabins/`,
+                    newCabin,
                     {
                       headers: {
                         Authorization: `Bearer ${JWT}`,
@@ -1129,6 +1169,64 @@ export const AddCabinModal = ({ open, closeModal, cabin, JWT }) => {
                     <span> Pets Allowed?</span>
                   </label>
                 </div>
+                <FieldArray
+                  name='imgArray'
+                  render={(arrayHelpers) => (
+                    <div>
+                      <p className='text-center mt-4 mb-2'>ImgArray</p>
+                      {values.imgArray && values.imgArray.length > 0 ? (
+                        values.imgArray.map((imgObj, index) => (
+                          <div className='mb-4' key={index}>
+                            <Field
+                              className='w-full p-2 border-solid border-primary border-2 rounded-lg'
+                              name={`imgArray.[${index}].imgUrl`}
+                            />
+                            <ErrorMessage
+                              imgUrl={`imgArray.[${index}].imgUrl`}
+                            />
+                            <Field
+                              className='hidden'
+                              name={`imgArray.[${index}].id`}
+                              value={index + 1}
+                            />
+                            <div className=''>
+                              <button
+                                className='mr-3 hover:font-semibold'
+                                type='button'
+                                onClick={() => arrayHelpers.insert(index, '')}
+                              >
+                                + Add more
+                              </button>
+                              <button
+                                className='hover:font-semibold'
+                                type='button'
+                                onClick={() => arrayHelpers.remove(index)}
+                              >
+                                - Remove
+                              </button>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <button
+                          type='button'
+                          onClick={() => arrayHelpers.push('')}
+                        >
+                          Add an Image
+                        </button>
+                      )}
+                    </div>
+                  )}
+                />
+                <div>
+                  {errors.imgArray && touched.imgArray ? (
+                    <div className='text-red-600 font-semibold'>
+                      {typeof errors.imgArray === 'string' ? (
+                        <div>{errors.imgArray}</div>
+                      ) : null}
+                    </div>
+                  ) : null}
+                </div>
                 {success ? (
                   <div className='text-green-600 font-bold'>
                     Your message got sent safely!
@@ -1150,6 +1248,20 @@ export const AddCabinModal = ({ open, closeModal, cabin, JWT }) => {
   );
 };
 
+export const MessageModal = ({ open, onClose, message }) => {
+  if (!open) return null;
+  return (
+    <div>
+      <p>test</p>
+      <button
+        onClick={() => {
+          onClose;
+        }}
+      ></button>
+    </div>
+  );
+};
+
 export const getServerSideProps = async (ctx: any) => {
   let user = null;
   let cabins = null;
@@ -1159,19 +1271,16 @@ export const getServerSideProps = async (ctx: any) => {
 
   if (JWT) {
     try {
-      const { data } = await axios.get('http://localhost:1337/users/me', {
+      const loginData = await axios.get(BaseURL + '/users/me', {
         headers: {
           Authorization: `Bearer ${JWT}`,
         },
       });
-      const cabinData = await axios.get(apiCall);
-      const contactData = await axios.get(
-        'http://localhost:1337/contact-messages'
-      );
-      const enquiryData = await axios.get('http://localhost:1337/enquiries/');
+      const cabinData = await axios.get(BaseURL + '/cabins');
+      const contactData = await axios.get(BaseURL + '/contact-messages');
+      const enquiryData = await axios.get(BaseURL + '/enquiries/');
 
-      user = data;
-
+      user = loginData.data;
       cabins = cabinData.data;
       messages = contactData.data;
       enquiries = enquiryData.data;
