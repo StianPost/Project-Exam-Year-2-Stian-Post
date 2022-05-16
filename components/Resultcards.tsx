@@ -26,7 +26,6 @@ function Resultcards({
   const myLoader = ({ width = 200, quality = 100 }) => {
     return `${heroImg}?w=${width}&q=${quality || 75}`;
   };
-  console.log(isPets);
 
   return (
     <div className='flex max-w-6xl w-full flex-col mb-6 rounded-lg md:flex-row '>
@@ -42,7 +41,7 @@ function Resultcards({
           unoptimized={false}
           priority
         />
-        <div className='absolute top-1 right-1 flex flex-col'>
+        <div className='absolute top-1 right-1 flex flex-col flex-wrap-reverse h-full'>
           {isPets ? (
             <div className='IconBG'>
               <Icon icon='mdi:paw' />

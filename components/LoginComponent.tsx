@@ -23,9 +23,7 @@ const LoginComponent = () => {
       const response = await axios.post('/api/login', { ...values });
       router.push('/Admin');
       setIsError(false);
-      console.log(response);
     } catch (err: any) {
-      console.log(err.response.data.message);
       setIsError(true);
     }
   };
@@ -40,7 +38,6 @@ const LoginComponent = () => {
         validationSchema={SignupSchema}
         onSubmit={(values: any): void => {
           handleSubmit(values);
-          console.log(values);
         }}
       >
         {({ errors, touched }) => (

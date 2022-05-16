@@ -31,7 +31,6 @@ function Login() {
       <button
         onClick={() => {
           setToggleModal(true);
-          console.log(toggleModal);
         }}
       >
         Login
