@@ -4,7 +4,7 @@ import DropDownFilter from './DropDownFilter';
 import { Icon } from '@iconify/react';
 import MoneySlider from './MoneySlider';
 import Resultcards from './Resultcards';
-import { cardInfo } from '../lib/types';
+import { cabinInterface } from '../lib/types';
 
 function Search({
   cabins,
@@ -33,9 +33,9 @@ function Search({
     setOpen(e && e.target === ref.current);
   }
 
-  function filterCabins(cabins: cardInfo[]) {
+  function filterCabins(): cabinInterface[] {
     return cabins.filter(
-      (cabin: cardInfo) =>
+      (cabin: cabinInterface) =>
         cabin.title.toLowerCase().indexOf(query.toLocaleLowerCase()) > -1
     );
   }
@@ -46,7 +46,7 @@ function Search({
     return '';
   }
 
-  function selectCabin(cabin: cardInfo): void {
+  function selectCabin(cabin: cabinInterface): void {
     setQuery(cabin.title);
     onChange(cabin);
     setOpen(false);
@@ -158,10 +158,10 @@ function Search({
               </div>
               <ul
                 className={`${
-                  open ? 'searchBar__dropDown' : 'hidden'
+                  open ? 'searchBar__dropDown z-20' : 'hidden'
                 } absolute w-full`}
               >
-                {filterCabins(cabins).map((cabin: cardInfo) => {
+                {filterCabins().map((cabin: cabinInterface) => {
                   return (
                     <li
                       key={cabin.id}
@@ -285,7 +285,7 @@ function Search({
           </div>
         </div>
         <div>
-          {filterCabins(cabins).map(
+          {filterCabins().map(
             ({
               title,
               id,
@@ -319,6 +319,7 @@ function Search({
                   title={title}
                   heroImg={heroImg}
                   id={id}
+                  dates={dates}
                   price={price}
                   description={description}
                   extra_description={extra_description}

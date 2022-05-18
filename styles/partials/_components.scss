@@ -57,6 +57,29 @@
   }
 }
 
+.dateRangePicker {
+  border: 1px solid #cccccc;
+  background: #fff;
+  border-radius: 0.5rem;
+  outline: none;
+}
+.rs-picker-default {
+  border: none;
+}
+.rs-picker-toggle {
+  border: none;
+}
+.rs-picker {
+  :hover {
+    border: 1px solid #cccccc !important;
+  }
+  :focus {
+    border: 1px solid #cccccc !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+}
+
 .searchBar {
   border: 1px solid #cccccc;
   background: #fff;

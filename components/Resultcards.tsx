@@ -2,7 +2,7 @@ import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { cardInfo } from '../lib/types';
+import { cabinInterface } from '../lib/types';
 
 function Resultcards({
   title,
@@ -22,7 +22,7 @@ function Resultcards({
   isPets,
   rooms,
   beds,
-}: any) {
+}: cabinInterface) {
   const myLoader = ({ width = 200, quality = 100 }) => {
     return `${heroImg}?w=${width}&q=${quality || 75}`;
   };

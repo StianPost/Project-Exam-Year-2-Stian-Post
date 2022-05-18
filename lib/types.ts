@@ -18,22 +18,34 @@ export type ImgProp = {
   imgArray: ImgObj[];
 };
 
-export interface cardInfo {
+export interface cabinInterface {
   title: string;
-  heroImg: string;
   id: number;
-  price: number;
   description: string;
   extra_description: string;
-  imgArray: string[];
-  people_rooms: people_rooms;
-  map: string;
+  price: number;
   adress: string;
+  heroImg: string;
+  map: string;
+  imgArray: { id: number; imgUrl: string }[];
   county: string;
-  dates?: dateObj;
+  people_rooms: number;
+  dates: Date;
   short_description: string;
+  isFire: Boolean;
+  isElectricity: Boolean;
+  isPool: Boolean;
+  isToilet: Boolean;
+  isHiking: Boolean;
+  isSlalom: Boolean;
+  isSkiing: Boolean;
+  isWinterActivities: Boolean;
+  isWateractives: Boolean;
+  isPets: Boolean;
+  rooms: number;
+  beds: number;
 }
 
 export type cabinArray = {
-  cabinArray: cardInfo[];
+  cabinArray: cabinInterface[];
 };

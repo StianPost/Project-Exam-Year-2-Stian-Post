@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { BaseURL, apiCall } from '../../lib/const';
+import React, { useEffect, useState } from 'react';
 
 import Bookingmodal from '../../components/Bookingmodal';
 import Enquirymodal from '../../components/Enquirymodal';
@@ -10,13 +11,14 @@ import Image from 'next/image';
 import type { NextPage } from 'next';
 import Slider from '../../components/Slider';
 import SwiperComponent from '../../components/SwiperComponent';
-import { apiCall } from '../../lib/const';
+import axios from 'axios';
+import { cabinInterface } from '../../lib/types';
 import { getCabins } from '../../lib/api';
 
 export const getStaticPaths = async (params: any) => {
   const cabinArray = await getCabins(apiCall);
 
-  const paths = cabinArray.map((cabin: any) => {
+  const paths = cabinArray.map((cabin: cabinInterface) => {
     return {
       params: { id: cabin.id.toString() },
     };
@@ -31,29 +33,44 @@ export const getStaticProps = async (context: any) => {
   const id = context.params.id;
   const cabin = await getCabins(apiCall + '/' + id);
   return {
-    props: { cabin },
+    props: { cabin, id },
   };
 };
 
-const Cabin = ({ cabin }: any) => {
+const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
+  const [cabinObj, setCabinObj] = useState(cabin);
+  useEffect(() => {
+    (async function () {
+      const { data } = await axios.get(BaseURL + '/cabins/' + id);
+      setCabinObj(data);
+    })();
+  }, [id]);
+
   const myLoader = ({ width = 200, quality = 100 }) => {
     return `${heroImg}?w=${width}&q=${quality || 75}`;
   };
-  const destructuredCabin = cabin;
+  const destructuredCabin = cabinObj;
   const {
     title,
-    id,
+    short_description,
     description,
     extra_description,
     price,
-    adress,
     heroImg,
-    map,
-    imgArray,
-    county,
+    isFire,
+    isElectricity,
+    isPool,
+    isToilet,
+    isHiking,
+    isSlalom,
+    isSkiing,
+    isWinterActivities,
+    isWateractives,
+    isPets,
     rooms,
     beds,
-    dates,
+    imgArray,
+    adress,
   } = destructuredCabin;
 
   type imgArrObj = {
@@ -139,21 +156,87 @@ const Cabin = ({ cabin }: any) => {
           <div>
             <h3>Amenities</h3>
             <div className='flex flex-wrap'>
-              <p>ICON</p>
-              <p>ICON</p>
-              <p>ICON</p>
-              <p>ICON</p>
-              <p>ICON</p>
-              <p>ICON</p>
-              <p>ICON</p>
-              <p>ICON</p>
-              <p>ICON</p>
-              <p>ICON</p>
-              <p>ICON</p>
-              <p>ICON</p>
-              <p>ICON</p>
-              <p>ICON</p>
-              <p>ICON</p>
+              {isPets ? (
+                <div className='pr-3 flex items-end'>
+                  <Icon icon='mdi:paw' className='text-3xl mr-1' />
+                  <p>Pets Allowed</p>
+                </div>
+              ) : (
+                <div className='pr-3 flex items-end'>
+                  <Icon icon='mdi:paw-off' className='text-3xl mr-1' />
+                  <p>No pets</p>
+                </div>
+              )}
+              {isSlalom ? (
+                <div className='pr-3 flex items-end'>
+                  <Icon icon='fa-solid:skiing' className='text-3xl mr-1' />
+                  <p>Slalom</p>
+                </div>
+              ) : (
+                ''
+              )}
+              {isHiking ? (
+                <div className='pr-3 flex items-end'>
+                  <Icon icon='fa-solid:hiking' className='text-3xl mr-1' />
+                  <p>Hiking</p>
+                </div>
+              ) : (
+                ''
+              )}
+              {isSkiing ? (
+                <div className='pr-3 flex items-end'>
+                  <Icon
+                    icon='fa-solid:skiing-nordic'
+                    className='text-3xl mr-1'
+                  />
+                  <p>Skiing</p>
+                </div>
+              ) : (
+                ''
+              )}
+              {isWateractives ? (
+                <div className='pr-3 flex items-end'>
+                  <Icon icon='map:jet-skiing' className='text-3xl mr-1' />
+                  <p>Water Activities</p>
+                </div>
+              ) : (
+                ''
+              )}
+              {isFire ? (
+                <div className='pr-3 flex items-end'>
+                  <Icon icon='map:snowmobile' className='text-3xl mr-1' />
+                  <p>Fireplace</p>
+                </div>
+              ) : (
+                ''
+              )}
+              {isElectricity ? (
+                <div className='pr-3 flex items-end'>
+                  <Icon icon='map:snowmobile' className='text-3xl mr-1' />
+                  <p>Electricity</p>
+                </div>
+              ) : (
+                ''
+              )}
+              {isPool ? (
+                <div className='pr-3 flex items-end'>
+                  <Icon icon='map:snowmobile' className='text-3xl mr-1' />
+                  <p>Pool</p>
+                </div>
+              ) : (
+                ''
+              )}
+              {isToilet ? (
+                <div className='pr-3 flex items-end'>
+                  <Icon icon='map:snowmobile' className='text-3xl mr-1' />
+                  <p>Indoor Toilet</p>
+                </div>
+              ) : (
+                <div className='pr-3 flex items-end'>
+                  <Icon icon='map:snowmobile' className='text-3xl mr-1' />
+                  <p>Outdoor Toilet</p>
+                </div>
+              )}
             </div>
           </div>
           <div>

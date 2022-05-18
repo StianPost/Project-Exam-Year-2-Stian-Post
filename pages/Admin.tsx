@@ -15,6 +15,7 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import axios from 'axios';
+import { cabinInterface } from '../lib/types';
 import { getCabins } from '../lib/api';
 import { useRouter } from 'next/router';
 import { valueContainerCSS } from 'react-select/dist/declarations/src/components/containers';
@@ -42,11 +43,7 @@ export function Tabs({
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} aria-label='lab API tabs example'>
-            <Tab
-              className=' border-2 !border-primary border-solid rounded-t-lg text-xl !text-primary !font-bold'
-              label='Cabins'
-              value='1'
-            />
+            <Tab label='Cabins' value='1' />
             <Tab label='Enquiries' value='2' />
             <Tab label='Messages' value='3' />
             <Tab label='Bookings' value='4' />
@@ -63,7 +60,7 @@ export function Tabs({
                 <th className='w-52'>Delete</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className='text-xl'>
               {cabinArray.map((elm: any) => {
                 return (
                   <tr key={elm.id}>
@@ -72,7 +69,7 @@ export function Tabs({
                     <td>{elm.price}</td>
                     <td>
                       <Icon
-                        className='hover:cursor-pointer'
+                        className='hover:text-purple-700 hover:cursor-pointer'
                         icon='fa-solid:edit'
                         onClick={() => {
                           openModal(elm);
@@ -82,12 +79,25 @@ export function Tabs({
                     <td>
                       <Icon
                         icon='fa-solid:trash-alt'
+                        className='hover:text-red-600 hover:cursor-pointer'
                         onClick={() => {
-                          console.log(
-                            'Are you sure you want to delete',
-                            elm.id,
-                            '?'
+                          let deleteProd = confirm(
+                            `are you sure you want to delete this Message?`
                           );
+                          if (deleteProd) {
+                            async function deleteThing() {
+                              let { data } = await axios.delete(
+                                `${BaseURL}/messages/${elm.id}`,
+                                {
+                                  headers: {
+                                    Authorization: `Bearer ${JWT}`,
+                                  },
+                                }
+                              );
+                              router.replace(router.asPath);
+                            }
+                            deleteThing();
+                          }
                         }}
                       />
                     </td>
@@ -110,7 +120,7 @@ export function Tabs({
                 <th className='w-52'>Delete</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className='text-xl'>
               {enquiryArray.map((elm: any) => {
                 return (
                   <tr key={elm.id}>
@@ -122,6 +132,7 @@ export function Tabs({
                     <td>
                       <Icon
                         icon='fa-solid:eye'
+                        className='hover:text-purple-700 hover:cursor-pointer'
                         onClick={() => {
                           openEnquiry(elm);
                         }}
@@ -130,12 +141,13 @@ export function Tabs({
                     <td>
                       <Icon
                         icon='fa-solid:trash-alt'
+                        className='hover:text-red-600 hover:cursor-pointer'
                         onClick={() => {
                           let deleteProd = confirm(
-                            `are you sure you want to delete this Product?`
+                            `are you sure you want to delete this Enquiry?`
                           );
                           if (deleteProd) {
-                            async () => {
+                            async function deleteThing() {
                               let { data } = await axios.delete(
                                 `${BaseURL}/enquiries/${elm.id}`,
                                 {
@@ -144,10 +156,9 @@ export function Tabs({
                                   },
                                 }
                               );
-                            };
-                            console.log(elm);
-
-                            // router.replace(router.asPath);
+                              router.replace(router.asPath);
+                            }
+                            deleteThing();
                           }
                         }}
                       />
@@ -169,7 +180,7 @@ export function Tabs({
                 <th className='w-52'>Delete</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className='text-xl'>
               {contactArray.map((elm: any) => {
                 return (
                   <tr key={elm.id}>
@@ -179,13 +190,36 @@ export function Tabs({
                     <td>
                       <Icon
                         icon='fa-solid:eye'
+                        className='hover:text-purple-700 hover:cursor-pointer'
                         onClick={() => {
                           openMessage(elm);
                         }}
                       />
                     </td>
                     <td>
-                      <Icon icon='fa-solid:trash-alt' />
+                      <Icon
+                        icon='fa-solid:trash-alt'
+                        className='hover:text-red-600 hover:cursor-pointer'
+                        onClick={() => {
+                          let deleteProd = confirm(
+                            `are you sure you want to delete this Message?`
+                          );
+                          if (deleteProd) {
+                            async function deleteThing() {
+                              let { data } = await axios.delete(
+                                `${BaseURL}/messages/${elm.id}`,
+                                {
+                                  headers: {
+                                    Authorization: `Bearer ${JWT}`,
+                                  },
+                                }
+                              );
+                              router.replace(router.asPath);
+                            }
+                            deleteThing();
+                          }
+                        }}
+                      />
                     </td>
                   </tr>
                 );
@@ -199,7 +233,19 @@ export function Tabs({
   );
 }
 
-const Admin = ({ user, cabins, enquiries, messages, JWT }: any): any => {
+const Admin = ({
+  user,
+  cabins,
+  enquiries,
+  messages,
+  JWT,
+}: {
+  user: any;
+  cabins: cabinInterface[];
+  enquiries: any;
+  messages: any;
+  JWT: string;
+}): any => {
   const [editModal, setEditModal] = useState(false);
   const [addModal, setAddModal] = useState(false);
   const [enquiryModal, setEnquiryModal] = useState(false);
