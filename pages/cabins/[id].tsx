@@ -67,6 +67,11 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
     isWinterActivities,
     isWateractives,
     isPets,
+    isWater,
+    isBeach,
+    isSnow,
+    isMountain,
+    isSea,
     rooms,
     beds,
     imgArray,
@@ -202,9 +207,20 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
               ) : (
                 ''
               )}
+              {isWinterActivities ? (
+                <div className='pr-3 flex items-end'>
+                  <Icon
+                    icon='fa-solid:snowboarding'
+                    className='text-3xl mr-1'
+                  />
+                  <p>Winter Activities</p>
+                </div>
+              ) : (
+                ''
+              )}
               {isFire ? (
                 <div className='pr-3 flex items-end'>
-                  <Icon icon='map:snowmobile' className='text-3xl mr-1' />
+                  <Icon icon='mdi:fireplace' className='text-3xl mr-1' />
                   <p>Fireplace</p>
                 </div>
               ) : (
@@ -212,7 +228,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
               )}
               {isElectricity ? (
                 <div className='pr-3 flex items-end'>
-                  <Icon icon='map:snowmobile' className='text-3xl mr-1' />
+                  <Icon icon='entypo:power-plug' className='text-3xl mr-1' />
                   <p>Electricity</p>
                 </div>
               ) : (
@@ -220,7 +236,10 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
               )}
               {isPool ? (
                 <div className='pr-3 flex items-end'>
-                  <Icon icon='map:snowmobile' className='text-3xl mr-1' />
+                  <Icon
+                    icon='fa-solid:swimming-poo'
+                    className='text-3xl mr-1'
+                  />
                   <p>Pool</p>
                 </div>
               ) : (
@@ -228,14 +247,64 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
               )}
               {isToilet ? (
                 <div className='pr-3 flex items-end'>
-                  <Icon icon='map:snowmobile' className='text-3xl mr-1' />
+                  <Icon icon='fa6-solid:toilet' className='text-3xl mr-1' />
                   <p>Indoor Toilet</p>
                 </div>
               ) : (
                 <div className='pr-3 flex items-end'>
-                  <Icon icon='map:snowmobile' className='text-3xl mr-1' />
-                  <p>Outdoor Toilet</p>
+                  <Icon
+                    icon='fa6-solid:toilet-portable'
+                    className='text-3xl mr-1'
+                  />
+                  <p>Outhouse</p>
                 </div>
+              )}
+              {isWater ? (
+                <div className='pr-3 flex items-end'>
+                  <Icon
+                    icon='fa-solid:swimming-pool'
+                    className='text-3xl mr-1'
+                  />
+                  <p>Lake</p>
+                </div>
+              ) : (
+                ''
+              )}
+              {isBeach ? (
+                <div className='pr-3 flex items-end'>
+                  <Icon
+                    icon='fa6-solid:umbrella-beach
+                    '
+                    className='text-3xl mr-1'
+                  />
+                  <p>Beach</p>
+                </div>
+              ) : (
+                ''
+              )}
+              {isSnow ? (
+                <div className='pr-3 flex items-end'>
+                  <Icon icon='bi:cloud-snow-fill' className='text-3xl mr-1' />
+                  <p>Snow</p>
+                </div>
+              ) : (
+                ''
+              )}
+              {isSea ? (
+                <div className='pr-3 flex items-end'>
+                  <Icon icon='fa6-solid:water' className='text-3xl mr-1' />
+                  <p>Sea</p>
+                </div>
+              ) : (
+                ''
+              )}
+              {isMountain ? (
+                <div className='pr-3 flex items-end'>
+                  <Icon icon='fa-solid:mountain' className='text-3xl mr-1' />
+                  <p>Mountain</p>
+                </div>
+              ) : (
+                ''
               )}
             </div>
           </div>
