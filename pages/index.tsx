@@ -1,4 +1,5 @@
 import { BaseURL, apiCall } from '../lib/const';
+import { useEffect, useState } from 'react';
 
 import FeaturedCards from '../components/FeaturedCards';
 import Footer from './layout/Footer';
@@ -7,6 +8,7 @@ import Header from './layout/Header';
 import Homecards from '../components/Homecards';
 import Link from 'next/link';
 import type { NextPage } from 'next';
+import axios from 'axios';
 import { getCabins } from '../lib/api';
 import { useRouter } from 'next/router';
 
@@ -19,6 +21,14 @@ export async function getStaticProps() {
 }
 
 const Home = ({ cabins }: any) => {
+  const [cabinArray, setCabinArray] = useState(cabins);
+  useEffect(() => {
+    (async function () {
+      const { data } = await axios.get(BaseURL + '/cabins/');
+      setCabinArray(data);
+    })();
+  }, []);
+
   return (
     <>
       <Head>

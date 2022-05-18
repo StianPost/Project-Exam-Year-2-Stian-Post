@@ -1,10 +1,9 @@
 import * as Yup from 'yup';
 
-import { BaseURL, apiCall } from '../lib/const';
 import { Field, FieldArray, Form, Formik, getIn } from 'formik';
-import nookies, { destroyCookie, parseCookies, setCookie } from 'nookies';
 import { useEffect, useState } from 'react';
 
+import { BaseURL } from '../lib/const';
 import Box from '@mui/material/Box';
 import Footer from './layout/Footer';
 import Head from 'next/head';
@@ -16,9 +15,8 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import axios from 'axios';
 import { cabinInterface } from '../lib/types';
-import { getCabins } from '../lib/api';
+import { parseCookies } from 'nookies';
 import { useRouter } from 'next/router';
-import { valueContainerCSS } from 'react-select/dist/declarations/src/components/containers';
 
 export function Tabs({
   cabinArray,
@@ -253,9 +251,10 @@ const Admin = ({
   const [cabin, setCabin] = useState();
   const [message, setMessage] = useState();
   const [enquiry, setEnquiry] = useState();
-  // Log Out
+
   const router = useRouter();
   const { email, username } = user;
+
   const logout = async () => {
     try {
       await axios.get('/api/logout');
@@ -427,7 +426,10 @@ export const EditCabinModal = ({
   if (!open) return null;
   return (
     <div className='modalOverlay'>
-      <div className='modal'>
+      <div className='modal relative'>
+        <button className='absolute right-3 top-2' onClick={closeModal}>
+          <Icon icon='bi:x-lg' className='text-3xl' />
+        </button>
         <h3>You are editing: {cabin.title}</h3>
         <div>
           <Formik
@@ -841,7 +843,12 @@ export const EditCabinModal = ({
             )}
           </Formik>
         </div>
-        <button onClick={closeModal}>Close</button>
+        <button
+          onClick={closeModal}
+          className='button button__secondary mt-2 w-full'
+        >
+          Close
+        </button>
       </div>
     </div>
   );
@@ -927,7 +934,10 @@ export const AddCabinModal = ({
 
   return (
     <div className='modalOverlay'>
-      <div className='modal'>
+      <div className='modal relative'>
+        <button className='absolute right-3 top-2' onClick={closeModal}>
+          <Icon icon='bi:x-lg' className='text-3xl' />
+        </button>
         <h3>You adding a new Cabin</h3>
         <div>
           <Formik
@@ -1339,7 +1349,12 @@ export const AddCabinModal = ({
             )}
           </Formik>
         </div>
-        <button onClick={closeModal}>Close</button>
+        <button
+          onClick={closeModal}
+          className='button button__secondary mt-2 w-full'
+        >
+          Close
+        </button>
       </div>
     </div>
   );

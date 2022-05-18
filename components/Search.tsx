@@ -1,9 +1,11 @@
 import React, { TouchEvent, useEffect, useRef, useState } from 'react';
 
+import { BaseURL } from '../lib/const';
 import DropDownFilter from './DropDownFilter';
 import { Icon } from '@iconify/react';
 import MoneySlider from './MoneySlider';
 import Resultcards from './Resultcards';
+import axios from 'axios';
 import { cabinInterface } from '../lib/types';
 
 function Search({
@@ -12,6 +14,7 @@ function Search({
   searchValue,
   onChange,
   handleOnSearch,
+  cabinArrayLength,
 }: any) {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState('');
@@ -204,7 +207,9 @@ function Search({
       </div>
       <h1 className='font-semibold text-primary'>Results</h1>
       <div className='flex justify-between mb-6'>
-        <p>Showing xx out of ??</p>
+        <p>
+          Showing {filterCabins().length} out of {cabinArrayLength} Cabins
+        </p>
 
         <div className='button button__secondary flex items-center'>
           Sort

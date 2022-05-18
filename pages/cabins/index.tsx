@@ -1,3 +1,4 @@
+import { BaseURL, apiCall } from '../../lib/const';
 import React, { useEffect, useState } from 'react';
 
 import Footer from '../layout/Footer';
@@ -8,7 +9,7 @@ import Link from 'next/link';
 import type { NextPage } from 'next';
 import Resultcards from '../../components/Resultcards';
 import Search from '../../components/Search';
-import { apiCall } from '../../lib/const';
+import axios from 'axios';
 import { getCabins } from '../../lib/api';
 import { stringify } from 'query-string';
 
@@ -23,21 +24,25 @@ export async function getStaticProps() {
 const Results = ({ cabins }: any) => {
   const [searchValue, setSearchValue] = useState(null);
   const [searchParams, setSearchParams] = useState('');
-  const [filteredCabins, setFilteredCabins] = useState(cabins);
+  const [cabinArray, setCabinArray] = useState(cabins);
+
+  const [filteredCabins, setFilteredCabins] = useState(cabinArray);
+  useEffect(() => {
+    (async function () {
+      const { data } = await axios.get(BaseURL + '/cabins/');
+      setCabinArray(data);
+    })();
+  }, []);
+
+  const cabinArrayLength = cabins.length;
 
   function handleOnSearch(elm: any) {
-    console.log('clicked', elm);
-
     let queryString = stringify(elm);
-
-    console.log(queryString);
-
     getSortedCabins(queryString);
   }
 
   async function getSortedCabins(params: string) {
     const resultCabins = await getCabins(apiCall + '?' + params);
-
     setFilteredCabins(resultCabins);
   }
 
@@ -54,6 +59,7 @@ const Results = ({ cabins }: any) => {
           onChange={(val: any) => setSearchValue(val)}
           prompt='Select cabin...'
           handleOnSearch={handleOnSearch}
+          cabinArrayLength={cabinArrayLength}
         />
       </main>
       <Footer />
