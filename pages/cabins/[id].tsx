@@ -9,6 +9,7 @@ import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import type { NextPage } from 'next';
 import Slider from '../../components/Slider';
+import SwiperComponent from '../../components/SwiperComponent';
 import { apiCall } from '../../lib/const';
 import { getCabins } from '../../lib/api';
 
@@ -86,54 +87,20 @@ const Cabin = ({ cabin }: any) => {
       />
 
       <main>
-        <div className='md:px-4 lg:px-10'>
-          <div className=''>
-            <Image
-              loader={myLoader}
-              src={heroImg}
-              alt={`image of ${title}`}
-              width={1000}
-              height={500}
-              layout={'responsive'}
-              quality={70}
-              priority
-            />
-          </div>
-        </div>
-        <div className='flex'>
-          {imgArray.map((elm: imgArrObj) => {
-            const secondaryLoader = ({ width = 200, quality = 100 }) => {
-              return `${elm.imgUrl}?w=${width}&q=${quality || 75}`;
-            };
-            return (
-              <div key={elm.id}>
-                {elm.id}
-                <Image
-                  loader={secondaryLoader}
-                  src={elm.imgUrl}
-                  alt={`Image of cabin`}
-                  width={125}
-                  height={80}
-                  quality={70}
-                />
-              </div>
-            );
-          })}
-        </div>
-        {/* <Slider imgArray={imgArray} heroImg={heroImg} /> */}
+        <SwiperComponent heroImg={heroImg} imgArray={imgArray} />
         <div className='flex flex-col-reverse items-start px-2  md:justify-between md:px-4 lg:px-10 md:flex-row'>
           <div>
             <h1>{title}</h1>
             <h3>{adress}</h3>
           </div>
-          <div className='flex'>
+          <div className='flex pt-8'>
             <button
-              className='button button__primary h-fit'
+              className='button button__primary h-fit whitespace-nowrap'
               onClick={() => {
                 setIsBooking(true);
               }}
             >
-              Book Now
+              Book Cabin
             </button>
             <button
               className='button button__secondary h-fit ml-4'

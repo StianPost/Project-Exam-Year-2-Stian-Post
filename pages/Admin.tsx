@@ -26,8 +26,12 @@ export function Tabs({
   openModal,
   onClose,
   id,
+  openEnquiry,
+  openMessage,
+  JWT,
 }: any): any {
   const [value, setValue] = useState('1');
+  const router = useRouter();
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -76,7 +80,16 @@ export function Tabs({
                       />
                     </td>
                     <td>
-                      <Icon icon='fa-solid:trash-alt' />
+                      <Icon
+                        icon='fa-solid:trash-alt'
+                        onClick={() => {
+                          console.log(
+                            'Are you sure you want to delete',
+                            elm.id,
+                            '?'
+                          );
+                        }}
+                      />
                     </td>
                   </tr>
                 );
@@ -107,10 +120,37 @@ export function Tabs({
                     <td>{elm.subject}</td>
                     <td>{elm.phoneNumber ? elm.phoneNumber : ''}</td>
                     <td>
-                      <Icon icon='fa-solid:eye' />
+                      <Icon
+                        icon='fa-solid:eye'
+                        onClick={() => {
+                          openEnquiry(elm);
+                        }}
+                      />
                     </td>
                     <td>
-                      <Icon icon='fa-solid:trash-alt' />
+                      <Icon
+                        icon='fa-solid:trash-alt'
+                        onClick={() => {
+                          let deleteProd = confirm(
+                            `are you sure you want to delete this Product?`
+                          );
+                          if (deleteProd) {
+                            async () => {
+                              let { data } = await axios.delete(
+                                `${BaseURL}/enquiries/${elm.id}`,
+                                {
+                                  headers: {
+                                    Authorization: `Bearer ${JWT}`,
+                                  },
+                                }
+                              );
+                            };
+                            console.log(elm);
+
+                            // router.replace(router.asPath);
+                          }
+                        }}
+                      />
                     </td>
                   </tr>
                 );
@@ -140,7 +180,7 @@ export function Tabs({
                       <Icon
                         icon='fa-solid:eye'
                         onClick={() => {
-                          console.log(elm.id);
+                          openMessage(elm);
                         }}
                       />
                     </td>
@@ -159,20 +199,14 @@ export function Tabs({
   );
 }
 
-const Admin = ({
-  user,
-  cabins,
-  enquiries,
-  messages,
-  Open,
-  OnClose,
-  JWT,
-}: any): any => {
+const Admin = ({ user, cabins, enquiries, messages, JWT }: any): any => {
   const [editModal, setEditModal] = useState(false);
   const [addModal, setAddModal] = useState(false);
   const [enquiryModal, setEnquiryModal] = useState(false);
   const [messageModal, setMessageModal] = useState(false);
   const [cabin, setCabin] = useState();
+  const [message, setMessage] = useState();
+  const [enquiry, setEnquiry] = useState();
   // Log Out
   const router = useRouter();
   const { email, username } = user;
@@ -211,6 +245,14 @@ const Admin = ({
         closeModal={() => {
           setMessageModal(false);
         }}
+        message={message}
+      />
+      <EnquiryModal
+        open={enquiryModal}
+        closeModal={() => {
+          setEnquiryModal(false);
+        }}
+        enquiry={enquiry}
       />
       <main className='px-2 md:px-4 lg:px-10'>
         <div className='flex justify-between items-center'>
@@ -241,6 +283,15 @@ const Admin = ({
             setEditModal(true);
             setCabin(val);
           }}
+          openEnquiry={(val: any) => {
+            setEnquiryModal(true);
+            setEnquiry(val);
+          }}
+          openMessage={(val: any) => {
+            setMessageModal(true);
+            setMessage(val);
+          }}
+          JWT={JWT}
         />
       </main>
       <Footer />
@@ -1248,16 +1299,164 @@ export const AddCabinModal = ({
   );
 };
 
-export const MessageModal = ({ open, onClose, message }) => {
+export const MessageModal = ({ open, closeModal, message }: any) => {
   if (!open) return null;
   return (
-    <div>
-      <p>test</p>
-      <button
-        onClick={() => {
-          onClose;
-        }}
-      ></button>
+    <div className='modalOverlay'>
+      <div className='modal relative'>
+        <button className='absolute right-3 top-2' onClick={closeModal}>
+          <Icon icon='bi:x-lg' className='text-3xl' />
+        </button>
+        <Formik
+          initialValues={{
+            email: message.email,
+            subject: message.subject,
+            message: message.message,
+          }}
+          onSubmit={(values) => {}}
+        >
+          {({ errors, touched }) => (
+            <Form>
+              <div>
+                <label htmlFor='email'>Email*:</label>
+                <Field
+                  disabled
+                  id='email'
+                  name='email'
+                  type='email'
+                  className='w-full p-2 border-solid border-primary border-2 rounded-lg'
+                />
+              </div>
+              <div className='mt-2'>
+                <label htmlFor='subject' className='mt-4'>
+                  Subject*:
+                </label>
+                <Field
+                  disabled
+                  id='subject'
+                  name='subject'
+                  className='w-full p-2 border-solid border-primary border-2 rounded-lg'
+                />
+              </div>
+              <div className='mt-2'>
+                <label htmlFor='message'>Message*:</label>
+                <Field
+                  disabled
+                  id='message'
+                  name='message'
+                  component='textarea'
+                  placeholder='hallo'
+                  className='w-full p-2 border-solid border-primary border-2 rounded-lg contactform__message'
+                />
+              </div>
+            </Form>
+          )}
+        </Formik>
+        <button className='button button__secondary' onClick={closeModal}>
+          Close Message
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export const EnquiryModal = ({ open, closeModal, enquiry }: any) => {
+  if (!open) return null;
+  return (
+    <div className='modalOverlay'>
+      <div className='modal relative'>
+        <button className='absolute right-3 top-2' onClick={closeModal}>
+          <Icon icon='bi:x-lg' className='text-3xl' />
+        </button>
+        <Formik
+          initialValues={{
+            firstName: enquiry.firstName,
+            lastName: enquiry.lastName,
+            email: enquiry.email,
+            phoneNumber: enquiry.phoneNumber,
+            subject: enquiry.subject,
+            message: enquiry.message,
+          }}
+          onSubmit={(values) => {}}
+        >
+          {({ errors, touched }) => (
+            <Form>
+              <div className='flex flex-col sm:flex-row'>
+                <div className='pr-0 sm:pr-2'>
+                  <label htmlFor='firstName'>First Name*:</label>
+                  <Field
+                    disabled
+                    id='firstName'
+                    name='firstName'
+                    type='firstName'
+                    className='w-full p-2 border-solid border-primary border-2 rounded-lg'
+                  />
+                </div>
+                <div className='pl-0 sm:pl-2'>
+                  <label htmlFor='lastName' className='mt-4'>
+                    Last Name*:
+                  </label>
+                  <Field
+                    disabled
+                    id='lastName'
+                    name='lastName'
+                    className='w-full p-2 border-solid border-primary border-2 rounded-lg'
+                  />
+                </div>
+              </div>
+              <div className='flex flex-col sm:flex-row'>
+                <div className='pr-0 sm:pr-2'>
+                  <label htmlFor='email'>Email*:</label>
+                  <Field
+                    disabled
+                    id='email'
+                    name='email'
+                    type='email'
+                    className='w-full p-2 border-solid border-primary border-2 rounded-lg'
+                  />
+                </div>
+                <div className='pl-0 sm:pl-2'>
+                  <label htmlFor='phoneNumber' className='mt-4'>
+                    Phone:
+                  </label>
+                  <Field
+                    disabled
+                    id='phoneNumber'
+                    name='phoneNumber'
+                    type='phone'
+                    className='w-full p-2 border-solid border-primary border-2 rounded-lg'
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor='subject' className='mt-4'>
+                  Subject*:
+                </label>
+                <Field
+                  disabled
+                  id='subject'
+                  name='subject'
+                  className='w-full p-2 border-solid border-primary border-2 rounded-lg'
+                />
+              </div>
+              <div className='mt-2'>
+                <label htmlFor='message'>Message*:</label>
+                <Field
+                  disabled
+                  id='message'
+                  name='message'
+                  component='textarea'
+                  placeholder='hallo'
+                  className='w-full p-2 border-solid border-primary border-2 rounded-lg contactform__message'
+                />
+              </div>
+            </Form>
+          )}
+        </Formik>
+        <button className='button button__secondary' onClick={closeModal}>
+          Close Enquiry
+        </button>
+      </div>
     </div>
   );
 };

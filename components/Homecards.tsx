@@ -32,8 +32,6 @@ function Homecards({
           loader={myLoader}
           src={heroImg}
           alt={`image of ${heroImg}`}
-          height={100}
-          width={100}
           layout='fill'
           unoptimized={false}
           priority
