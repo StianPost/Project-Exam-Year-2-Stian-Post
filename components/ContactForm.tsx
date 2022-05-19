@@ -1,9 +1,9 @@
 import * as Yup from 'yup';
 
-import { BaseURL, apiCall } from '../lib/const';
 import { Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 
+import { BaseURL } from '../lib/const';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 

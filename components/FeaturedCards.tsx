@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import Homecards from './Homecards';
-import { apiCall } from '../lib/const';
 import { cabinArray } from '../lib/types';
-import { getCabins } from '../lib/api';
 
 function FeaturedCards({ cabinArray }: cabinArray) {
   const featuredSortedArray: any = [];
