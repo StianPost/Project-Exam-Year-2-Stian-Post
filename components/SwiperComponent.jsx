@@ -15,13 +15,7 @@ import Image from 'next/image';
 
 // import required modules
 
-export default function SwiperComponent({
-  heroImg,
-  imgArray,
-}: {
-  heroImg: string;
-  imgArray: { id: number; imgUrl: string }[];
-}) {
+export default function SwiperComponent({ heroImg, imgArray }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(undefined);
 
   const myLoader = ({ width = 500, quality = 50 }) => {
@@ -31,10 +25,10 @@ export default function SwiperComponent({
   return (
     <>
       <Swiper
-        // style={{
-        //   '--swiper-navigation-color': '#fff',
-        //   '--swiper-pagination-color': '#fff',
-        // }}
+        style={{
+          '--swiper-navigation-color': '#fff',
+          '--swiper-pagination-color': '#fff',
+        }}
         spaceBetween={20}
         navigation
         thumbs={{
