@@ -74,6 +74,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
     beds,
     imgArray,
     adress,
+    map,
   } = destructuredCabin;
 
   type imgArrObj = {
@@ -85,6 +86,9 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
   const [isBooking, setIsBooking] = useState(false);
   const [isEnquiry, setIsEnquiry] = useState(false);
 
+  const mapLoader = ({ width = 100, quality = 50 }) => {
+    return `${map}?w=${width}&q=${quality || 75}`;
+  };
   return (
     <>
       <Head>
@@ -154,11 +158,11 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
           </div>
           <div>
             <h3>Info and Area</h3>
-            <p>{extra_description}</p>
+            <p className='py-1'>{extra_description}</p>
           </div>
           <div>
             <h3>Amenities</h3>
-            <div className='flex flex-wrap'>
+            <div className='flex flex-wrap py-1'>
               {isPets ? (
                 <div className='pr-3 flex items-end'>
                   <Icon icon='mdi:paw' className='text-3xl mr-1' />
@@ -308,7 +312,16 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
           </div>
           <div>
             <h3>Location</h3>
-            <div className='h-96 w-full bg-red-800'></div>
+            <div className='w-full bg-red-800 mt-2'>
+              <Image
+                src={map}
+                alt='Google map of location'
+                layout='responsive'
+                height={70}
+                width={300}
+                loader={mapLoader}
+              />
+            </div>
           </div>
         </div>
       </main>

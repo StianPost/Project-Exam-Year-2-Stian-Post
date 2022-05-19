@@ -72,8 +72,8 @@ const EnquiryForm = ({ cabin }: { cabin: cabinInterface }) => {
       >
         {({ errors, touched }) => (
           <Form>
-            <div className='flex flex-col sm:flex-row'>
-              <div className='pr-0 sm:pr-2'>
+            <div className='flex flex-col w-full sm:flex-row'>
+              <div className='pr-0 w-full sm:pr-2'>
                 <label htmlFor='firstName'>First Name*:</label>
                 <Field
                   id='firstName'
@@ -87,7 +87,7 @@ const EnquiryForm = ({ cabin }: { cabin: cabinInterface }) => {
                   </div>
                 ) : null}
               </div>
-              <div className='pl-0 sm:pl-2'>
+              <div className='pl-0 w-full sm:pl-2'>
                 <label htmlFor='lastName' className='mt-4'>
                   Last Name*:
                 </label>
@@ -103,8 +103,8 @@ const EnquiryForm = ({ cabin }: { cabin: cabinInterface }) => {
                 ) : null}
               </div>
             </div>
-            <div className='flex flex-col sm:flex-row'>
-              <div className='pr-0 sm:pr-2'>
+            <div className='flex flex-col w-full sm:flex-row'>
+              <div className='pr-0 w-full sm:pr-2'>
                 <label htmlFor='email'>Email*:</label>
                 <Field
                   id='email'
@@ -118,7 +118,7 @@ const EnquiryForm = ({ cabin }: { cabin: cabinInterface }) => {
                   </div>
                 ) : null}
               </div>
-              <div className='pl-0 sm:pl-2'>
+              <div className='pl-0 w-full sm:pl-2'>
                 <label htmlFor='phoneNumber' className='mt-4'>
                   Phone:
                 </label>

@@ -51,49 +51,169 @@ function Bookingmodal({ open, onClose, cabin }: any) {
         <div className='relative'>
           <h2 className='text-center'>Checkout</h2>
           <div className='flex flex-col w-full sm:flex-row'>
-            <div className='w-full md:w-1/2 modal__part sm:pr-1'>
-              <div className='w-full'>
-                <Image
-                  src={cabin.heroImg}
-                  alt={`image of ${cabin.title}`}
-                  width={250}
-                  height={150}
-                  loader={myLoader}
-                  layout={'responsive'}
-                />
-              </div>
-              <div className=''>
-                <h3 className='font-medium'>{cabin.title}</h3>
-                <div className='flex text-primary mb-4'>
-                  <IconObj
-                    additionalInfo={' Rooms'}
-                    iconString={'fa-solid:door-closed'}
-                    object={cabin.rooms}
-                  />
-
-                  {cabin.isPets ? (
-                    <IconObj
-                      additionalInfo={' Pets allowed'}
-                      iconString={'fa-paw'}
-                      object={''}
+            <div className='w-full md:w-1/2 md:pr-1'>
+              <Image
+                src={cabin.heroImg}
+                alt={`image of ${cabin.title}`}
+                width={250}
+                height={150}
+                loader={myLoader}
+                layout={'responsive'}
+              />
+              <h3 className='font-medium'>{cabin.title}</h3>
+              <div className='flex text-primary mb-4'>
+                {
+                  <div className='pr-5 flex items-end pb-3'>
+                    <Icon
+                      icon='fa-solid:door-closed'
+                      className='text-3xl mr-1'
                     />
+                    <p className='text-3xl'>{cabin.rooms}</p>
+                  </div>
+                }
+                {cabin.isPets ? (
+                  <div className='pr-5 flex items-end pb-3'>
+                    <Icon icon='mdi:paw' className='text-3xl mr-1' />
+                    <p>Pets Allowed</p>
+                  </div>
+                ) : (
+                  <div className='pr-5 flex items-end pb-3'>
+                    <Icon icon='mdi:paw-off' className='text-3xl mr-1' />
+                    <p>No pets</p>
+                  </div>
+                )}
+              </div>
+              <div>
+                <h3>Amenities</h3>
+                <div className='flex flex-wrap'>
+                  {cabin.isSlalom ? (
+                    <div className='pr-5 flex items-end pb-3'>
+                      <Icon icon='fa-solid:skiing' className='text-3xl mr-1' />
+                    </div>
                   ) : (
                     ''
                   )}
-                </div>
-                <div>
-                  <h3>Amenities</h3>
-                  <div>
-                    {cabin.isFire ? (
-                      <IconObj
-                        additionalInfo={' Pets allowed'}
-                        iconString={'fa-paw'}
-                        object={''}
+                  {cabin.isHiking ? (
+                    <div className='pr-5 flex items-end pb-3'>
+                      <Icon icon='fa-solid:hiking' className='text-3xl mr-1' />
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                  {cabin.isSkiing ? (
+                    <div className='pr-5 flex items-end pb-3'>
+                      <Icon
+                        icon='fa-solid:skiing-nordic'
+                        className='text-3xl mr-1'
                       />
-                    ) : (
-                      ''
-                    )}
-                  </div>
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                  {cabin.isWateractives ? (
+                    <div className='pr-5 flex items-end pb-3'>
+                      <Icon icon='map:jet-skiing' className='text-3xl mr-1' />
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                  {cabin.isWinterActivities ? (
+                    <div className='pr-5 flex items-end pb-3'>
+                      <Icon
+                        icon='fa-solid:snowboarding'
+                        className='text-3xl mr-1'
+                      />
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                  {cabin.isFire ? (
+                    <div className='pr-5 flex items-end pb-3'>
+                      <Icon icon='mdi:fireplace' className='text-3xl mr-1' />
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                  {cabin.isElectricity ? (
+                    <div className='pr-5 flex items-end pb-3'>
+                      <Icon
+                        icon='entypo:power-plug'
+                        className='text-3xl mr-1'
+                      />
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                  {cabin.isPool ? (
+                    <div className='pr-5 flex items-end pb-3'>
+                      <Icon
+                        icon='fa-solid:swimming-poo'
+                        className='text-3xl mr-1'
+                      />
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                  {cabin.isToilet ? (
+                    <div className='pr-5 flex items-end pb-3'>
+                      <Icon icon='fa6-solid:toilet' className='text-3xl mr-1' />
+                    </div>
+                  ) : (
+                    <div className='pr-5 flex items-end pb-3'>
+                      <Icon
+                        icon='fa6-solid:toilet-portable'
+                        className='text-3xl mr-1'
+                      />
+                    </div>
+                  )}
+                  {cabin.isWater ? (
+                    <div className='pr-5 flex items-end pb-3'>
+                      <Icon
+                        icon='fa-solid:swimming-pool'
+                        className='text-3xl mr-1'
+                      />
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                  {cabin.isBeach ? (
+                    <div className='pr-5 flex items-end pb-3'>
+                      <Icon
+                        icon='fa6-solid:umbrella-beach
+                    '
+                        className='text-3xl mr-1'
+                      />
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                  {cabin.isSnow ? (
+                    <div className='pr-5 flex items-end pb-3'>
+                      <Icon
+                        icon='bi:cloud-snow-fill'
+                        className='text-3xl mr-1'
+                      />
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                  {cabin.isSea ? (
+                    <div className='pr-5 flex items-end pb-3'>
+                      <Icon icon='fa6-solid:water' className='text-3xl mr-1' />
+                    </div>
+                  ) : (
+                    ''
+                  )}
+                  {cabin.isMountain ? (
+                    <div className='pr-5 flex items-end pb-3'>
+                      <Icon
+                        icon='fa-solid:mountain'
+                        className='text-3xl mr-1'
+                      />
+                    </div>
+                  ) : (
+                    ''
+                  )}
                 </div>
               </div>
             </div>

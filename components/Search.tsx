@@ -186,7 +186,7 @@ function Search({
         </div>
         <div className='flex flex-col justify-between mt-2 sm:flex-row md:mt-0 md:ml-2 md:flex-col'>
           <button
-            className='sm:mr-1 md:mr-0 '
+            className=''
             onClick={() => {
               handleOnSearch(filters);
             }}
@@ -194,7 +194,7 @@ function Search({
             Filter
           </button>
           <button
-            className='h-fit mt-2 sm:ml-1 md:ml-0 sm:mt-0 md:mt-2'
+            className='border-2 p-2'
             onClick={() => {
               setQuery('');
               onChange(null);

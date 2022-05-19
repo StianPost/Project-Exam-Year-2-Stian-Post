@@ -8,7 +8,16 @@ function DropDownFilter({
   isMulti,
   handleOnChange,
   placeholderText,
-}: any) {
+}: {
+  selectOptions: {
+    value: string | number;
+    label: string | number;
+  }[];
+  filterType?: string;
+  isMulti: boolean;
+  handleOnChange: any;
+  placeholderText?: string;
+}) {
   const [selectedOption, setSelectedOption]: any = useState(null);
 
   let newFilterType = '';
@@ -16,7 +25,6 @@ function DropDownFilter({
   if (filterType) {
     newFilterType = filterType;
   }
-
   function onChange(val: any) {
     setSelectedOption(val);
     handleOnChange(val);
