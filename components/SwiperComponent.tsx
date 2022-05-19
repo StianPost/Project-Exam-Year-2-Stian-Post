@@ -31,10 +31,10 @@ export default function SwiperComponent({
   return (
     <>
       <Swiper
-        style={{
-          '--swiper-navigation-color': '#fff',
-          '--swiper-pagination-color': '#fff',
-        }}
+        // style={{
+        //   '--swiper-navigation-color': '#fff',
+        //   '--swiper-pagination-color': '#fff',
+        // }}
         spaceBetween={20}
         navigation
         thumbs={{
