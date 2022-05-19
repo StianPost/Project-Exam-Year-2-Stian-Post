@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 
 import { apiCall } from '../lib/const';
 import axios from 'axios';
+import { cabinInterface } from '../lib/types';
 import { useRouter } from 'next/router';
 
 const SignupSchema = Yup.object().shape({
@@ -37,7 +38,7 @@ interface MyFormValueTypes {
   message: string;
 }
 
-const EnquiryForm = ({ cabin }) => {
+const EnquiryForm = ({ cabin }: { cabin: cabinInterface }) => {
   const router = useRouter();
   const [isError, setIsError] = useState(false);
 
