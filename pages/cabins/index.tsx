@@ -1,6 +1,6 @@
-import { BaseURL, apiCall } from '../../lib/const';
 import React, { useEffect, useState } from 'react';
 
+import { BaseURL } from '../../lib/const';
 import Footer from '../layout/Footer';
 import Head from 'next/head';
 import Header from '../layout/Header';
@@ -14,7 +14,7 @@ import { getCabins } from '../../lib/api';
 import { stringify } from 'query-string';
 
 export async function getStaticProps() {
-  const cabinArray = await getCabins(apiCall);
+  const cabinArray = await getCabins(BaseURL + '/cabins');
 
   return {
     props: { cabins: cabinArray },
@@ -42,7 +42,7 @@ const Results = ({ cabins }: any) => {
   }
 
   async function getSortedCabins(params: string) {
-    const resultCabins = await getCabins(apiCall + '?' + params);
+    const resultCabins = await getCabins(BaseURL + '/cabins' + '?' + params);
     setFilteredCabins(resultCabins);
   }
 

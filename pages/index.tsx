@@ -1,6 +1,6 @@
-import { BaseURL, apiCall } from '../lib/const';
 import { useEffect, useState } from 'react';
 
+import { BaseURL } from '../lib/const';
 import FeaturedCards from '../components/FeaturedCards';
 import Footer from './layout/Footer';
 import Head from 'next/head';
