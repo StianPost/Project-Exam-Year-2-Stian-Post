@@ -303,7 +303,6 @@ function Search({
               imgArray,
               county,
               people_rooms,
-              dates,
               short_description,
               isFire,
               isElectricity,
@@ -324,7 +323,6 @@ function Search({
                   title={title}
                   heroImg={heroImg}
                   id={id}
-                  dates={dates}
                   price={price}
                   description={description}
                   extra_description={extra_description}

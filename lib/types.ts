@@ -43,11 +43,11 @@ export interface cabinInterface {
   isPets: Boolean;
   rooms: number;
   beds: number;
-  isWater: boolean;
-  isBeach: boolean;
-  isSnow: boolean;
-  isMountain: boolean;
-  isSea: boolean;
+  isWater?: boolean;
+  isBeach?: boolean;
+  isSnow?: boolean;
+  isMountain?: boolean;
+  isSea?: boolean;
 }
 
 export type cabinArray = {
