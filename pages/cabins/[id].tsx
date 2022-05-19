@@ -1,6 +1,6 @@
-import { BaseURL, apiCall } from '../../lib/const';
 import React, { useEffect, useState } from 'react';
 
+import { BaseURL } from '../../lib/const';
 import Bookingmodal from '../../components/Bookingmodal';
 import Enquirymodal from '../../components/Enquirymodal';
 import Footer from '../layout/Footer';
@@ -14,7 +14,7 @@ import { cabinInterface } from '../../lib/types';
 import { getCabins } from '../../lib/api';
 
 export const getStaticPaths = async (params: any) => {
-  const cabinArray = await getCabins(apiCall);
+  const cabinArray = await getCabins(BaseURL + '/cabins');
 
   const paths = cabinArray.map((cabin: cabinInterface) => {
     return {

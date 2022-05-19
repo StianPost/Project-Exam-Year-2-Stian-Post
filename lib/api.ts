@@ -1,5 +1,3 @@
-import { apiCall } from './const';
-
 const axios = require('axios').default;
 
 export async function getCabins(url: string) {
