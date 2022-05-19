@@ -12,7 +12,3 @@ export function IconObj({ object, iconString, additionalInfo }) {
     </div>
   );
 }
-
-export function IconWrapper() {
-  return {};
-}

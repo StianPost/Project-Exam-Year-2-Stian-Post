@@ -24,7 +24,7 @@ export default function SwiperComponent({
 }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(undefined);
 
-  const myLoader = ({ width = 200, quality = 100 }) => {
+  const myLoader = ({ width = 500, quality = 50 }) => {
     return `${heroImg}?w=${width}&q=${quality || 75}`;
   };
 
@@ -46,27 +46,33 @@ export default function SwiperComponent({
         draggable
       >
         <SwiperSlide>
-          <Image
-            src={heroImg}
-            loader={myLoader}
-            alt={'image of cabin'}
-            width={2000}
-            height={850}
-          />
+          <div className='w-full h-full'>
+            <Image
+              src={heroImg}
+              loader={myLoader}
+              alt={'image of cabin'}
+              width={500}
+              height={220}
+              layout={'responsive'}
+            />
+          </div>
         </SwiperSlide>
         {imgArray.map(({ id, imgUrl }) => {
-          const arrayLoader = ({ width = 200, quality = 100 }) => {
+          const arrayLoader = ({ width = 50, quality = 20 }) => {
             return `${imgUrl}?w=${width}&q=${quality || 75}`;
           };
           return (
             <SwiperSlide key={id}>
-              <Image
-                src={imgUrl}
-                loader={arrayLoader}
-                alt={'image of cabin'}
-                width={2000}
-                height={850}
-              />
+              <div className='w-full h-full'>
+                <Image
+                  src={imgUrl}
+                  loader={arrayLoader}
+                  alt={'image of cabin'}
+                  width={500}
+                  height={220}
+                  layout={'responsive'}
+                />
+              </div>
             </SwiperSlide>
           );
         })}
@@ -82,27 +88,33 @@ export default function SwiperComponent({
         className='mySwiper'
       >
         <SwiperSlide>
-          <Image
-            src={heroImg}
-            loader={myLoader}
-            alt={'image of cabin'}
-            width={2000}
-            height={850}
-          />
+          <div className='w-full h-full'>
+            <Image
+              src={heroImg}
+              loader={myLoader}
+              alt={'image of cabin'}
+              width={500}
+              height={220}
+              layout={'responsive'}
+            />
+          </div>
         </SwiperSlide>
         {imgArray.map(({ id, imgUrl }) => {
-          const arrayLoader = ({ width = 200, quality = 100 }) => {
+          const arrayLoader = ({ width = 50, quality = 50 }) => {
             return `${imgUrl}?w=${width}&q=${quality || 75}`;
           };
           return (
             <SwiperSlide key={id}>
-              <Image
-                src={imgUrl}
-                loader={arrayLoader}
-                alt={'image of cabin'}
-                width={2000}
-                height={850}
-              />
+              <div className='w-full h-full'>
+                <Image
+                  src={imgUrl}
+                  loader={arrayLoader}
+                  alt={'image of cabin'}
+                  width={500}
+                  height={220}
+                  layout={'responsive'}
+                />
+              </div>
             </SwiperSlide>
           );
         })}

@@ -27,10 +27,9 @@ export interface cabinInterface {
   adress: string;
   heroImg: string;
   map: string;
-  imgArray: { id: number; imgUrl: string }[];
+  imgArray: { id: number; imgUrl: string; alt?: string }[];
   county: string;
   people_rooms: number;
-  dates: Date;
   short_description: string;
   isFire: Boolean;
   isElectricity: Boolean;

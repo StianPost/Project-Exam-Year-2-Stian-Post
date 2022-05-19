@@ -40,7 +40,7 @@ function Bookingmodal({ open, onClose, cabin }: any) {
   const [paymentInfo, setPaymentInfo] = useState({});
   if (!open) return null;
 
-  const myLoader = ({ width = 200, quality = 100 }) => {
+  const myLoader = ({ width = 100, quality = 50 }) => {
     return `${cabin.heroImg}?w=${width}&q=${quality || 75}`;
   };
 

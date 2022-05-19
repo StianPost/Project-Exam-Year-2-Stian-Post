@@ -23,7 +23,7 @@ function Resultcards({
   rooms,
   beds,
 }: cabinInterface) {
-  const myLoader = ({ width = 200, quality = 100 }) => {
+  const myLoader = ({ width = 200, quality = 50 }) => {
     return `${heroImg}?w=${width}&q=${quality || 75}`;
   };
 

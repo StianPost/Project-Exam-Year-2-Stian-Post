@@ -8,8 +8,6 @@ import Head from 'next/head';
 import Header from '../layout/Header';
 import { Icon } from '@iconify/react';
 import Image from 'next/image';
-import type { NextPage } from 'next';
-import Slider from '../../components/Slider';
 import SwiperComponent from '../../components/SwiperComponent';
 import axios from 'axios';
 import { cabinInterface } from '../../lib/types';
@@ -31,7 +29,7 @@ export const getStaticPaths = async (params: any) => {
 
 export const getStaticProps = async (context: any) => {
   const id = context.params.id;
-  const cabin = await getCabins(apiCall + '/' + id);
+  const cabin = await getCabins(BaseURL + '/cabins/' + id);
   return {
     props: { cabin, id },
   };
@@ -46,7 +44,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
     })();
   }, [id]);
 
-  const myLoader = ({ width = 200, quality = 100 }) => {
+  const myLoader = ({ width = 100, quality = 50 }) => {
     return `${heroImg}?w=${width}&q=${quality || 75}`;
   };
   const destructuredCabin = cabinObj;
@@ -320,19 +318,3 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
 };
 
 export default Cabin;
-
-// export async function getStaticPaths() {
-//   const cabinArray = await getCabins();
-
-//   const paths = cabinArray.map((cabin: any) => {
-//     return {
-//       params: {
-//         id: cabin.id,
-//       },
-//     };
-//   });
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// }

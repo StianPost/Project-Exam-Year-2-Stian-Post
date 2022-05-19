@@ -172,7 +172,7 @@ export function Tabs({
             <thead>
               <tr className='text-left'>
                 <th className='w-32'>#ID</th>
-                <th className='w-52'>Email</th>
+                <th className='w-96'>Email</th>
                 <th className='w-52'>Subject</th>
                 <th className='w-52'>Read</th>
                 <th className='w-52'>Delete</th>
