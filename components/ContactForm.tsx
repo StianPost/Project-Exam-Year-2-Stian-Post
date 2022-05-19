@@ -1,9 +1,9 @@
 import * as Yup from 'yup';
 
+import { BaseURL, apiCall } from '../lib/const';
 import { Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 
-import { apiCall } from '../lib/const';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
@@ -32,10 +32,7 @@ const ContactForm = () => {
   const handleSubmit = async (values: any) => {
     console.log(values);
     try {
-      let response = await axios.post(
-        'http://localhost:1337/contact-messages',
-        values
-      );
+      let response = await axios.post(BaseURL + '/contact-messages', values);
       setIsError(false);
       setIsSent(true);
       console.log(response);

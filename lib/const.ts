@@ -1,4 +1,3 @@
-export const apiCall: string = 'http://localhost:1337/cabins';
 export const BaseURL: string = 'https://proj-exam-y2-strapi.herokuapp.com';
 
 // export const headers = {

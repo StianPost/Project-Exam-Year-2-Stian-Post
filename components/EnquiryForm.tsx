@@ -1,9 +1,9 @@
 import * as Yup from 'yup';
 
+import { BaseURL, apiCall } from '../lib/const';
 import { Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 
-import { apiCall } from '../lib/const';
 import axios from 'axios';
 import { cabinInterface } from '../lib/types';
 import { useRouter } from 'next/router';
@@ -45,10 +45,7 @@ const EnquiryForm = ({ cabin }: { cabin: cabinInterface }) => {
   const handleSubmit = async (values: any) => {
     console.log(values);
     try {
-      let response = await axios.post(
-        'http://localhost:1337/enquiries',
-        values
-      );
+      let response = await axios.post(BaseURL + '/enquiries', values);
       setIsError(false);
       console.log(response);
     } catch (err: any) {
