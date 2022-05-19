@@ -15,6 +15,12 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/cabin/[id].jsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "pages/cabin/[id].jsx",
+    "components/SwiperComponent.jsx"
+  ],
   "exclude": ["node_modules"]
 }

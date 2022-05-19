@@ -21,16 +21,29 @@ h6 {
 }
 
 h1 {
-  font-size: var(--font-size-xxl);
+  font-size: var(--font-size-xl);
+  @media (min-width: 480px) {
+    font-size: var(--font-size-xxl);
+  }
 }
 h2 {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-lg);
+  @media (min-width: 480px) {
+    font-size: var(--font-size-xl);
+  }
 }
 h3 {
   font-size: var(--font-size-lg);
+  @media (min-width: 480px) {
+    font-size: var(--font-size-md);
+  }
 }
 h4 {
-  font-size: var(--font-size-md);
+  font-size: var(--font-size);
+  font-weight: bold;
+  @media (min-width: 480px) {
+    font-size: var(--font-size-md);
+  }
 }
 
 p {

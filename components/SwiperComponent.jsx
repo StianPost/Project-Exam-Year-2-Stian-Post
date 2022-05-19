@@ -48,6 +48,7 @@ export default function SwiperComponent({ heroImg, imgArray }) {
               width={500}
               height={220}
               layout={'responsive'}
+              priority
             />
           </div>
         </SwiperSlide>
@@ -65,6 +66,7 @@ export default function SwiperComponent({ heroImg, imgArray }) {
                   width={500}
                   height={220}
                   layout={'responsive'}
+                  priority
                 />
               </div>
             </SwiperSlide>
@@ -90,6 +92,7 @@ export default function SwiperComponent({ heroImg, imgArray }) {
               width={500}
               height={220}
               layout={'responsive'}
+              priority
             />
           </div>
         </SwiperSlide>
@@ -107,6 +110,7 @@ export default function SwiperComponent({ heroImg, imgArray }) {
                   width={500}
                   height={220}
                   layout={'responsive'}
+                  priority
                 />
               </div>
             </SwiperSlide>
