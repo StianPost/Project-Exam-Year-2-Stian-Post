@@ -1,8 +1,17 @@
 import EnquiryForm from './EnquiryForm';
 import { Icon } from '@iconify/react';
 import React from 'react';
+import { cabinInterface } from '../lib/types';
 
-function Enquirymodal({ onClose, open, cabin }) {
+function Enquirymodal({
+  onClose,
+  open,
+  cabin,
+}: {
+  onClose: any;
+  open: boolean;
+  cabin: cabinInterface;
+}) {
   if (!open) return null;
   return (
     <>
