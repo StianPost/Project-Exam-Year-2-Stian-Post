@@ -40,7 +40,7 @@ export default function SwiperComponent({ heroImg, imgArray }) {
         draggable
       >
         <SwiperSlide>
-          <div className='w-full h-full'>
+          <div className='w-full h-full loadingBG'>
             <Image
               src={heroImg}
               loader={myLoader}
@@ -58,7 +58,7 @@ export default function SwiperComponent({ heroImg, imgArray }) {
           };
           return (
             <SwiperSlide key={id}>
-              <div className='w-full h-full'>
+              <div className='w-full h-full loadingBG'>
                 <Image
                   src={imgUrl}
                   loader={arrayLoader}
@@ -84,7 +84,7 @@ export default function SwiperComponent({ heroImg, imgArray }) {
         className='mySwiper'
       >
         <SwiperSlide>
-          <div className='w-full h-full'>
+          <div className='w-full h-full loadingBG'>
             <Image
               src={heroImg}
               loader={myLoader}
@@ -102,7 +102,7 @@ export default function SwiperComponent({ heroImg, imgArray }) {
           };
           return (
             <SwiperSlide key={id}>
-              <div className='w-full h-full'>
+              <div className='w-full h-full loadingBG'>
                 <Image
                   src={imgUrl}
                   loader={arrayLoader}

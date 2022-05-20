@@ -26,7 +26,7 @@ function Homecards({
   };
   return (
     <div className=' bg-secondary max-w-lg rounded-lg mb-6'>
-      <div className='bg-blue-300 w-full h-72 rounded-t-lg relative'>
+      <div className='loadingBG w-full h-72 rounded-t-lg relative'>
         <Image
           className='rounded-t-lg md:w-3/4  md:h-full'
           loader={myLoader}

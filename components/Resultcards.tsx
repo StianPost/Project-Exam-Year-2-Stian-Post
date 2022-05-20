@@ -29,7 +29,7 @@ function Resultcards({
 
   return (
     <div className='flex max-w-6xl w-full flex-col mb-6 rounded-lg md:flex-row '>
-      <div className='bg-slate-600  rounded-t-lg md:w-3/4  md:h-full md:rounded-l-lg md:rounded-none relative'>
+      <div className='loadingBG rounded-t-lg md:w-3/4  md:h-full md:rounded-l-lg md:rounded-none relative'>
         <Image
           className='rounded-t-lg md:w-3/4  md:h-full md:rounded-l-lg md:rounded-none'
           loader={myLoader}

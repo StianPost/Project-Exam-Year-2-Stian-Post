@@ -112,7 +112,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
 
       <main>
         <SwiperComponent heroImg={heroImg} imgArray={imgArray} />
-        <div className='flex flex-col-reverse items-start px-2  md:justify-between md:px-4 lg:px-10 md:flex-row'>
+        <div className='flex flex-col-reverse items-start px-2  md:justify-between md:px-4 lg:px-10 md:flex-row xl:px-20'>
           <div>
             <h1>{title}</h1>
             <h3>{adress}</h3>
@@ -136,8 +136,8 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
             </button>
           </div>
         </div>
-        <div className='px-2 md:px-4 lg:px-10 mb-10'>
-          <div>
+        <div className='px-2 mb-10 md:px-4 lg:px-10 xl:px-20'>
+          <div className='pb-2'>
             <div className='flex flex-col md:flex-row md:items-center'>
               <h2>Description</h2>
               <div className='flex text-primary items-end'>
@@ -156,11 +156,11 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
             </div>
             <p>{description}</p>
           </div>
-          <div>
+          <div className='pb-2'>
             <h3>Info and Area</h3>
             <p className='py-1'>{extra_description}</p>
           </div>
-          <div>
+          <div className='pb-2'>
             <h3>Amenities</h3>
             <div className='flex flex-wrap py-1'>
               {isPets ? (
@@ -312,7 +312,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
           </div>
           <div>
             <h3>Location</h3>
-            <div className='w-full bg-red-800 mt-2'>
+            <div className='w-full loadingBG mt-2 h-96'>
               <Image
                 src={map}
                 alt='Google map of location'
