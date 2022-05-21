@@ -1,8 +1,9 @@
+import Header, { NewNav } from './layout/Header';
+
 import { BaseURL } from '../lib/const';
 import FeaturedCards from '../components/FeaturedCards';
 import Footer from './layout/Footer';
 import Head from 'next/head';
-import Header from './layout/Header';
 import Link from 'next/link';
 import { getCabins } from '../lib/api';
 
@@ -22,6 +23,7 @@ const Home = () => {
         <title>Cabin Fever</title>
       </Head>
       <Header />
+      <NewNav />
       <main>
         <div className='heroImg loadingBG relative'>
           <div className='heroOverlay text-white flex flex-col pt-32 justify-center items-center'>
