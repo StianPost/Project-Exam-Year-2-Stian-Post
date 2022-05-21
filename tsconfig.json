@@ -20,7 +20,9 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/cabin/[id].jsx",
-    "components/SwiperComponent.jsx"
+    "components/SwiperComponent.jsx",
+    "pages/api/logout.js",
+    "pages/api/login.js"
   ],
   "exclude": ["node_modules"]
 }

@@ -1,19 +1,10 @@
-import { useEffect, useState } from 'react';
-
-import { AnyObject } from 'yup/lib/object';
 import { BaseURL } from '../lib/const';
-import Cookies from 'js-cookie';
 import FeaturedCards from '../components/FeaturedCards';
 import Footer from './layout/Footer';
 import Head from 'next/head';
 import Header from './layout/Header';
-import Homecards from '../components/Homecards';
 import Link from 'next/link';
-import type { NextPage } from 'next';
-import axios from 'axios';
 import { getCabins } from '../lib/api';
-import { parseCookies } from 'nookies';
-import { useRouter } from 'next/router';
 
 export async function getStaticProps() {
   const cabinArray = await getCabins(BaseURL + '/cabins');
@@ -23,9 +14,7 @@ export async function getStaticProps() {
   };
 }
 
-const Home = ({ cabins }: any) => {
-  const cookies = parseCookies().jwt;
-  console.log('cookies', cookies);
+const Home = () => {
   return (
     <>
       <Head>

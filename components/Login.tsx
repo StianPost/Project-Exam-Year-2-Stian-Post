@@ -29,6 +29,7 @@ function Login() {
   return (
     <div>
       <button
+        className='hover:font-bold'
         onClick={() => {
           setToggleModal(true);
         }}

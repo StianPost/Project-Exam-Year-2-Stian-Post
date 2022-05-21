@@ -6,6 +6,7 @@ import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Login from '../../components/Login';
+import { parseCookies } from 'nookies';
 
 function Header(): any {
   const [menuActive, setMenuState] = useState(false);
@@ -13,6 +14,7 @@ function Header(): any {
   const toggleMenu = (): void => {
     setMenuState(!menuActive);
   };
+  const jwt = parseCookies().jwt;
 
   return (
     <header className='flex flex-col sm:justify-between sm:flex-row py-12  sm:py-4 px-10 items-center relative'>
@@ -105,28 +107,31 @@ function Header(): any {
                   Contact
                 </a>
               </Link>
-              <Link href='/Admin'>
-                <a
-                  className={
-                    router.pathname === '/Admin'
-                      ? 'font-bold'
-                      : 'hover:font-bold'
-                  }
-                  onClick={() => {
-                    toggleMenu();
-                  }}
-                >
-                  Admin
-                </a>
-              </Link>
-              <Login />
+              {jwt ? (
+                <Link href='/Admin'>
+                  <a
+                    className={
+                      router.pathname === '/Admin'
+                        ? 'font-bold'
+                        : 'hover:font-bold'
+                    }
+                    onClick={() => {
+                      toggleMenu();
+                    }}
+                  >
+                    Admin
+                  </a>
+                </Link>
+              ) : (
+                <Login />
+              )}
             </ul>
           </div>
         </div>
       </div>
       <div>
         <nav className='hidden text-xl sm:block'>
-          <ul>
+          <ul className='flex'>
             <Link href='/'>
               <a className={router.pathname === '/' ? 'active' : 'inActive'}>
                 Home
@@ -154,18 +159,23 @@ function Header(): any {
                 Contact
               </a>
             </Link>
-            <Link href='/Admin'>
-              <a
-                className={
-                  router.pathname === '/Admin'
-                    ? 'active ml-10'
-                    : 'inActive ml-10'
-                }
-              >
-                Admin
-              </a>
-            </Link>
-            <Login />
+            {jwt ? (
+              <Link href='/Admin'>
+                <a
+                  className={
+                    router.pathname === '/Admin'
+                      ? 'active ml-10'
+                      : 'inActive ml-10'
+                  }
+                >
+                  Admin
+                </a>
+              </Link>
+            ) : (
+              <div className='ml-10 text-primary hover:font-bold'>
+                <Login />
+              </div>
+            )}
           </ul>
         </nav>
       </div>
