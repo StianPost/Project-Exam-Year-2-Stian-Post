@@ -65,6 +65,7 @@ const ContactForm = () => {
                 id='email'
                 name='email'
                 type='email'
+                placeholder='user@gmail.com'
                 className='w-full p-2 border-solid border-primary border-2 rounded-lg'
               />
               {errors.email && touched.email ? (
@@ -78,6 +79,7 @@ const ContactForm = () => {
               <Field
                 id='subject'
                 name='subject'
+                placeholder='Subject...'
                 className='w-full p-2 border-solid border-primary border-2 rounded-lg'
               />
               {errors.subject && touched.subject ? (
@@ -92,7 +94,7 @@ const ContactForm = () => {
                 id='message'
                 name='message'
                 component='textarea'
-                placeholder='hallo'
+                placeholder='Message...'
                 className='w-full p-2 border-solid border-primary border-2 rounded-lg contactform__message'
               />
               {errors.message && touched.message ? (

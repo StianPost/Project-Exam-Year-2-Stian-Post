@@ -1,28 +1,42 @@
 import React, { useEffect, useState } from 'react';
+import { cabinArray, cabinInterface } from '../lib/types';
 
+import { BaseURL } from '../lib/const';
 import Homecards from './Homecards';
-import { cabinArray } from '../lib/types';
+import axios from 'axios';
 
-function FeaturedCards({ cabinArray }: cabinArray) {
-  const featuredSortedArray: any = [];
+function FeaturedCards() {
+  const [cabins, setCabins] = useState<cabinInterface[] | []>([]);
+  useEffect(() => {
+    (async function () {
+      const { data } = await axios.get(BaseURL + '/cabins/');
+      setCabins(data);
+    })();
+  }, []);
 
-  let count = 0;
+  if (cabins.length === 0) return <h3>Loading...</h3>;
 
-  for (let i = 0; i < cabinArray.length; i++) {
-    const element: any = cabinArray[i];
+  const featuredSortedArray: cabinInterface[] = [];
+
+  let count: number = 0;
+
+  for (let i: number = 0; i < cabins.length; i++) {
+    const element: cabinInterface = cabins[i];
 
     if (element.isFeatured) {
       featuredSortedArray.push(element);
       count++;
     }
-    if (count === 2) {
+    if (count === 4) {
       break;
     }
   }
 
+  const shuffledArray = featuredSortedArray.sort((a, b) => 0.5 - Math.random());
+
   return (
     <>
-      {featuredSortedArray.map(
+      {shuffledArray.map(
         ({
           title,
           id,

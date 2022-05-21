@@ -1,11 +1,12 @@
 import * as Yup from 'yup';
 
 import { Field, Form, Formik } from 'formik';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Icon } from '@iconify/react';
 import { IconObj } from './IconObj';
 import Image from 'next/image';
+import { cabinInterface } from '../lib/types';
 import moment from 'moment';
 
 interface bookingDetails {
@@ -16,28 +17,21 @@ interface bookingDetails {
   email: string;
 }
 
-interface bookingDetails {
-  date: string;
-  people: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-}
+function Bookingmodal({
+  open,
+  onClose,
+  cabin,
+}: {
+  open: boolean;
+  onClose: any;
+  cabin: cabinInterface;
+}) {
+  const [isBooked, setIsBooked] = useState<boolean>(false);
+  const [bookingClosed, setBookingClosed] = useState<boolean>(false);
+  const [cardClosed, setCardClosed] = useState<boolean>(true);
+  const [bookingInfo, setBookingInfo] = useState();
+  const [paymentInfo, setPaymentInfo] = useState();
 
-function Bookingmodal({ open, onClose, cabin }: any) {
-  const [booked, setBooked] = useState(false);
-  const [payment, setPayment] = useState(false);
-  const [isBooked, setIsBooked] = useState(false);
-  const [bookingClosed, setBookingClosed] = useState(false);
-  const [cardClosed, setCardClosed] = useState(true);
-  const [bookingInfo, setBookingInfo] = useState({
-    date: null,
-    people: 0,
-    firstName: '',
-    lastName: '',
-    email: '',
-  });
-  const [paymentInfo, setPaymentInfo] = useState({});
   if (!open) return null;
 
   const myLoader = ({ width = 100, quality = 50 }) => {
@@ -51,7 +45,7 @@ function Bookingmodal({ open, onClose, cabin }: any) {
         <div className='relative'>
           <h2 className='text-center'>Checkout</h2>
           <div className='flex flex-col w-full sm:flex-row'>
-            <div className='w-full md:w-1/2 md:pr-1'>
+            <div className='w-full sm:pr-1'>
               <Image
                 src={cabin.heroImg}
                 alt={`image of ${cabin.title}`}
@@ -217,7 +211,7 @@ function Bookingmodal({ open, onClose, cabin }: any) {
                 </div>
               </div>
             </div>
-            <div className='w-full md:w-1/2 modal__part sm:pl-1'>
+            <div className='w-full sm:pl-1 modal__part'>
               <BookingInfo
                 handleBooking={(val: any) => {
                   setBookingInfo(val);
@@ -226,6 +220,7 @@ function Bookingmodal({ open, onClose, cabin }: any) {
                 closed={() => {
                   setBookingClosed(true);
                 }}
+                bookingData={bookingInfo}
                 open={bookingClosed}
               />
               <CardDetails
@@ -239,6 +234,10 @@ function Bookingmodal({ open, onClose, cabin }: any) {
                 open={cardClosed}
                 bookingInfo={bookingInfo}
                 cabinInfo={cabin}
+                back={() => {
+                  setCardClosed(true);
+                  setBookingClosed(false);
+                }}
               />
               <BookingMessage
                 paymentInfo={paymentInfo}
@@ -259,8 +258,21 @@ function Bookingmodal({ open, onClose, cabin }: any) {
 
 export default Bookingmodal;
 
-function BookingInfo({ handleBooking, closed, open }: any) {
-  const [bookingInfo, setBookingInfo] = useState({});
+function BookingInfo({
+  handleBooking,
+  closed,
+  open,
+  bookingData,
+}: {
+  handleBooking: any;
+  closed: any;
+  open: boolean;
+  bookingData: any;
+}) {
+  const [bookingInfo, setBookingInfo] = useState();
+
+  if (open) return null;
+
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Required'),
     firstName: Yup.string()
@@ -279,26 +291,27 @@ function BookingInfo({ handleBooking, closed, open }: any) {
     dateTo: Yup.date().required('You must pick a date!'),
   });
 
+  let initialValues = {
+    dateFrom: '',
+    dateTo: '',
+    people: 0,
+    firstName: '',
+    lastName: '',
+    email: '',
+  };
+
+  if (bookingData) initialValues = bookingData;
+
   function onSubmit(val: any) {
     handleBooking(val);
   }
 
-  if (open) return null;
-
   return (
     <>
       <Formik
-        initialValues={{
-          dateFrom: '',
-          dateTo: '',
-          people: 0,
-          firstName: '',
-          lastName: '',
-          email: '',
-        }}
+        initialValues={initialValues}
         validationSchema={SignupSchema}
         onSubmit={(values: any) => {
-          // same shape as initial values
           onSubmit(values);
           closed(true);
         }}
@@ -362,6 +375,7 @@ function BookingInfo({ handleBooking, closed, open }: any) {
                   id='firstName'
                   name='firstName'
                   type='firstName'
+                  placeholder='Olav'
                   className='w-full p-2 border-solid border-primary border-2 rounded-lg'
                 />
                 {errors.firstName && touched.firstName ? (
@@ -377,6 +391,7 @@ function BookingInfo({ handleBooking, closed, open }: any) {
                 <Field
                   id='lastName'
                   name='lastName'
+                  placeholder='Nordmann'
                   className='w-full p-2 border-solid border-primary border-2 rounded-lg'
                 />
                 {errors.lastName && touched.lastName ? (
@@ -392,6 +407,7 @@ function BookingInfo({ handleBooking, closed, open }: any) {
                 id='email'
                 name='email'
                 type='email'
+                placeholder='olav_nordmann@gmail.com'
                 className='w-full p-2 border-solid border-primary border-2 rounded-lg'
               />
               {errors.email && touched.email ? (
@@ -415,10 +431,17 @@ function CardDetails({
   open,
   bookingInfo,
   cabinInfo,
-}: any) {
+  back,
+}: {
+  handlePayment: any;
+  closed: any;
+  bookingInfo: any;
+  open: boolean;
+  back: any;
+  cabinInfo: any;
+}) {
   const [totalPrice, setTotalPrice] = useState(0);
   const SignupSchema = Yup.object().shape({
-    email: Yup.string().email('Invalid email').required('Email Required'),
     paymentType: Yup.string().required('Payment type required'),
     price: Yup.number().required('You must pay a price'),
     cardNumber: Yup.string()
@@ -426,29 +449,16 @@ function CardDetails({
       .max(16, 'Invalid, too many characters')
       .required('Required'),
     cvc: Yup.number()
-      .min(100, 'Too few characters')
-      .max(999, "That's too many characters")
+      .min(100, 'Incorrect CVC number, too few characters')
+      .max(999, 'Incorrect CVC number, too many characters')
       .required('You must have a cvc/cvv number'),
     expDate: Yup.string()
-      .min(6, "that's wrong")
-      .max(6, "that's too much wrong")
+      .min(5, "that's wrong")
+      .max(5, "that's too much wrong")
       .required('you need an expiery date'),
   });
-  if (open) return null;
 
-  interface paymentDetails {
-    paymentType: string;
-    price: number;
-    cardNumber: string;
-    email: string;
-    cvc: number;
-    expDate: string;
-  }
-
-  function onSubmit(val: bookingDetails) {
-    handlePayment(val);
-  }
-  if (totalPrice === 0) {
+  useEffect(() => {
     function calculateStay(val: any) {
       const startDate = moment(val.dateFrom);
       const endDate = moment(val.dateTo);
@@ -457,24 +467,27 @@ function CardDetails({
       const calculation = cabinInfo.price * totalDate;
       setTotalPrice(calculation);
     }
-    calculateStay(bookingInfo);
+    if (bookingInfo) calculateStay(bookingInfo);
+  }, [bookingInfo, cabinInfo]);
+
+  if (open) return null;
+
+  function onSubmit(val: bookingDetails) {
+    handlePayment(val);
   }
 
   return (
     <>
-      <h3 className='text-center'>Contact</h3>
       <Formik
         initialValues={{
           paymentType: '',
-          price: 0,
+          price: totalPrice,
           cardNumber: '',
-          email: '',
           cvc: '',
           expDate: '',
         }}
         validationSchema={SignupSchema}
         onSubmit={(values: any): void => {
-          // same shape as initial values
           onSubmit(values);
           closed(true);
         }}
@@ -492,10 +505,10 @@ function CardDetails({
                   className='w-full p-2 border-solid border-primary border-2 rounded-lg'
                 >
                   <option value={''}></option>
-                  <option value={'visa'}>Visa</option>
-                  <option value={'masterCard'}>Mastercard</option>
-                  <option value={'bitCoin'}>Bitcoin</option>
-                  <option value={'organs'}>Organs</option>
+                  <option value={'Visa'}>Visa</option>
+                  <option value={'MasterCard'}>Mastercard</option>
+                  <option value={'BitCoin'}>Bitcoin</option>
+                  <option value={'Organs'}>Organs</option>
                 </Field>
                 {errors.paymentType && touched.paymentType ? (
                   <div className='text-red-600 font-semibold'>
@@ -529,7 +542,7 @@ function CardDetails({
                   id='cardNumber'
                   name='cardNumber'
                   type='text'
-                  placeholder='1234123412341234'
+                  placeholder='1234 1234 1234 1234'
                   className='w-full p-2 border-solid border-primary border-2 rounded-lg'
                 />
                 {errors.cardNumber && touched.cardNumber ? (
@@ -545,6 +558,7 @@ function CardDetails({
                 <Field
                   id='cvc'
                   name='cvc'
+                  placeholder='123'
                   type='number'
                   className='w-full p-2 border-solid border-primary border-2 rounded-lg'
                 />
@@ -559,6 +573,7 @@ function CardDetails({
                 <Field
                   id='expDate'
                   name='expDate'
+                  placeholder='04/10'
                   type='text'
                   className='w-full p-2 border-solid border-primary border-2 rounded-lg'
                 />
@@ -569,19 +584,13 @@ function CardDetails({
                 ) : null}
               </div>
             </div>
-            <div className='mt-2'>
-              <label htmlFor='email'>Email:</label>
-              <Field
-                id='email'
-                name='email'
-                type='email'
-                className='w-full p-2 border-solid border-primary border-2 rounded-lg'
-              />
-              {errors.email && touched.email ? (
-                <div className='text-red-600 font-semibold'>{errors.email}</div>
-              ) : null}
-            </div>
-            <button type='button' onClick={() => {}}>
+            <button
+              className='button button__secondary w-full mt-4'
+              type='button'
+              onClick={() => {
+                back();
+              }}
+            >
               Back
             </button>
             <button className='button button__primary mt-4' type='submit'>
@@ -597,15 +606,37 @@ function CardDetails({
 function BookingMessage({ paymentInfo, bookingInfo, open, cabin }: any) {
   if (!open) return null;
   return (
-    <div>
+    <div className='h-full flex flex-col'>
       <h4 className='mb-2'>
-        Thank you {bookingInfo.firstName} for your booking {cabin.title}
+        Thank you{' '}
+        <span className='font-semibold'>
+          {bookingInfo.firstName} {bookingInfo.lastName}
+        </span>{' '}
+        for booking {cabin.title}
       </h4>
-      <p className='mb-2'>
+      <p className=''>
         You booked <span className='font-bold'>{cabin.title}</span>
       </p>
-      <p>From: {moment(bookingInfo.dateFrom).format('dddd, MMMM Do YYYY')}</p>
-      <p>To: {moment(bookingInfo.dateTo).format('dddd, MMMM Do YYYY')}</p>
+      <div className='mt-4'>
+        <p>
+          <span className='font-semibold'>From: </span>
+          {moment(bookingInfo.dateFrom).format('dddd, MMMM Do YYYY')}
+        </p>
+        <p className='mt-2'>
+          <span className='font-semibold'>To: </span>
+          {moment(bookingInfo.dateTo).format('dddd, MMMM Do YYYY')}
+        </p>
+      </div>
+      <div className='mt-4 font-semibold'>
+        <p>
+          <span>Payment type: </span>
+          <span className='font-bold'>{paymentInfo.paymentType}</span>
+        </p>
+        <p className='mt-2 text-xl'>
+          <span className='font-semibold'>Total Price: </span>
+          <span className='underline font-bold'>{paymentInfo.price} Nok</span>
+        </p>
+      </div>
     </div>
   );
 }

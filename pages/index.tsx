@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 
+import { AnyObject } from 'yup/lib/object';
 import { BaseURL } from '../lib/const';
+import Cookies from 'js-cookie';
 import FeaturedCards from '../components/FeaturedCards';
 import Footer from './layout/Footer';
 import Head from 'next/head';
@@ -10,6 +12,7 @@ import Link from 'next/link';
 import type { NextPage } from 'next';
 import axios from 'axios';
 import { getCabins } from '../lib/api';
+import { parseCookies } from 'nookies';
 import { useRouter } from 'next/router';
 
 export async function getStaticProps() {
@@ -21,14 +24,8 @@ export async function getStaticProps() {
 }
 
 const Home = ({ cabins }: any) => {
-  const [cabinArray, setCabinArray] = useState(cabins);
-  useEffect(() => {
-    (async function () {
-      const { data } = await axios.get(BaseURL + '/cabins/');
-      setCabinArray(data);
-    })();
-  }, []);
-
+  const cookies = Cookies.get();
+  console.log('cookies', cookies);
   return (
     <>
       <Head>
@@ -40,7 +37,7 @@ const Home = ({ cabins }: any) => {
         <div className='heroImg loadingBG relative'>
           <div className='heroOverlay text-white flex flex-col pt-32 justify-center items-center'>
             <h1 className=''>Visit Norway Today!</h1>
-            <p className='max-w-3xl mb-4'>
+            <p className='max-w-4xl mb-4 font-medium'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ligula
               etiam purus proin amet neque, lobortis accumsan. Eget libero enim
               vel odio quis. Imperdiet ut in nec sed leo orci enim, pharetra.
@@ -66,7 +63,7 @@ const Home = ({ cabins }: any) => {
           </div>
         </div>
         <div className='homeCards mt-8 max-w-7xl m-auto flex flex-wrap lg:justify-between justify-center px-2'>
-          <FeaturedCards cabinArray={cabins} />
+          <FeaturedCards />
         </div>
         <div className='max-w-7xl text-center m-auto my-6'>
           <div>

@@ -12,8 +12,10 @@ const Contact: NextPage = () => {
       </Head>
       <Header />
       <main>
-        <div className='heroImg bg-pink-400 flex items-center justify-center'>
-          <h1 className='text-white'>Contact us</h1>
+        <div className='heroImg loadingBG relative'>
+          <div className='heroOverlay text-white flex flex-col pt-32 justify-center items-center'>
+            <h1 className=''>Contact us</h1>
+          </div>
         </div>
         <div className='flex flex-col-reverse mb-4 items-center md:items-start md:justify-evenly px-2 mt-8 md:flex-row sm:px-10'>
           <div className='md:w-1/2 pr-8'>
