@@ -24,7 +24,7 @@ export async function getStaticProps() {
 }
 
 const Home = ({ cabins }: any) => {
-  const cookies = Cookies.get();
+  const cookies = parseCookies().jwt;
   console.log('cookies', cookies);
   return (
     <>

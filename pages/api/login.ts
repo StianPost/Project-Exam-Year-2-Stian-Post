@@ -1,8 +1,9 @@
+import { AnyObject } from 'yup/lib/types';
 import { BaseURL } from '../../lib/const';
 import axios from 'axios';
 import { setCookie } from 'nookies';
 
-export default async (req: any, res: any) => {
+export default async function test(req: any, res: any) {
   const { password, identifier } = req.body;
 
   try {
@@ -12,7 +13,7 @@ export default async (req: any, res: any) => {
     });
 
     setCookie({ res }, 'jwt', postRes.data.jwt, {
-      httpOnly: true,
+      httpOnly: false,
       secure: process.env.NODE_ENV !== 'development',
       maxAge: 30 * 24 * 60 * 60,
       path: '/',
