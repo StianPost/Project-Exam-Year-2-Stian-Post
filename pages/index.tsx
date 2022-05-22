@@ -1,9 +1,8 @@
-import Header, { NewNav } from './layout/Header';
-
 import { BaseURL } from '../lib/const';
 import FeaturedCards from '../components/FeaturedCards';
 import Footer from './layout/Footer';
 import Head from 'next/head';
+import Header from './layout/Header';
 import Link from 'next/link';
 import { getCabins } from '../lib/api';
 
