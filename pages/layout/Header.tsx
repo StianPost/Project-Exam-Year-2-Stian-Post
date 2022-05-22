@@ -22,6 +22,7 @@ function Header(): any {
     <>
       <header className='flex flex-col sm:justify-between sm:flex-row py-12  sm:py-4 px-10 items-center relative'>
         <div>
+          {/* Desktop Logo */}
           <div className='hidden sm:block'>
             <Link href='/'>
               <a className='flex flex-col'>
@@ -37,6 +38,7 @@ function Header(): any {
               </a>
             </Link>
           </div>
+          {/* Mobile Logo / Icon */}
           <div
             className={`fixed w-full z-20 left-0 top-0 p-2 sm:hidden ${
               menuActive ? 'bg-secondary' : 'bg-white'
@@ -97,32 +99,38 @@ export default Header;
 
 function DesktopNav({ jwt, toggleLogin }: { jwt: string; toggleLogin: any }) {
   const [loggedIn, setLoggedIn] = useState(false);
+
   useEffect(() => {
     if (jwt) setLoggedIn(true);
   }, [jwt]);
+
   const router = useRouter();
   return (
-    <nav className='hidden text-xl sm:block'>
-      <ul className='flex'>
+    <nav className='hidden text-xl w-96 sm:block'>
+      <ul className='flex justify-between items-center'>
         <Link href='/'>
-          <a className={router.pathname === '/' ? 'active' : 'inActive'}>
+          <a
+            className={`desktopNavA ${
+              router.pathname === '/' ? 'active' : 'inActive'
+            }`}
+          >
             Home
           </a>
         </Link>
         <Link href='/cabins'>
           <a
-            className={
-              router.pathname === '/cabins' ? 'active ml-10' : 'inActive ml-10'
-            }
+            className={`desktopNavA ${
+              router.pathname === '/cabins' ? 'active ' : 'inActive'
+            }`}
           >
             Cabins
           </a>
         </Link>
         <Link href='/Contact'>
           <a
-            className={
-              router.pathname === '/Contact' ? 'active ml-10' : 'inActive ml-10'
-            }
+            className={`desktopNavA ${
+              router.pathname === '/Contact' ? 'active' : 'inActive '
+            }`}
           >
             Contact
           </a>
@@ -130,15 +138,15 @@ function DesktopNav({ jwt, toggleLogin }: { jwt: string; toggleLogin: any }) {
         {loggedIn ? (
           <Link href='/Admin'>
             <a
-              className={
-                router.pathname === '/Admin' ? 'active ml-10' : 'inActive ml-10'
-              }
+              className={`desktopNavA ${
+                router.pathname === '/Admin' ? 'active ' : 'inActive'
+              }`}
             >
               Admin
             </a>
           </Link>
         ) : (
-          <div className='ml-10 text-primary hover:font-bold'>
+          <div className='desktopNavA hover:active'>
             <Login toggleLogin={() => toggleLogin()} />
           </div>
         )}

@@ -1,6 +1,7 @@
 import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { cabinInterface } from '../lib/types';
 
 function Homecards({
   title,
@@ -8,10 +9,6 @@ function Homecards({
   short_description,
   price,
   heroImg,
-  isFire,
-  isElectricity,
-  isPool,
-  isToilet,
   isHiking,
   isSlalom,
   isSkiing,
@@ -20,12 +17,12 @@ function Homecards({
   isPets,
   rooms,
   beds,
-}: any) {
+}: cabinInterface) {
   const myLoader = ({ width = 100, quality = 50 }) => {
     return `${heroImg}?w=${width}&q=${quality || 75}`;
   };
   return (
-    <div className=' bg-secondary max-w-lg rounded-lg mb-6'>
+    <div className='bg-secondary min-h-fit max-w-lg rounded-lg mb-6'>
       <div className='loadingBG w-full h-72 rounded-t-lg relative'>
         <Image
           className='rounded-t-lg md:w-3/4  md:h-full'
@@ -83,30 +80,36 @@ function Homecards({
           )}
         </div>
       </div>
-      <div className='p-3'>
-        <h4 className='font-bold'>{title}</h4>
-        <p>{short_description}</p>
-        <div className='flex justify-between mt-2'>
+      <div className='p-3 flex flex-col justify-between'>
+        <div>
+          <h4 className='font-bold'>{title}</h4>
+          <p>{short_description}</p>
+        </div>
+        <div className='flex flex-col justify-between mt-2 xs:flex-row'>
           <div className='flex text-primary items-end'>
             <div className='flex items-end'>
               <Icon icon='fa-solid:bed' className='text-4xl mr-1' />
-              <p className='font-bold text-1xl'>{beds}</p>
+              <p className='font-bold text-2xl'>{beds}</p>
             </div>
             <div className='flex items-end'>
               <Icon
                 icon='fa-solid:door-closed'
                 className='text-4xl  ml-3 mr-1'
               />
-              <p className='font-bold text-1xl'>{rooms}</p>
+              <p className='font-bold text-2xl'>{rooms}</p>
             </div>
           </div>
-          <div className='font-bold text-primary text-2xl'>{price} nok/day</div>
+          <div className='font-bold text-primary text-2xl mt-2 xs:mt-0'>
+            {price} nok/day
+          </div>
         </div>
-        <Link href={`/cabins/${id}`}>
-          <a>
-            <button className='button button__primary mt-2'>Book</button>
-          </a>
-        </Link>
+        <div>
+          <Link href={`/cabins/${id}`}>
+            <a>
+              <button className='button button__primary mt-2'>Book</button>
+            </a>
+          </Link>
+        </div>
       </div>
     </div>
   );

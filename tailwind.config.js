@@ -11,6 +11,9 @@ module.exports = {
         tertiary: '#1c1212',
         quaterary: '#ed7c00',
       },
+      screens: {
+        xs: '360px',
+      },
     },
   },
   plugins: [],

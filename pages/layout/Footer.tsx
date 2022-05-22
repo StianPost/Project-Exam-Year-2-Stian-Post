@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 function Footer() {
   return (
-    <footer className='bg-slate-900 flex flex-col text-white p-5 items-center'>
+    <footer className='bg-tertiary flex flex-col text-white p-5 items-center'>
       <div className='flex items-center flex-col justify-between w-full mb-2 md:mb-0 md:flex-row '>
         <div className='flex items-center mb-2 md:mb-0'>
           <Icon icon='bxs:phone' className='text-3xl mr-1' />

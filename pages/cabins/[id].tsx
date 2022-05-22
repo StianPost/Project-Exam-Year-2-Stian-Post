@@ -50,10 +50,8 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
   const destructuredCabin = cabinObj;
   const {
     title,
-    short_description,
     description,
     extra_description,
-    price,
     heroImg,
     isFire,
     isElectricity,
@@ -76,12 +74,6 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
     adress,
     map,
   } = destructuredCabin;
-
-  type imgArrObj = {
-    id: number;
-    imgUrl: string;
-    alt?: string;
-  };
 
   const [isBooking, setIsBooking] = useState(false);
   const [isEnquiry, setIsEnquiry] = useState(false);
@@ -312,13 +304,22 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
           </div>
           <div>
             <h3>Location</h3>
-            <div className='w-full loadingBG mt-2 h-96'>
+            <div
+              className='w-full loadingBG mt-2 h-full'
+              // style={{
+              //   background: `url('${map}')`,
+              //   backgroundSize: 'contain',
+              //   backgroundRepeat: 'no-repeat',
+              //   backgroundPosition: 'center',
+              // }}
+            >
               <Image
+                className='w-full h-full'
                 src={map}
                 alt='Google map of location'
-                layout='responsive'
-                height={70}
-                width={300}
+                layout={'responsive'}
+                height={100}
+                width={400}
                 loader={mapLoader}
               />
             </div>

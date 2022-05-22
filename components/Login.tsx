@@ -5,7 +5,10 @@ import { useState } from 'react';
 
 function Login({ toggleLogin }: any) {
   return (
-    <button className='hover:font-bold' onClick={toggleLogin}>
+    <button
+      className='desktopNavA inActive !text-quaterary !font-semibold'
+      onClick={toggleLogin}
+    >
       Login
     </button>
   );

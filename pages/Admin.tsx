@@ -9,6 +9,7 @@ import Footer from './layout/Footer';
 import Head from 'next/head';
 import Header from './layout/Header';
 import { Icon } from '@iconify/react';
+import Image from 'next/image';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
@@ -48,11 +49,14 @@ export function Tabs({
           </TabList>
         </Box>
         <TabPanel value='1'>
-          <table className='table-auto'>
+          <table className='table-fixed'>
             <thead>
               <tr className='text-left'>
-                <th className='w-32'>#ID</th>
-                <th className='w-52'>Name</th>
+                <th className='w-28'>#ID</th>
+                <th className='w-56'>IMG</th>
+                <th className='w-64'>Name</th>
+                <th className='w-64'>Bed Number</th>
+                <th className='w-64'>Room Number</th>
                 <th className='w-52'>Price</th>
                 <th className='w-52'>Edit</th>
                 <th className='w-52'>Delete</th>
@@ -60,12 +64,28 @@ export function Tabs({
             </thead>
             <tbody className='text-xl'>
               {cabinArray.map((elm: any) => {
+                const myLoader = ({ width = 100, quality = 50 }) => {
+                  return `${elm.heroImg}?w=${width}&q=${quality || 75}`;
+                };
                 return (
-                  <tr key={elm.id}>
-                    <td>{elm.id}</td>
-                    <td>{elm.title}</td>
-                    <td>{elm.price}</td>
-                    <td>
+                  <tr className='border-b-2' key={elm.id}>
+                    <td className='pt-4'>{elm.id}</td>
+                    <td className='py-2 pr-2'>
+                      <Image
+                        className='rounded-lg'
+                        src={elm.heroImg}
+                        alt={`image of ${elm.title}`}
+                        height={20}
+                        width={30}
+                        layout={'responsive'}
+                        loader={myLoader}
+                      />
+                    </td>
+                    <td className='pt-4'>{elm.title}</td>
+                    <td className='pt-4'>{elm.rooms}</td>
+                    <td className='pt-4'>{elm.beds}</td>
+                    <td className='pt-4'>Nok {elm.price}</td>
+                    <td className='pt-4'>
                       <Icon
                         className='hover:text-purple-700 hover:cursor-pointer'
                         icon='fa-solid:edit'
@@ -74,7 +94,7 @@ export function Tabs({
                         }}
                       />
                     </td>
-                    <td>
+                    <td className='pt-4'>
                       <Icon
                         icon='fa-solid:trash-alt'
                         className='hover:text-red-600 hover:cursor-pointer'
@@ -689,7 +709,7 @@ export const EditCabinModal = ({
                     ) : null}
                   </div>
                 </div>
-                <div className='pt-4 pb-2 border-b-2'>
+                <div className='pt-4 pt-2 border-b-2'>
                   <p className='text-center'>Amenities</p>
                   <div className='flex flex-wrap justify-between pt-1'>
                     <label className='pr-2'>

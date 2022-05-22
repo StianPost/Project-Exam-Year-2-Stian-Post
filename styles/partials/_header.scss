@@ -4,11 +4,18 @@
 
 .active {
   color: var(--color-primary);
-  font-weight: bold;
+  transform: scale(1.3);
+  font-weight: 500;
 }
 .inActive {
-  color: var(--color-primary);
+  color: #2a7a8cd2;
+  font-weight: 500;
   &:hover {
-    font-weight: bold;
+    transform: scale(1.3);
+    color: var(--color-primary);
   }
+}
+
+.desktopNavA {
+  transition: ease-in 0.2s;
 }

@@ -38,7 +38,6 @@ function Resultcards({
           height={120}
           width={150}
           layout='responsive'
-          unoptimized={false}
           priority
         />
         <div className='absolute top-1 right-1 flex flex-col flex-wrap-reverse h-full'>
@@ -92,23 +91,23 @@ function Resultcards({
         <h3>{title}</h3>
         <p>{short_description}</p>
         <div className='flex flex-col justify-between sm:flex-row py-0 sm:pt:2'>
-          <div className='flex justify-between items-center sm:block py-3 sm:py-0'>
+          <div className='flex flex-col justify-between xs:flex-row sm:block py-3 sm:py-0'>
             <div className='flex text-primary items-end'>
               <div className='flex items-end'>
                 <Icon icon='fa-solid:bed' className='text-4xl mr-1' />
-                <p className='font-bold text-1xl'>{beds}</p>
+                <p className='font-bold text-2xl'>{beds}</p>
               </div>
               <div className='flex items-end'>
                 <Icon
                   icon='fa-solid:door-closed'
                   className='text-4xl  ml-3 mr-1'
                 />
-                <p className='font-bold text-1xl'>{rooms}</p>
+                <p className='font-bold text-2xl'>{rooms}</p>
               </div>
             </div>
             <div>
               <p className='font-bold text-primary text-2xl md:mt-2'>
-                {price} nok/Day
+                {price} Nok/Day
               </p>
             </div>
           </div>
