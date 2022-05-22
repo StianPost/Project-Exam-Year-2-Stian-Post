@@ -1,44 +1,33 @@
+import { Icon } from '@iconify/react';
 import LoginComponent from './LoginComponent';
 import React from 'react';
 import { useState } from 'react';
 
-function Login() {
-  const [toggleModal, setToggleModal] = useState(false);
-
-  function LoginModal() {
-    return (
-      <div className='modalOverlay'>
-        <div className='modal relative'>
-          <h2 className='text-center mt-2'>Admin</h2>
-          <div>
-            <LoginComponent />
-          </div>
-          <button
-            className='absolute top-2 right-3 hover:cursor-pointer'
-            onClick={() => {
-              setToggleModal(false);
-            }}
-          >
-            X
-          </button>
-        </div>
-      </div>
-    );
-  }
-
+function Login({ toggleLogin }: any) {
   return (
-    <div>
-      <button
-        className='hover:font-bold'
-        onClick={() => {
-          setToggleModal(true);
-        }}
-      >
-        Login
-      </button>
-      {toggleModal ? <LoginModal /> : ''}
-    </div>
+    <button className='hover:font-bold' onClick={toggleLogin}>
+      Login
+    </button>
   );
 }
 
 export default Login;
+
+export function LoginModal({ toggleModal }: any) {
+  return (
+    <div className='modalOverlay'>
+      <div className='modal relative'>
+        <h2 className='text-center mt-2'>Admin</h2>
+        <div>
+          <LoginComponent />
+        </div>
+        <button
+          className='absolute top-2 right-3 hover:cursor-pointer'
+          onClick={() => toggleModal()}
+        >
+          <Icon icon='bi:x-lg' className='text-3xl' />
+        </button>
+      </div>
+    </div>
+  );
+}

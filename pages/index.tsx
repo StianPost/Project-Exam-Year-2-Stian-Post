@@ -23,7 +23,7 @@ const Home = () => {
         <title>Cabin Fever</title>
       </Head>
       <Header />
-      <NewNav />
+      {/* <NewNav /> */}
       <main>
         <div className='heroImg loadingBG relative'>
           <div className='heroOverlay text-white flex flex-col pt-32 justify-center items-center'>
@@ -35,7 +35,11 @@ const Home = () => {
               Vitae rutrum enim mattis lacus, semper at in viverra orci. Luctus
               purus volutpat in maecenas ut libero ornare.
             </p>
-            <button className='button button__primary !w-48'>Visit!</button>
+            <Link href='/cabins'>
+              <a>
+                <button className='button button__primary !w-48'>Visit!</button>
+              </a>
+            </Link>
           </div>
         </div>
         <div className='flex flex-col items-center mt-9 max-w-5xl text-center m-auto'>
@@ -49,7 +53,11 @@ const Home = () => {
           </p>
           <div className='mt-4 w-48'>
             <Link href='/cabins'>
-              <a className='button button__primary w-48'>Book Cabins</a>
+              <a>
+                <button className='button button__primary !w-48'>
+                  Book Cabins
+                </button>
+              </a>
             </Link>
           </div>
         </div>

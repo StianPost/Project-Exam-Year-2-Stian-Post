@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import Login, { LoginModal } from '../../components/Login';
+import React, { useEffect, useState } from 'react';
 import { Router, useRouter } from 'next/router';
 
 import type { AppProps } from 'next/app';
 import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import Login from '../../components/Login';
 import { parseCookies } from 'nookies';
 
 function Header(): any {
   const [menuActive, setMenuState] = useState(false);
+  const [toggleLogin, setToggleLogin] = useState(true);
   const router = useRouter();
 
   const toggleMenu = (): void => {
@@ -18,64 +19,87 @@ function Header(): any {
   const jwt = parseCookies().jwt;
 
   return (
-    <header className='flex flex-col sm:justify-between sm:flex-row py-12  sm:py-4 px-10 items-center relative'>
-      <div>
-        {/* <div className='hidden sm:block'>
-          <Link href='/'>
-            <a className='flex flex-col'>
-              <Image
-                src='/cabin_fever_logo.png'
-                alt='Logo for cabinfever'
-                width={100}
-                height={80}
-              />
-              <span className='hidden mt-2 text-orange-400 logoText font-medium sm:block'>
-                Cabinfeever
-              </span>
-            </a>
-          </Link>
-        </div> */}
-        <div
-          className={`fixed w-full z-20 left-0 top-0 p-2 sm:hidden ${
-            menuActive ? 'bg-secondary' : 'bg-white'
-          }`}
-        >
-          <div className='flex justify-between items-center'>
+    <>
+      <header className='flex flex-col sm:justify-between sm:flex-row py-12  sm:py-4 px-10 items-center relative'>
+        <div>
+          <div className='hidden sm:block'>
             <Link href='/'>
-              <a>
+              <a className='flex flex-col'>
                 <Image
                   src='/cabin_fever_logo.png'
                   alt='Logo for cabinfever'
-                  width={80}
-                  height={60}
+                  width={100}
+                  height={80}
                 />
+                <span className='hidden mt-2 text-orange-400 logoText font-medium sm:block'>
+                  Cabinfeever
+                </span>
               </a>
             </Link>
-            <Icon
-              className='text-5xl text-primary'
-              icon='charm:menu-hamburger'
-              onClick={() => {
-                toggleMenu();
-              }}
-            />
+          </div>
+          <div
+            className={`fixed w-full z-20 left-0 top-0 p-2 sm:hidden ${
+              menuActive ? 'bg-secondary' : 'bg-white'
+            }`}
+          >
+            <div className='flex justify-between items-center'>
+              <Link href='/'>
+                <a>
+                  <Image
+                    src='/cabin_fever_logo.png'
+                    alt='Logo for cabinfever'
+                    width={80}
+                    height={60}
+                  />
+                </a>
+              </Link>
+              <Icon
+                className='text-5xl text-primary'
+                icon='charm:menu-hamburger'
+                onClick={() => {
+                  toggleMenu();
+                }}
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <MobileNav
-        jwt={jwt}
-        menuActive={menuActive}
-        toggleMenu={() => {
-          toggleMenu();
-        }}
-      />
-      <DesktopNav jwt={jwt} />
-    </header>
+        <MobileNav
+          jwt={jwt}
+          menuActive={menuActive}
+          toggleMenu={() => {
+            toggleMenu();
+          }}
+          toggleLogin={() => {
+            setToggleLogin(true);
+          }}
+        />
+        <DesktopNav
+          toggleLogin={() => {
+            setToggleLogin(true);
+          }}
+          jwt={jwt}
+        />
+      </header>
+      {toggleLogin ? (
+        <LoginModal
+          toggleModal={() => {
+            setToggleLogin(false);
+          }}
+        />
+      ) : (
+        ''
+      )}
+    </>
   );
 }
 
 export default Header;
 
-function DesktopNav({ jwt }: { jwt: string }) {
+function DesktopNav({ jwt, toggleLogin }: { jwt: string; toggleLogin: any }) {
+  const [loggedIn, setLoggedIn] = useState(false);
+  useEffect(() => {
+    if (jwt) setLoggedIn(true);
+  }, [jwt]);
   const router = useRouter();
   return (
     <nav className='hidden text-xl sm:block'>
@@ -103,7 +127,7 @@ function DesktopNav({ jwt }: { jwt: string }) {
             Contact
           </a>
         </Link>
-        {jwt ? (
+        {loggedIn ? (
           <Link href='/Admin'>
             <a
               className={
@@ -115,7 +139,7 @@ function DesktopNav({ jwt }: { jwt: string }) {
           </Link>
         ) : (
           <div className='ml-10 text-primary hover:font-bold'>
-            <Login />
+            <Login toggleLogin={() => toggleLogin()} />
           </div>
         )}
       </ul>
@@ -127,12 +151,18 @@ function MobileNav({
   jwt,
   menuActive,
   toggleMenu,
+  toggleLogin,
 }: {
   jwt: string;
   menuActive: boolean;
   toggleMenu: any;
+  toggleLogin: any;
 }) {
   const router = useRouter();
+  const [loggedIn, setLoggedIn] = useState(false);
+  useEffect(() => {
+    if (jwt) setLoggedIn(true);
+  }, [jwt]);
   return (
     <div
       className={`bg-secondary z-10 fixed w-full h-screen top-0 left-0 ${
@@ -171,7 +201,7 @@ function MobileNav({
               Contact
             </a>
           </Link>
-          {jwt ? (
+          {loggedIn ? (
             <Link href='/Admin'>
               <a
                 className={
@@ -183,73 +213,10 @@ function MobileNav({
               </a>
             </Link>
           ) : (
-            <Login />
+            <Login toggleLogin={() => toggleLogin()} />
           )}
         </ul>
       </div>
     </div>
   );
-}
-
-export function NewNav() {
-  const [mobileNav, setMobileNav] = useState(false);
-  function toggleMobile() {
-    setMobileNav(!mobileNav);
-  }
-
-  return (
-    <div>
-      <header className='px-4 py-4 border-t-2 flex justify-between items-center'>
-        <div className='w-20'>
-          <Link href='/'>
-            <a className='flex flex-col'>
-              <Image
-                src='/cabin_fever_logo.png'
-                alt='Logo for cabinfever'
-                width={100}
-                height={80}
-              />
-              <span className='hidden mt-2 text-orange-400 logoText font-medium sm:block'>
-                Cabinfeever
-              </span>
-            </a>
-          </Link>
-        </div>
-        <div>
-          <Icon
-            className='text-5xl text-primary sm:hidden'
-            icon='charm:menu-hamburger'
-            onClick={() => {
-              toggleMobile();
-            }}
-          />
-        </div>
-      </header>
-      <NewMobileNav
-        open={mobileNav}
-        close={() => {
-          toggleMobile();
-        }}
-      />
-    </div>
-  );
-}
-
-function NewMobileNav({ open, close }: { open: boolean; close: any }) {
-  if (!open) return null;
-  return (
-    <div>
-      <p>Mobile</p>
-    </div>
-  );
-}
-
-{
-  /* <button
-onClick={() => {
-  close();
-}}
->
-Close Mobile
-</button> */
 }
