@@ -33,9 +33,9 @@ h2 {
   }
 }
 h3 {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-md);
   @media (min-width: 480px) {
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-lg);
   }
 }
 h4 {

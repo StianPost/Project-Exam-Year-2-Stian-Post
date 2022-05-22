@@ -48,6 +48,7 @@ export interface cabinInterface {
   isBeach?: boolean;
   isSnow?: boolean;
   isMountain?: boolean;
+  isWaterActivities?: boolean;
   isSea?: boolean;
 }
 

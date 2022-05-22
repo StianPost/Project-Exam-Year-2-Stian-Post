@@ -709,7 +709,7 @@ export const EditCabinModal = ({
                     ) : null}
                   </div>
                 </div>
-                <div className='pt-4 pt-2 border-b-2'>
+                <div className='pt-2 border-b-2'>
                   <p className='text-center'>Amenities</p>
                   <div className='flex flex-wrap justify-between pt-1'>
                     <label className='pr-2'>
@@ -885,6 +885,39 @@ export const AddCabinModal = ({
 }) => {
   const [success, setSuccess] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+
+  let initValues = {
+    title: '',
+    description: '',
+    heroImg: '',
+    adress: '',
+    map: '',
+    price: '',
+    extra_description: '',
+    short_description: '',
+    county: '',
+    isFeatured: false,
+    beds: '',
+    rooms: '',
+    isFire: false,
+    isPool: false,
+    isElectricity: false,
+    isBeach: false,
+    isToilet: false,
+    isWater: false,
+    isSea: false,
+    isMountain: false,
+    isSnow: false,
+    isSlalom: false,
+    isSkiing: false,
+    isWinterActivities: false,
+    isWaterActivities: false,
+    isHiking: false,
+    isPets: false,
+    imgArray: [],
+  };
+
+  const [values, setValues] = useState(initValues);
   const router = useRouter();
   const SignupSchema: any = Yup.object().shape({
     title: Yup.string()
@@ -961,36 +994,7 @@ export const AddCabinModal = ({
         <h3>You adding a new Cabin</h3>
         <div>
           <Formik
-            initialValues={{
-              title: '',
-              description: '',
-              heroImg: '',
-              adress: '',
-              map: '',
-              price: '',
-              extra_description: '',
-              short_description: '',
-              county: '',
-              isFeatured: false,
-              beds: '',
-              rooms: '',
-              isFire: false,
-              isPool: false,
-              isElectricity: false,
-              isBeach: false,
-              isToilet: false,
-              isWater: false,
-              isSea: false,
-              isMountain: false,
-              isSnow: false,
-              isSlalom: false,
-              isSkiing: false,
-              isWinterActivities: false,
-              isWaterActivities: false,
-              isHiking: false,
-              isPets: false,
-              imgArray: [],
-            }}
+            initialValues={values}
             validationSchema={SignupSchema}
             onSubmit={(values: any) => {
               async function editProd(newCabin: any) {
