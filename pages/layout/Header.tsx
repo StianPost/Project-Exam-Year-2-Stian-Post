@@ -10,7 +10,7 @@ import { parseCookies } from 'nookies';
 
 function Header(): any {
   const [menuActive, setMenuState] = useState(false);
-  const [toggleLogin, setToggleLogin] = useState(true);
+  const [toggleLogin, setToggleLogin] = useState(false);
   const router = useRouter();
 
   const toggleMenu = (): void => {

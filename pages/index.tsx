@@ -22,7 +22,6 @@ const Home = () => {
         <title>Cabin Fever</title>
       </Head>
       <Header />
-      {/* <NewNav /> */}
       <main>
         <div className='heroImg loadingBG relative'>
           <div className='heroOverlay text-white flex flex-col pt-32 justify-center items-center'>
