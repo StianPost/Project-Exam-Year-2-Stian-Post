@@ -20,6 +20,12 @@ const Home = () => {
       <Head>
         {/* Add metadata here */}
         <title>Cabin Fever</title>
+        <meta charSet='UTF-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta
+          name='description'
+          content={`Cabinfeever's homepage, where you can book your dream cabin, visit today!`}
+        />
       </Head>
       <Header />
       <main>

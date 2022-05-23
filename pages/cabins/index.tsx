@@ -50,6 +50,12 @@ const Results = ({ cabins }: any) => {
     <>
       <Head>
         <title>Search Results - Cabin fever</title>
+        <meta charSet='UTF-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta
+          name='description'
+          content={`Results page for Cabin fever, here's where you can find all our wonderful cabins`}
+        />
       </Head>
       <Header />
       <main className='px-2 lg:px-4 xl:px-10'>

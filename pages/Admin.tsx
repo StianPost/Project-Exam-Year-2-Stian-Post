@@ -288,6 +288,12 @@ const Admin = ({
     <>
       <Head>
         <title>Admin - Cabin fever</title>
+        <meta charSet='UTF-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta
+          name='description'
+          content={`Cabinfeever's Admin page, admin only, there's nothing for you to see here`}
+        />
       </Head>
       <Header />
       <EditCabinModal
@@ -327,8 +333,7 @@ const Admin = ({
               className='button button__primary'
               onClick={() => {
                 setAddModal(true);
-              }}
-            >
+              }}>
               Add New Cabin
             </button>
           </div>
@@ -510,8 +515,7 @@ export const EditCabinModal = ({
                 }
               }
               editProd(values);
-            }}
-          >
+            }}>
             {({ errors, touched, values }: any) => (
               <Form>
                 <div className='flex flex-wrap justify-between sm:flex-row'>
@@ -670,8 +674,7 @@ export const EditCabinModal = ({
                       id='county'
                       name='county'
                       type='text'
-                      className='w-full p-2 border-solid border-primary border-2 rounded-lg'
-                    >
+                      className='w-full p-2 border-solid border-primary border-2 rounded-lg'>
                       <option value={cabin.county}>{cabin.county}</option>
                       <option value='Agder'>Agder</option>
                       <option value='Finnmark'>Finnmark</option>
@@ -814,15 +817,13 @@ export const EditCabinModal = ({
                               <button
                                 className='mr-3 hover:font-semibold'
                                 type='button'
-                                onClick={() => arrayHelpers.insert(index, '')}
-                              >
+                                onClick={() => arrayHelpers.insert(index, '')}>
                                 + Add more
                               </button>
                               <button
                                 className='hover:font-semibold'
                                 type='button'
-                                onClick={() => arrayHelpers.remove(index)}
-                              >
+                                onClick={() => arrayHelpers.remove(index)}>
                                 - Remove
                               </button>
                             </div>
@@ -831,8 +832,7 @@ export const EditCabinModal = ({
                       ) : (
                         <button
                           type='button'
-                          onClick={() => arrayHelpers.push('')}
-                        >
+                          onClick={() => arrayHelpers.push('')}>
                           Add an Image
                         </button>
                       )}
@@ -865,8 +865,7 @@ export const EditCabinModal = ({
         </div>
         <button
           onClick={closeModal}
-          className='button button__secondary mt-2 w-full'
-        >
+          className='button button__secondary mt-2 w-full'>
           Close
         </button>
       </div>
@@ -1021,8 +1020,7 @@ export const AddCabinModal = ({
                 }
               }
               editProd(values);
-            }}
-          >
+            }}>
             {({ errors, touched, values }) => (
               <Form>
                 <div className='flex flex-wrap justify-between sm:flex-row'>
@@ -1181,8 +1179,7 @@ export const AddCabinModal = ({
                       id='county'
                       name='county'
                       type='text'
-                      className='w-full p-2 border-solid border-primary border-2 rounded-lg'
-                    >
+                      className='w-full p-2 border-solid border-primary border-2 rounded-lg'>
                       <option value='Agder'>Agder</option>
                       <option value='Finnmark'>Finnmark</option>
                       <option value='Innlandet'>Innlandet</option>
@@ -1324,15 +1321,13 @@ export const AddCabinModal = ({
                               <button
                                 className='mr-3 hover:font-semibold'
                                 type='button'
-                                onClick={() => arrayHelpers.insert(index, '')}
-                              >
+                                onClick={() => arrayHelpers.insert(index, '')}>
                                 + Add more
                               </button>
                               <button
                                 className='hover:font-semibold'
                                 type='button'
-                                onClick={() => arrayHelpers.remove(index)}
-                              >
+                                onClick={() => arrayHelpers.remove(index)}>
                                 - Remove
                               </button>
                             </div>
@@ -1341,8 +1336,7 @@ export const AddCabinModal = ({
                       ) : (
                         <button
                           type='button'
-                          onClick={() => arrayHelpers.push('')}
-                        >
+                          onClick={() => arrayHelpers.push('')}>
                           Add an Image
                         </button>
                       )}
@@ -1375,8 +1369,7 @@ export const AddCabinModal = ({
         </div>
         <button
           onClick={closeModal}
-          className='button button__secondary mt-2 w-full'
-        >
+          className='button button__secondary mt-2 w-full'>
           Close
         </button>
       </div>
@@ -1398,8 +1391,7 @@ export const MessageModal = ({ open, closeModal, message }: any) => {
             subject: message.subject,
             message: message.message,
           }}
-          onSubmit={(values) => {}}
-        >
+          onSubmit={(values) => {}}>
           {({ errors, touched }) => (
             <Form>
               <div>
@@ -1462,8 +1454,7 @@ export const EnquiryModal = ({ open, closeModal, enquiry }: any) => {
             subject: enquiry.subject,
             message: enquiry.message,
           }}
-          onSubmit={(values) => {}}
-        >
+          onSubmit={(values) => {}}>
           {({ errors, touched }) => (
             <Form>
               <div className='flex flex-col sm:flex-row'>

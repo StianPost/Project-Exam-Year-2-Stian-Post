@@ -84,7 +84,13 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
   return (
     <>
       <Head>
-        <title>{title} || Cabin fever</title>
+        <title>{title} - Cabin fever</title>
+        <meta charSet='UTF-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta
+          name='description'
+          content={`The detail page of ${title}, where you can read all about ${title}, book it or send a message about it`}
+        />
       </Head>
       <Header />
       <Bookingmodal
@@ -114,16 +120,14 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
               className='button button__primary h-fit whitespace-nowrap'
               onClick={() => {
                 setIsBooking(true);
-              }}
-            >
+              }}>
               Book Cabin
             </button>
             <button
               className='button button__secondary h-fit ml-4'
               onClick={() => {
                 setIsEnquiry(true);
-              }}
-            >
+              }}>
               Contact
             </button>
           </div>

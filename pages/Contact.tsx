@@ -9,6 +9,12 @@ const Contact: NextPage = () => {
     <>
       <Head>
         <title>Contact us - Cabin fever</title>
+        <meta charSet='UTF-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        <meta
+          name='description'
+          content={`Cabinfeever's contact page, learn about us or contact us here`}
+        />
       </Head>
       <Header />
       <main>
