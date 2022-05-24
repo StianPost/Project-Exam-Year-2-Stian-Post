@@ -132,7 +132,7 @@ function Search({
                 />
               </div>
             </div>
-            <div className='mt-4 flex flex-col items-center xs:flex-row xs:items-start sm:mt-0'>
+            <div className='mt-4 flex flex-col flex-wrap items-center s:flex-row s:items-start sm:mt-0'>
               <button
                 className='search search__filter !w-48 sm:ml-2'
                 onClick={() => {
@@ -142,7 +142,7 @@ function Search({
                 Filter
               </button>
               <button
-                className='search search__clear mt-2 xs:ml-2 xs:mt-0 sm:hidden'
+                className='search search__clear mt-2 s:ml-2 s:mt-0 sm:hidden'
                 onClick={() => {
                   setQuery('');
                   onChange(null);
@@ -154,8 +154,8 @@ function Search({
             </div>
           </div>
           <div className='dropdown mt-4 hover:cursor-pointer'>
-            <div className='w-full flex relative'>
-              <div className='w-full'>
+            <div className='w-full flex'>
+              <div className='w-full relative'>
                 <div className='w-full flex relative'>
                   <input
                     type='text'
@@ -185,7 +185,7 @@ function Search({
                 <ul
                   className={`${
                     open ? 'searchBar__dropDown z-20' : 'hidden'
-                  } absolute w-full`}
+                  } absolute`}
                 >
                   {filterCabins().map((cabin: cabinInterface) => {
                     return (
