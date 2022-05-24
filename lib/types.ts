@@ -52,6 +52,23 @@ export interface cabinInterface {
   isSea?: boolean;
 }
 
+export interface messageInterface {
+  id: number,
+  email: string,
+  subject: string,
+  message: string
+}
+
+export interface enquiryInterface {
+  id: number,
+  firstName: string,
+  lastName: string,
+  email: string,
+  subject: string,
+  phoneNumber: number | string
+  message: string
+}
+
 export type cabinArray = {
   cabinArray: cabinInterface[];
 };

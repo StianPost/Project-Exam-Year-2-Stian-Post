@@ -1,6 +1,11 @@
 import * as Yup from 'yup';
 
 import { Field, FieldArray, Form, Formik, getIn } from 'formik';
+import {
+  cabinInterface,
+  enquiryInterface,
+  messageInterface,
+} from '../lib/types';
 import { useEffect, useState } from 'react';
 
 import { BaseURL } from '../lib/const';
@@ -15,7 +20,6 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import axios from 'axios';
-import { cabinInterface } from '../lib/types';
 import { parseCookies } from 'nookies';
 import { useRouter } from 'next/router';
 
@@ -24,12 +28,18 @@ export function Tabs({
   contactArray,
   enquiryArray,
   openModal,
-  onClose,
-  id,
   openEnquiry,
   openMessage,
   JWT,
-}: any): any {
+}: {
+  cabinArray: cabinInterface[];
+  contactArray: messageInterface[];
+  enquiryArray: enquiryInterface[];
+  openModal: any;
+  openEnquiry: any;
+  openMessage: any;
+  JWT: string;
+}): any {
   const [value, setValue] = useState('1');
   const router = useRouter();
 
@@ -63,7 +73,7 @@ export function Tabs({
               </tr>
             </thead>
             <tbody className='text-xl'>
-              {cabinArray.map((elm: any) => {
+              {cabinArray.map((elm: cabinInterface) => {
                 const myLoader = ({ width = 100, quality = 50 }) => {
                   return `${elm.heroImg}?w=${width}&q=${quality || 75}`;
                 };
@@ -141,7 +151,7 @@ export function Tabs({
               </tr>
             </thead>
             <tbody className='text-xl'>
-              {enquiryArray.map((elm: any) => {
+              {enquiryArray.map((elm: enquiryInterface) => {
                 return (
                   <tr key={elm.id}>
                     <td>{elm.id}</td>
@@ -201,7 +211,7 @@ export function Tabs({
               </tr>
             </thead>
             <tbody className='text-xl'>
-              {contactArray.map((elm: any) => {
+              {contactArray.map((elm: messageInterface) => {
                 return (
                   <tr key={elm.id}>
                     <td>{elm.id}</td>
@@ -234,7 +244,6 @@ export function Tabs({
                                   },
                                 }
                               );
-                              console.log(data);
                               router.replace(router.asPath);
                             }
                             deleteThing();
@@ -262,7 +271,7 @@ const Admin = ({
   JWT,
 }: {
   user: any;
-  cabins: cabinInterface[];
+  cabins: any;
   enquiries: any;
   messages: any;
   JWT: string;
@@ -1393,7 +1402,15 @@ export const AddCabinModal = ({
   );
 };
 
-export const MessageModal = ({ open, closeModal, message }: any) => {
+export const MessageModal = ({
+  open,
+  closeModal,
+  message,
+}: {
+  open: boolean;
+  closeModal: any;
+  message: any;
+}) => {
   if (!open) return null;
   return (
     <div className='modalOverlay'>
@@ -1454,7 +1471,15 @@ export const MessageModal = ({ open, closeModal, message }: any) => {
   );
 };
 
-export const EnquiryModal = ({ open, closeModal, enquiry }: any) => {
+export const EnquiryModal = ({
+  open,
+  closeModal,
+  enquiry,
+}: {
+  open: boolean;
+  closeModal: any;
+  enquiry: any;
+}) => {
   if (!open) return null;
   return (
     <div className='modalOverlay'>
@@ -1557,9 +1582,7 @@ export const EnquiryModal = ({ open, closeModal, enquiry }: any) => {
 
 export const getServerSideProps = async (ctx: any) => {
   let user = null;
-  let cabins = null;
-  let messages = null;
-  let enquiries = null;
+
   const JWT = parseCookies(ctx).jwt;
 
   if (JWT) {
@@ -1569,14 +1592,7 @@ export const getServerSideProps = async (ctx: any) => {
           Authorization: `Bearer ${JWT}`,
         },
       });
-      const cabinData = await axios.get(BaseURL + '/cabins');
-      const contactData = await axios.get(BaseURL + '/contact-messages');
-      const enquiryData = await axios.get(BaseURL + '/enquiries/');
-
       user = loginData.data;
-      cabins = cabinData.data;
-      messages = contactData.data;
-      enquiries = enquiryData.data;
     } catch (e) {
       console.log(e);
     }
@@ -1591,12 +1607,16 @@ export const getServerSideProps = async (ctx: any) => {
     };
   }
 
+  const cabinData = await axios.get(BaseURL + '/cabins');
+  const contactData = await axios.get(BaseURL + '/contact-messages');
+  const enquiryData = await axios.get(BaseURL + '/enquiries/');
+
   return {
     props: {
       user,
-      cabins,
-      enquiries,
-      messages,
+      cabins: cabinData.data,
+      enquiries: enquiryData.data,
+      messages: contactData.data,
       JWT,
     },
   };
