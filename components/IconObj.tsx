@@ -1,7 +1,15 @@
 import { Icon } from '@iconify/react';
 import React from 'react';
 
-export function IconObj({ object, iconString, additionalInfo }: any) {
+export function IconObj({
+  object,
+  iconString,
+  additionalInfo,
+}: {
+  object: string;
+  iconString: string;
+  additionalInfo: string;
+}) {
   return (
     <div className='flex items-end mr-2'>
       <Icon icon={iconString} className='text-4xl mr-1' />

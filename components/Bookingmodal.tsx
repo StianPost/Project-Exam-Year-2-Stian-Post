@@ -308,7 +308,23 @@ function BookingInfo({
 
   if (bookingData) initialValues = bookingData;
 
-  function onSubmit(val: any) {
+  interface bookingInterface {
+    email: string;
+    firstName: string;
+    lastName: string;
+    people: number;
+    dateFrom: Date;
+    dateTo: Date;
+  }
+
+  function onSubmit(val: {
+    email: string;
+    firstName: string;
+    lastName: string;
+    people: number;
+    dateFrom: Date;
+    dateTo: Date;
+  }) {
     handleBooking(val);
   }
 

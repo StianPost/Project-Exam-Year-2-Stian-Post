@@ -332,7 +332,7 @@ function Search({
                 isPets,
                 rooms,
                 beds,
-              }): any => {
+              }: cabinInterface): any => {
                 return (
                   <Resultcards
                     key={id}

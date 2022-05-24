@@ -49,7 +49,6 @@ function FeaturedCards() {
           imgArray,
           county,
           people_rooms,
-          dates,
           short_description,
           isFire,
           isElectricity,
@@ -63,7 +62,7 @@ function FeaturedCards() {
           isPets,
           rooms,
           beds,
-        }: any): any => {
+        }: cabinInterface): any => {
           return (
             <Homecards
               key={id}
