@@ -21,7 +21,7 @@ function Header(): any {
   return (
     <>
       <header className='flex flex-col sm:justify-between sm:flex-row py-12  sm:py-4 px-10 items-center relative'>
-        <div>
+        <div className=''>
           {/* Desktop Logo */}
           <div className='hidden sm:block'>
             <Link href='/'>

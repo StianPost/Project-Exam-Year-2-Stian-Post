@@ -58,7 +58,7 @@ const Results = ({ cabins }: any) => {
         />
       </Head>
       <Header />
-      <main className='px-2 lg:px-4 xl:px-10'>
+      <main className='mainWidth px-2 lg:px-4 xl:px-10'>
         <Search
           cabins={filteredCabins}
           searchValue={searchValue}

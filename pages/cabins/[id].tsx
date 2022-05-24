@@ -120,14 +120,16 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
               className='button button__primary h-fit whitespace-nowrap'
               onClick={() => {
                 setIsBooking(true);
-              }}>
+              }}
+            >
               Book Cabin
             </button>
             <button
               className='button button__secondary h-fit ml-4'
               onClick={() => {
                 setIsEnquiry(true);
-              }}>
+              }}
+            >
               Contact
             </button>
           </div>
@@ -158,7 +160,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
           </div>
           <div className='pb-2'>
             <h3>Amenities</h3>
-            <div className='flex flex-wrap py-1'>
+            <div className='flex flex-wrap py-1 text-quinary'>
               {isPets ? (
                 <div className='pr-3 flex items-end'>
                   <Icon icon='mdi:paw' className='text-3xl mr-1' />

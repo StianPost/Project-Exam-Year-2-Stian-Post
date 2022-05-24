@@ -82,8 +82,8 @@ export function Tabs({
                       />
                     </td>
                     <td className='pt-4'>{elm.title}</td>
-                    <td className='pt-4'>{elm.rooms}</td>
                     <td className='pt-4'>{elm.beds}</td>
+                    <td className='pt-4'>{elm.rooms}</td>
                     <td className='pt-4'>Nok {elm.price}</td>
                     <td className='pt-4'>
                       <Icon
@@ -99,9 +99,11 @@ export function Tabs({
                         icon='fa-solid:trash-alt'
                         className='hover:text-red-600 hover:cursor-pointer'
                         onClick={() => {
+                          console.log(JWT);
                           let deleteProd = confirm(
                             `are you sure you want to delete this Message?`
                           );
+
                           if (deleteProd) {
                             async function deleteThing() {
                               let { data } = await axios.delete(
@@ -225,13 +227,14 @@ export function Tabs({
                           if (deleteProd) {
                             async function deleteThing() {
                               let { data } = await axios.delete(
-                                `${BaseURL}/messages/${elm.id}`,
+                                `${BaseURL}/contact-messages/${elm.id}`,
                                 {
                                   headers: {
                                     Authorization: `Bearer ${JWT}`,
                                   },
                                 }
                               );
+                              console.log(data);
                               router.replace(router.asPath);
                             }
                             deleteThing();
@@ -333,7 +336,8 @@ const Admin = ({
               className='button button__primary'
               onClick={() => {
                 setAddModal(true);
-              }}>
+              }}
+            >
               Add New Cabin
             </button>
           </div>
@@ -515,7 +519,8 @@ export const EditCabinModal = ({
                 }
               }
               editProd(values);
-            }}>
+            }}
+          >
             {({ errors, touched, values }: any) => (
               <Form>
                 <div className='flex flex-wrap justify-between sm:flex-row'>
@@ -674,7 +679,8 @@ export const EditCabinModal = ({
                       id='county'
                       name='county'
                       type='text'
-                      className='w-full p-2 border-solid border-primary border-2 rounded-lg'>
+                      className='w-full p-2 border-solid border-primary border-2 rounded-lg'
+                    >
                       <option value={cabin.county}>{cabin.county}</option>
                       <option value='Agder'>Agder</option>
                       <option value='Finnmark'>Finnmark</option>
@@ -817,13 +823,15 @@ export const EditCabinModal = ({
                               <button
                                 className='mr-3 hover:font-semibold'
                                 type='button'
-                                onClick={() => arrayHelpers.insert(index, '')}>
+                                onClick={() => arrayHelpers.insert(index, '')}
+                              >
                                 + Add more
                               </button>
                               <button
                                 className='hover:font-semibold'
                                 type='button'
-                                onClick={() => arrayHelpers.remove(index)}>
+                                onClick={() => arrayHelpers.remove(index)}
+                              >
                                 - Remove
                               </button>
                             </div>
@@ -832,7 +840,8 @@ export const EditCabinModal = ({
                       ) : (
                         <button
                           type='button'
-                          onClick={() => arrayHelpers.push('')}>
+                          onClick={() => arrayHelpers.push('')}
+                        >
                           Add an Image
                         </button>
                       )}
@@ -865,7 +874,8 @@ export const EditCabinModal = ({
         </div>
         <button
           onClick={closeModal}
-          className='button button__secondary mt-2 w-full'>
+          className='button button__secondary mt-2 w-full'
+        >
           Close
         </button>
       </div>
@@ -1020,7 +1030,8 @@ export const AddCabinModal = ({
                 }
               }
               editProd(values);
-            }}>
+            }}
+          >
             {({ errors, touched, values }) => (
               <Form>
                 <div className='flex flex-wrap justify-between sm:flex-row'>
@@ -1179,7 +1190,8 @@ export const AddCabinModal = ({
                       id='county'
                       name='county'
                       type='text'
-                      className='w-full p-2 border-solid border-primary border-2 rounded-lg'>
+                      className='w-full p-2 border-solid border-primary border-2 rounded-lg'
+                    >
                       <option value='Agder'>Agder</option>
                       <option value='Finnmark'>Finnmark</option>
                       <option value='Innlandet'>Innlandet</option>
@@ -1321,13 +1333,15 @@ export const AddCabinModal = ({
                               <button
                                 className='mr-3 hover:font-semibold'
                                 type='button'
-                                onClick={() => arrayHelpers.insert(index, '')}>
+                                onClick={() => arrayHelpers.insert(index, '')}
+                              >
                                 + Add more
                               </button>
                               <button
                                 className='hover:font-semibold'
                                 type='button'
-                                onClick={() => arrayHelpers.remove(index)}>
+                                onClick={() => arrayHelpers.remove(index)}
+                              >
                                 - Remove
                               </button>
                             </div>
@@ -1336,7 +1350,8 @@ export const AddCabinModal = ({
                       ) : (
                         <button
                           type='button'
-                          onClick={() => arrayHelpers.push('')}>
+                          onClick={() => arrayHelpers.push('')}
+                        >
                           Add an Image
                         </button>
                       )}
@@ -1369,7 +1384,8 @@ export const AddCabinModal = ({
         </div>
         <button
           onClick={closeModal}
-          className='button button__secondary mt-2 w-full'>
+          className='button button__secondary mt-2 w-full'
+        >
           Close
         </button>
       </div>
@@ -1391,7 +1407,8 @@ export const MessageModal = ({ open, closeModal, message }: any) => {
             subject: message.subject,
             message: message.message,
           }}
-          onSubmit={(values) => {}}>
+          onSubmit={(values) => {}}
+        >
           {({ errors, touched }) => (
             <Form>
               <div>
@@ -1454,7 +1471,8 @@ export const EnquiryModal = ({ open, closeModal, enquiry }: any) => {
             subject: enquiry.subject,
             message: enquiry.message,
           }}
-          onSubmit={(values) => {}}>
+          onSubmit={(values) => {}}
+        >
           {({ errors, touched }) => (
             <Form>
               <div className='flex flex-col sm:flex-row'>

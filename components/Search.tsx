@@ -137,7 +137,8 @@ function Search({
                 className='search search__filter !w-48 sm:ml-2'
                 onClick={() => {
                   handleOnSearch(filters);
-                }}>
+                }}
+              >
                 Filter
               </button>
               <button
@@ -146,7 +147,8 @@ function Search({
                   setQuery('');
                   onChange(null);
                   displayValue();
-                }}>
+                }}
+              >
                 Clear
               </button>
             </div>
@@ -183,7 +185,8 @@ function Search({
                 <ul
                   className={`${
                     open ? 'searchBar__dropDown z-20' : 'hidden'
-                  } absolute w-full`}>
+                  } absolute w-full`}
+                >
                   {filterCabins().map((cabin: cabinInterface) => {
                     return (
                       <li
@@ -194,7 +197,8 @@ function Search({
                         }}
                         onTouchEnd={() => {
                           selectCabin(cabin);
-                        }}>
+                        }}
+                      >
                         {cabin.title}
                       </li>
                     );
@@ -207,7 +211,8 @@ function Search({
                   setQuery('');
                   onChange(null);
                   displayValue();
-                }}>
+                }}
+              >
                 Clear
               </button>
             </div>

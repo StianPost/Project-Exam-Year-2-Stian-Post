@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 import { Field, Form, Formik } from 'formik';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { Icon } from '@iconify/react';
 import { IconObj } from './IconObj';
@@ -55,19 +55,25 @@ function Bookingmodal({
                 layout={'responsive'}
               />
               <h3 className='font-medium'>{cabin.title}</h3>
-              <div className='flex text-primary mb-4'>
+              <div className='flex text-primary mb-4 text-3xl'>
                 {
-                  <div className='pr-5 flex items-end pb-3'>
+                  <div className='pr-5 flex items-center pb-3'>
                     <Icon
                       icon='fa-solid:door-closed'
-                      className='text-3xl mr-1'
+                      className='mr-1 text-3xl'
                     />
-                    <p className='text-3xl'>{cabin.rooms}</p>
+                    <p className=''>{cabin.rooms}</p>
+                  </div>
+                }
+                {
+                  <div className='pr-5 flex items-center pb-3'>
+                    <Icon icon='fa-solid:bed' className='mr-1 text-3xl' />
+                    <p className=''>{cabin.beds}</p>
                   </div>
                 }
                 {cabin.isPets ? (
-                  <div className='pr-5 flex items-end pb-3'>
-                    <Icon icon='mdi:paw' className='text-3xl mr-1' />
+                  <div className='pr-5 flex items-center pb-3'>
+                    <Icon icon='mdi:paw' className='mr-1 text-3xl' />
                     <p>Pets Allowed</p>
                   </div>
                 ) : (
@@ -79,7 +85,7 @@ function Bookingmodal({
               </div>
               <div>
                 <h3>Amenities</h3>
-                <div className='flex flex-wrap'>
+                <div className='flex flex-wrap text-quinary'>
                   {cabin.isSlalom ? (
                     <div className='pr-5 flex items-end pb-3'>
                       <Icon icon='fa-solid:skiing' className='text-3xl mr-1' />
@@ -441,6 +447,7 @@ function CardDetails({
   cabinInfo: any;
 }) {
   const [totalPrice, setTotalPrice] = useState(0);
+  const [totalTaxesPrice, setTotalTaxesPrice] = useState(0);
   const SignupSchema = Yup.object().shape({
     paymentType: Yup.string().required('Payment type required'),
     price: Yup.number().required('You must pay a price'),
@@ -453,8 +460,8 @@ function CardDetails({
       .max(999, 'Incorrect CVC number, too many characters')
       .required('You must have a cvc/cvv number'),
     expDate: Yup.string()
-      .min(5, "that's wrong")
-      .max(5, "that's too much wrong")
+      .trim()
+      .matches(/^(0[1-9]|1[0-2])\/?([0-9]{4}|[0-9]{2})$/, 'Must be valid MM/YY')
       .required('you need an expiery date'),
   });
 
@@ -465,7 +472,12 @@ function CardDetails({
       const totalDate = endDate.diff(startDate, 'days');
 
       const calculation = cabinInfo.price * totalDate;
-      setTotalPrice(calculation);
+      const wTaxes = calculation * 1.25;
+
+      setTimeout(() => {
+        setTotalPrice(calculation);
+        setTotalTaxesPrice(wTaxes);
+      }, 300);
     }
     if (bookingInfo) calculateStay(bookingInfo);
   }, [bookingInfo, cabinInfo]);
@@ -488,12 +500,45 @@ function CardDetails({
         }}
         validationSchema={SignupSchema}
         onSubmit={(values: any): void => {
-          onSubmit(values);
+          onSubmit({ ...values, price: totalTaxesPrice });
           closed(true);
         }}
       >
         {({ errors, touched }) => (
           <Form>
+            <div className='w-full'>
+              <div className='flex-col'>
+                <div className='flex flex-col border-b border-quinary'>
+                  <div className='flex mb-1'>
+                    <p className='mr-4 font-light'>Price:</p>
+                    <p className='text-quinary'>{totalPrice} Nok</p>
+                  </div>
+                  <div className='flex mb-2'>
+                    <p className='mr-4 font-light'>Taxes:</p>
+                    <p className='text-quinary'>
+                      {totalTaxesPrice - totalPrice} Nok
+                    </p>
+                  </div>
+                </div>
+                <div className='w-full flex border-b my-2 font-semibold border-quinary text-lg'>
+                  <p className='mr-4'>Total:</p>
+                  <p>{totalTaxesPrice} Nok</p>
+                </div>
+              </div>
+              <label htmlFor='price' className='mt-4'></label>
+              <Field
+                id='price'
+                name='price'
+                type='number'
+                disabled
+                value={totalPrice}
+                className='w-full hidden p-2 border-b-2 border-primary '
+              />
+              {errors.price && touched.price ? (
+                <div className='text-red-600 font-semibold'>{errors.price}</div>
+              ) : null}
+            </div>
+
             <div className='flex'>
               <div className='pr-1'>
                 <label htmlFor='paymentType'>Payment-type:</label>
@@ -513,24 +558,6 @@ function CardDetails({
                 {errors.paymentType && touched.paymentType ? (
                   <div className='text-red-600 font-semibold'>
                     {errors.paymentType}
-                  </div>
-                ) : null}
-              </div>
-              <div className='pl-1'>
-                <label htmlFor='price' className='mt-4'>
-                  Price:
-                </label>
-                <Field
-                  id='price'
-                  name='price'
-                  type='number'
-                  value={totalPrice}
-                  disabled
-                  className='w-full p-2 border-solid border-primary border-2 rounded-lg'
-                />
-                {errors.price && touched.price ? (
-                  <div className='text-red-600 font-semibold'>
-                    {errors.price}
                   </div>
                 ) : null}
               </div>

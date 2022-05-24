@@ -10,6 +10,7 @@ module.exports = {
         secondary: '#f2fcfe',
         tertiary: '#1c1212',
         quaterary: '#ed7c00',
+        quinary: '#54494B',
       },
       screens: {
         xs: '360px',
