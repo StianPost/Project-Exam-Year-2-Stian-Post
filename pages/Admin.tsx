@@ -10,9 +10,9 @@ import { useEffect, useState } from 'react';
 
 import { BaseURL } from '../lib/const';
 import Box from '@mui/material/Box';
-import Footer from './layout/Footer';
+import Footer from '../components/layout/Footer';
 import Head from 'next/head';
-import Header from './layout/Header';
+import Header from '../components/layout/Header';
 import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import Tab from '@mui/material/Tab';

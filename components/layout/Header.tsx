@@ -1,4 +1,4 @@
-import Login, { LoginModal } from '../../components/Login';
+import Login, { LoginModal } from '../Login';
 import React, { useEffect, useState } from 'react';
 import { Router, useRouter } from 'next/router';
 

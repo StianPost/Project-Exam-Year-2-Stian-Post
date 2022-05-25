@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 
 import { BaseURL } from '../lib/const';
 import axios from 'axios';
-import { useRouter } from 'next/router';
 
 const SignupSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -35,9 +34,7 @@ const ContactForm = () => {
       let response = await axios.post(BaseURL + '/contact-messages', values);
       setIsError(false);
       setIsSent(true);
-      console.log(response);
     } catch (err: any) {
-      console.log(err.response.data.message);
       setIsError(true);
       setIsSent(false);
     }
@@ -53,7 +50,6 @@ const ContactForm = () => {
         }}
         validationSchema={SignupSchema}
         onSubmit={(values) => {
-          // same shape as initial values
           handleSubmit(values);
         }}
       >

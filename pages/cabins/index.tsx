@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 import { BaseURL } from '../../lib/const';
-import Footer from '../layout/Footer';
+import Footer from '../../components/layout/Footer';
 import Head from 'next/head';
-import Header from '../layout/Header';
-import { Icon } from '@iconify/react';
-import Link from 'next/link';
-import type { NextPage } from 'next';
-import Resultcards from '../../components/Resultcards';
+import Header from '../../components/layout/Header';
 import Search from '../../components/Search';
 import axios from 'axios';
 import { getCabins } from '../../lib/api';

@@ -17,14 +17,17 @@ const SignupSchema = Yup.object().shape({
 const LoginComponent = () => {
   const router = useRouter();
   const [isError, setIsError] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const handleSubmit = async (values: any) => {
     try {
       const response = await axios.post('/api/login', { ...values });
       router.push('/Admin');
       setIsError(false);
+      setIsSuccess(true);
     } catch (err: any) {
       setIsError(true);
+      setIsSuccess(false);
     }
   };
 
@@ -76,6 +79,11 @@ const LoginComponent = () => {
               <div className='text-red-600 font-semibold'>
                 Invalid Email or Password
               </div>
+            ) : (
+              ''
+            )}
+            {isSuccess ? (
+              <div className='text-green-600 font-semibold'>Success</div>
             ) : (
               ''
             )}

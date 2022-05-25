@@ -3,6 +3,7 @@ import { cabinArray, cabinInterface } from '../lib/types';
 
 import { BaseURL } from '../lib/const';
 import Homecards from './Homecards';
+import Image from 'next/image';
 import axios from 'axios';
 
 function FeaturedCards() {
@@ -14,7 +15,20 @@ function FeaturedCards() {
     })();
   }, []);
 
-  if (cabins.length === 0) return <h3>Loading...</h3>;
+  if (cabins.length === 0)
+    return (
+      <div className='flex flex-col items-center w-full justify-center'>
+        <p className=''>Loading...</p>
+        <div>
+          <Image
+            src={'/loadingGif.gif'}
+            alt='loading gif'
+            width={250}
+            height={250}
+          />
+        </div>
+      </div>
+    );
 
   const featuredSortedArray: cabinInterface[] = [];
 

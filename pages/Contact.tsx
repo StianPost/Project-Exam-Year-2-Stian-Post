@@ -1,7 +1,7 @@
 import ContactForm from '../components/ContactForm';
-import Footer from './layout/Footer';
+import Footer from '../components/layout/Footer';
 import Head from 'next/head';
-import Header from './layout/Header';
+import Header from '../components/layout/Header';
 import type { NextPage } from 'next';
 
 const Contact: NextPage = () => {

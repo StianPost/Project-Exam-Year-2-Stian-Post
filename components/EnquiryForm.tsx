@@ -41,15 +41,16 @@ interface MyFormValueTypes {
 const EnquiryForm = ({ cabin }: { cabin: cabinInterface }) => {
   const router = useRouter();
   const [isError, setIsError] = useState(false);
+  const [isSent, setIsSent] = useState(false);
 
   const handleSubmit = async (values: any) => {
-    console.log(values);
     try {
       let response = await axios.post(BaseURL + '/enquiries', values);
       setIsError(false);
+      setIsSent(true);
       console.log(response);
     } catch (err: any) {
-      console.log(err.response.data.message);
+      setIsSent(false);
       setIsError(true);
     }
   };
@@ -168,6 +169,13 @@ const EnquiryForm = ({ cabin }: { cabin: cabinInterface }) => {
             {isError ? (
               <div className='text-red-600 font-semibold'>
                 something went wrong, please try again later
+              </div>
+            ) : (
+              ''
+            )}
+            {isSent ? (
+              <div className='text-green-600 font-semibold'>
+                Enquiry is sent, thank you for the message
               </div>
             ) : (
               ''
