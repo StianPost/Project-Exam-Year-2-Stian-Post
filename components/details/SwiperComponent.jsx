@@ -18,7 +18,7 @@ import Image from 'next/image';
 export default function SwiperComponent({ heroImg, imgArray }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(undefined);
 
-  const myLoader = ({ width = 500, quality = 50 }) => {
+  const myLoader = ({ width = 500, quality = 100 }) => {
     return `${heroImg}?w=${width}&q=${quality || 75}`;
   };
 
@@ -53,7 +53,7 @@ export default function SwiperComponent({ heroImg, imgArray }) {
           </div>
         </SwiperSlide>
         {imgArray.map(({ id, imgUrl }) => {
-          const arrayLoader = ({ width = 50, quality = 20 }) => {
+          const arrayLoader = ({ width = 100, quality = 20 }) => {
             return `${imgUrl}?w=${width}&q=${quality || 75}`;
           };
           return (

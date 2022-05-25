@@ -109,7 +109,6 @@ export function Tabs({
                         icon='fa-solid:trash-alt'
                         className='hover:text-red-600 hover:cursor-pointer'
                         onClick={() => {
-                          console.log(JWT);
                           let deleteProd = confirm(
                             `are you sure you want to delete this Message?`
                           );
