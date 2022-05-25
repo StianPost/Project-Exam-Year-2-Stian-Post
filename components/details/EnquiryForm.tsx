@@ -3,9 +3,9 @@ import * as Yup from 'yup';
 import { Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 
-import { BaseURL } from '../lib/const';
+import { BaseURL } from '../../lib/const';
 import axios from 'axios';
-import { cabinInterface } from '../lib/types';
+import { cabinInterface } from '../../lib/types';
 import { useRouter } from 'next/router';
 
 const SignupSchema = Yup.object().shape({

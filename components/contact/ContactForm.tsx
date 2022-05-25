@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import { Field, Form, Formik } from 'formik';
 import React, { useState } from 'react';
 
-import { BaseURL } from '../lib/const';
+import { BaseURL } from '../../lib/const';
 import axios from 'axios';
 
 const SignupSchema = Yup.object().shape({

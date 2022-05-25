@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { cabinArray, cabinInterface } from '../lib/types';
+import { cabinArray, cabinInterface } from '../../lib/types';
 
-import { BaseURL } from '../lib/const';
+import { BaseURL } from '../../lib/const';
 import Homecards from './Homecards';
 import Image from 'next/image';
 import axios from 'axios';

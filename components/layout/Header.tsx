@@ -181,9 +181,7 @@ function MobileNav({
         <ul className='flex flex-col h-full text-primary items-center justify-evenly text-2xl'>
           <Link href='/'>
             <a
-              className={
-                router.pathname === '/' ? 'font-bold' : 'hover:font-bold'
-              }
+              className={router.pathname === '/' ? 'active' : 'hover:active'}
               onClick={toggleMenu}
             >
               Home
@@ -192,7 +190,7 @@ function MobileNav({
           <Link href='/cabins'>
             <a
               className={
-                router.pathname === '/cabins' ? 'font-bold' : 'hover:font-bold'
+                router.pathname === '/cabins' ? 'active' : 'hover:active'
               }
               onClick={toggleMenu}
             >
@@ -202,7 +200,7 @@ function MobileNav({
           <Link href='/Contact'>
             <a
               className={
-                router.pathname === '/Contact' ? 'font-bold' : 'hover:font-bold'
+                router.pathname === '/Contact' ? 'active' : 'hover:active'
               }
               onClick={toggleMenu}
             >
@@ -213,7 +211,7 @@ function MobileNav({
             <Link href='/Admin'>
               <a
                 className={
-                  router.pathname === '/Admin' ? 'font-bold' : 'hover:font-bold'
+                  router.pathname === '/Admin' ? 'active' : 'hover:active'
                 }
                 onClick={toggleMenu}
               >

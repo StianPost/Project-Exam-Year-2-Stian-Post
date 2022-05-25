@@ -4,9 +4,9 @@ import { Field, Form, Formik } from 'formik';
 import React, { useEffect, useRef, useState } from 'react';
 
 import { Icon } from '@iconify/react';
-import { IconObj } from './IconObj';
+import { IconObj } from '../IconObj';
 import Image from 'next/image';
-import { cabinInterface } from '../lib/types';
+import { cabinInterface } from '../../lib/types';
 import moment from 'moment';
 
 interface bookingDetails {

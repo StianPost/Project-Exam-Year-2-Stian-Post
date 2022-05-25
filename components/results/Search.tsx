@@ -1,12 +1,12 @@
 import React, { TouchEvent, useEffect, useRef, useState } from 'react';
 
-import { BaseURL } from '../lib/const';
+import { BaseURL } from '../../lib/const';
 import DropDownFilter from './DropDownFilter';
 import { Icon } from '@iconify/react';
 import MoneySlider from './MoneySlider';
 import Resultcards from './Resultcards';
 import axios from 'axios';
-import { cabinInterface } from '../lib/types';
+import { cabinInterface } from '../../lib/types';
 
 function Search({
   cabins,

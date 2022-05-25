@@ -4,7 +4,7 @@ import { BaseURL } from '../../lib/const';
 import Footer from '../../components/layout/Footer';
 import Head from 'next/head';
 import Header from '../../components/layout/Header';
-import Search from '../../components/Search';
+import Search from '../../components/results/Search';
 import axios from 'axios';
 import { getCabins } from '../../lib/api';
 import { stringify } from 'query-string';

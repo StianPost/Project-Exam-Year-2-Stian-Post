@@ -1,5 +1,5 @@
 import { BaseURL } from '../lib/const';
-import FeaturedCards from '../components/FeaturedCards';
+import FeaturedCards from '../components/home/FeaturedCards';
 import Footer from '../components/layout/Footer';
 import Head from 'next/head';
 import Header from '../components/layout/Header';

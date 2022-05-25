@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
 import { BaseURL } from '../../lib/const';
-import Bookingmodal from '../../components/Bookingmodal';
-import Enquirymodal from '../../components/Enquirymodal';
+import Bookingmodal from '../../components/details/Bookingmodal';
+import Enquirymodal from '../../components/details/Enquirymodal';
 import Footer from '../../components/layout/Footer';
 import Head from 'next/head';
 import Header from '../../components/layout/Header';
 import { Icon } from '@iconify/react';
 import Image from 'next/image';
-import SwiperComponent from '../../components/SwiperComponent';
+import SwiperComponent from '../../components/details/SwiperComponent';
 import axios from 'axios';
 import { cabinInterface } from '../../lib/types';
 import { getCabins } from '../../lib/api';

@@ -20,7 +20,7 @@
     "**/*.ts",
     "**/*.tsx",
     "pages/cabin/[id].jsx",
-    "components/SwiperComponent.jsx",
+    "components/details/SwiperComponent.jsx",
     "pages/api/logout.js",
     "pages/api/login.js"
   ],
