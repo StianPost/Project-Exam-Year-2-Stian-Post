@@ -1,6 +1,6 @@
 import { destroyCookie } from 'nookies';
 
-export default async function login(req: any, res: any) {
+export default async function logout(req: any, res: any) {
   destroyCookie({ res }, 'jwt', {
     path: '/',
   });

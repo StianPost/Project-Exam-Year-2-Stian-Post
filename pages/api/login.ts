@@ -3,7 +3,7 @@ import { BaseURL } from '../../lib/const';
 import axios from 'axios';
 import { setCookie } from 'nookies';
 
-export default async function test(req: any, res: any) {
+export default async function login(req: any, res: any) {
   const { password, identifier } = req.body;
 
   try {
