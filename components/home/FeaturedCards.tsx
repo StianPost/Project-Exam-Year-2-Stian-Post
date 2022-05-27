@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { cabinArray, cabinInterface } from '../../lib/types';
 
 import { BaseURL } from '../../lib/const';
 import Homecards from './Homecards';
-import Image from 'next/image';
 import axios from 'axios';
+import { cabinInterface } from '../../lib/types';
 
 function FeaturedCards() {
   const [cabins, setCabins] = useState<cabinInterface[] | []>([]);

@@ -1,9 +1,7 @@
 import EnquiryForm from './EnquiryForm';
 import { Icon } from '@iconify/react';
-import { IconObj } from './IconObj';
-import Image from 'next/image';
 import React from 'react';
-import { cabinInterface } from '../lib/types';
+import { cabinInterface } from '../../lib/types';
 
 function Enquirymodal({
   onClose,
@@ -14,9 +12,6 @@ function Enquirymodal({
   open: boolean;
   cabin: cabinInterface;
 }) {
-  const myLoader = ({ width = 100, quality = 50 }) => {
-    return `${cabin.heroImg}?w=${width}&q=${quality || 75}`;
-  };
   if (!open) return null;
   return (
     <>

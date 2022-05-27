@@ -9,12 +9,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Image from 'next/image';
 
-// Import Swiper React components
-
-// Import Swiper styles
-
-// import required modules
-
 export default function SwiperComponent({ heroImg, imgArray }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(undefined);
 
