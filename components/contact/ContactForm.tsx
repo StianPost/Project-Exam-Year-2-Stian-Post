@@ -29,7 +29,6 @@ const ContactForm = () => {
   const [isSent, setIsSent] = useState(false);
 
   const handleSubmit = async (values: any) => {
-    console.log(values);
     try {
       let response = await axios.post(BaseURL + '/contact-messages', values);
       setIsError(false);

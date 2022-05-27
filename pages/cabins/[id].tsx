@@ -113,7 +113,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
         <div className='flex flex-col-reverse items-start px-2  md:justify-between md:px-4 lg:px-10 md:flex-row xl:px-20'>
           <div>
             <h1>{title}</h1>
-            <h3>{adress}</h3>
+            <p className='pl-1'>{adress}</p>
           </div>
           <div className='flex pt-8'>
             <button
@@ -140,7 +140,10 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
               <h2>Description</h2>
               <div className='flex text-primary items-end'>
                 <div className='flex items-end'>
-                  <Icon icon='fa-solid:bed' className='text-4xl  ml-4 mr-1' />
+                  <Icon
+                    icon='fa-solid:bed'
+                    className='text-4xl  md:ml-4 mr-1'
+                  />
                   <p className='font-bold text-2xl'>{beds}</p>
                 </div>
                 <div className='flex items-end'>
@@ -162,18 +165,18 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
             <h3>Amenities</h3>
             <div className='flex flex-wrap py-1 text-quinary'>
               {isPets ? (
-                <div className='pr-3 flex items-end'>
+                <div className='pr-3 py-1 flex items-end '>
                   <Icon icon='mdi:paw' className='text-3xl mr-1' />
                   <p>Pets Allowed</p>
                 </div>
               ) : (
-                <div className='pr-3 flex items-end'>
+                <div className='pr-3 py-1 flex items-end '>
                   <Icon icon='mdi:paw-off' className='text-3xl mr-1' />
                   <p>No pets</p>
                 </div>
               )}
               {isSlalom ? (
-                <div className='pr-3 flex items-end'>
+                <div className='pr-3 py-1 flex items-end '>
                   <Icon icon='fa-solid:skiing' className='text-3xl mr-1' />
                   <p>Slalom</p>
                 </div>
@@ -181,7 +184,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
                 ''
               )}
               {isHiking ? (
-                <div className='pr-3 flex items-end'>
+                <div className='pr-3 py-1 flex items-end '>
                   <Icon icon='fa-solid:hiking' className='text-3xl mr-1' />
                   <p>Hiking</p>
                 </div>
@@ -189,7 +192,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
                 ''
               )}
               {isSkiing ? (
-                <div className='pr-3 flex items-end'>
+                <div className='pr-3 py-1 flex items-end '>
                   <Icon
                     icon='fa-solid:skiing-nordic'
                     className='text-3xl mr-1'
@@ -200,7 +203,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
                 ''
               )}
               {isWateractives ? (
-                <div className='pr-3 flex items-end'>
+                <div className='pr-3 py-1 flex items-end '>
                   <Icon icon='map:jet-skiing' className='text-3xl mr-1' />
                   <p>Water Activities</p>
                 </div>
@@ -208,7 +211,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
                 ''
               )}
               {isWinterActivities ? (
-                <div className='pr-3 flex items-end'>
+                <div className='pr-3 py-1 flex items-end '>
                   <Icon
                     icon='fa-solid:snowboarding'
                     className='text-3xl mr-1'
@@ -219,7 +222,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
                 ''
               )}
               {isFire ? (
-                <div className='pr-3 flex items-end'>
+                <div className='pr-3 py-1 flex items-end '>
                   <Icon icon='mdi:fireplace' className='text-3xl mr-1' />
                   <p>Fireplace</p>
                 </div>
@@ -227,7 +230,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
                 ''
               )}
               {isElectricity ? (
-                <div className='pr-3 flex items-end'>
+                <div className='pr-3 py-1 flex items-end '>
                   <Icon icon='entypo:power-plug' className='text-3xl mr-1' />
                   <p>Electricity</p>
                 </div>
@@ -235,7 +238,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
                 ''
               )}
               {isPool ? (
-                <div className='pr-3 flex items-end'>
+                <div className='pr-3 py-1 flex items-end '>
                   <Icon
                     icon='fa-solid:swimming-poo'
                     className='text-3xl mr-1'
@@ -246,12 +249,12 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
                 ''
               )}
               {isToilet ? (
-                <div className='pr-3 flex items-end'>
+                <div className='pr-3 py-1 flex items-end '>
                   <Icon icon='fa6-solid:toilet' className='text-3xl mr-1' />
                   <p>Indoor Toilet</p>
                 </div>
               ) : (
-                <div className='pr-3 flex items-end'>
+                <div className='pr-3 py-1 flex items-end '>
                   <Icon
                     icon='fa6-solid:toilet-portable'
                     className='text-3xl mr-1'
@@ -260,7 +263,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
                 </div>
               )}
               {isWater ? (
-                <div className='pr-3 flex items-end'>
+                <div className='pr-3 py-1 flex items-end '>
                   <Icon
                     icon='fa-solid:swimming-pool'
                     className='text-3xl mr-1'
@@ -271,7 +274,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
                 ''
               )}
               {isBeach ? (
-                <div className='pr-3 flex items-end'>
+                <div className='pr-3 py-1 flex items-end '>
                   <Icon
                     icon='fa6-solid:umbrella-beach
                     '
@@ -283,7 +286,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
                 ''
               )}
               {isSnow ? (
-                <div className='pr-3 flex items-end'>
+                <div className='pr-3 py-1 flex items-end '>
                   <Icon icon='bi:cloud-snow-fill' className='text-3xl mr-1' />
                   <p>Snow</p>
                 </div>
@@ -291,7 +294,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
                 ''
               )}
               {isSea ? (
-                <div className='pr-3 flex items-end'>
+                <div className='pr-3 py-1 flex items-end '>
                   <Icon icon='fa6-solid:water' className='text-3xl mr-1' />
                   <p>Sea</p>
                 </div>
@@ -299,7 +302,7 @@ const Cabin = ({ cabin, id }: { cabin: cabinInterface; id: string }) => {
                 ''
               )}
               {isMountain ? (
-                <div className='pr-3 flex items-end'>
+                <div className='pr-3 py-1 flex items-end '>
                   <Icon icon='fa-solid:mountain' className='text-3xl mr-1' />
                   <p>Mountain</p>
                 </div>

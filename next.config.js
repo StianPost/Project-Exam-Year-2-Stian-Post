@@ -9,6 +9,10 @@ module.exports = {
   images: {
     domains: ['netlify.app', 'super-elf-132559.netlify.app'],
   },
+  i18n: {
+    locales: ['en'],
+    defaultLocale: 'en',
+  },
 };
 
 const nextConfig = {

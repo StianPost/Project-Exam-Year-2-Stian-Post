@@ -32,12 +32,6 @@ You'll be able to log in as an Admin and add new cabins, look at messages both f
 
 Links to use:
 
-Typeahead: https://mui.com/components/autocomplete/
-
-Slider: https://mui.com/components/slider/
-
-DatePicker: https://www.npmjs.com/package/react-datepicker
-
 apiCAll: https://www.youtube.com/watch?v=zueyEdRZQlk
 
 typeAhead: https://www.youtube.com/watch?v=elC357w9VOA

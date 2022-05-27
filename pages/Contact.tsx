@@ -24,9 +24,9 @@ const Contact: NextPage = () => {
           </div>
         </div>
         <div className='flex flex-col-reverse mb-4 items-center md:items-start md:justify-evenly px-2 mt-8 md:flex-row sm:px-10'>
-          <div className='md:w-1/2 pr-8'>
+          <div className='md:w-1/2 sm:pr-8'>
             <div className='mb-6'>
-              <h2 className='mb-4'>Learn More</h2>
+              <h2 className='text-center sm:text-left mb-4'>Learn More</h2>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Est,
                 tortor purus rutrum morbi placerat. Pellentesque donec leo,
@@ -44,7 +44,7 @@ const Contact: NextPage = () => {
               </p>
             </div>
             <div>
-              <h3 className='mb-4'>About us</h3>
+              <h3 className='text-center sm:text-left mb-4'>About us</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Est,
                 tortor purus rutrum morbi placerat. Pellentesque donec leo,

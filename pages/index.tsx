@@ -30,8 +30,8 @@ const Home = () => {
       <Header />
       <main>
         <div className='heroImg loadingBG relative'>
-          <div className='heroOverlay text-white flex flex-col pt-32 justify-center items-center'>
-            <h1 className=''>Visit Norway Today!</h1>
+          <div className='heroOverlay text-white flex flex-col sm:pt-32 justify-center items-center'>
+            <h1>Visit Norway Today!</h1>
             <p className='max-w-4xl mb-4 font-medium'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ligula
               etiam purus proin amet neque, lobortis accumsan. Eget libero enim

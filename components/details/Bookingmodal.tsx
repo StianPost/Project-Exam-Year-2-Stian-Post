@@ -1,10 +1,9 @@
 import * as Yup from 'yup';
 
 import { Field, Form, Formik } from 'formik';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Icon } from '@iconify/react';
-import { IconObj } from '../IconObj';
 import Image from 'next/image';
 import { cabinInterface } from '../../lib/types';
 import moment from 'moment';
@@ -522,39 +521,6 @@ function CardDetails({
       >
         {({ errors, touched }) => (
           <Form>
-            <div className='w-full'>
-              <div className='flex-col'>
-                <div className='flex flex-col border-b border-quinary'>
-                  <div className='flex mb-1'>
-                    <p className='mr-4 font-light'>Price:</p>
-                    <p className='text-quinary'>{totalPrice} Nok</p>
-                  </div>
-                  <div className='flex mb-2'>
-                    <p className='mr-4 font-light'>Taxes:</p>
-                    <p className='text-quinary'>
-                      {totalTaxesPrice - totalPrice} Nok
-                    </p>
-                  </div>
-                </div>
-                <div className='w-full flex border-b my-2 font-semibold border-quinary text-lg'>
-                  <p className='mr-4'>Total:</p>
-                  <p>{totalTaxesPrice} Nok</p>
-                </div>
-              </div>
-              <label htmlFor='price' className='mt-4'></label>
-              <Field
-                id='price'
-                name='price'
-                type='number'
-                disabled
-                value={totalPrice}
-                className='w-full hidden p-2 border-b-2 border-primary '
-              />
-              {errors.price && touched.price ? (
-                <div className='text-red-600 font-semibold'>{errors.price}</div>
-              ) : null}
-            </div>
-
             <div className='flex'>
               <div className='pr-1'>
                 <label htmlFor='paymentType'>Payment-type:</label>
@@ -626,6 +592,38 @@ function CardDetails({
                   </div>
                 ) : null}
               </div>
+            </div>
+            <div className='w-full sm:w-3/4 m-auto mt-4'>
+              <div className='flex-col'>
+                <div className='flex flex-col border-b border-quinary'>
+                  <div className='flex justify-between mb-1'>
+                    <p className='mr-4 font-light'>Price:</p>
+                    <p className='text-quinary'>{totalPrice} Nok</p>
+                  </div>
+                  <div className='flex justify-between mb-2'>
+                    <p className='mr-4 font-light'>Taxes:</p>
+                    <p className='text-quinary'>
+                      {totalTaxesPrice - totalPrice} Nok
+                    </p>
+                  </div>
+                </div>
+                <div className='w-full justify-between flex border-b my-2 font-semibold border-quinary text-lg'>
+                  <p className='mr-4'>Total:</p>
+                  <p>{totalTaxesPrice} Nok</p>
+                </div>
+              </div>
+              <label htmlFor='price' className='mt-4'></label>
+              <Field
+                id='price'
+                name='price'
+                type='number'
+                disabled
+                value={totalPrice}
+                className='w-full hidden p-2 border-b-2 border-primary '
+              />
+              {errors.price && touched.price ? (
+                <div className='text-red-600 font-semibold'>{errors.price}</div>
+              ) : null}
             </div>
             <button
               className='button button__secondary w-full mt-4'

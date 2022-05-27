@@ -85,7 +85,6 @@ function Search({
                       return val.value;
                     });
                     setFilters({ ...filters, county: locations });
-                    console.log('county', locations);
                   }}
                 />
               </div>
@@ -290,7 +289,7 @@ function Search({
                   handleOnChange={(value: any) => {
                     const Activities = value.map((val: any) => {
                       if (filters) {
-                        console.log('value', val.value);
+                        // 'value', val.value;
                       }
                       setFilters({ ...filters, [val.value]: true });
                       console.log('filters', filters);

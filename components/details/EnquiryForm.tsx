@@ -48,7 +48,6 @@ const EnquiryForm = ({ cabin }: { cabin: cabinInterface }) => {
       let response = await axios.post(BaseURL + '/enquiries', values);
       setIsError(false);
       setIsSent(true);
-      console.log(response);
     } catch (err: any) {
       setIsSent(false);
       setIsError(true);
