@@ -24,6 +24,9 @@
     &:hover {
       background-color: var(--color-primary);
       color: var(--color-white);
+      & svg {
+        color: var(--color-white);
+      }
     }
   }
 }
@@ -91,27 +94,15 @@
   }
 }
 
-.dateRangePicker {
+.datePicker {
   border: 1px solid #cccccc;
   background: #fff;
-  border-radius: 0.5rem;
-  outline: none;
-}
-.rs-picker-default {
-  border: none;
-}
-.rs-picker-toggle {
-  border: none;
-}
-.rs-picker {
-  :hover {
-    border: 1px solid #cccccc !important;
-  }
-  :focus {
-    border: 1px solid #cccccc !important;
-    box-shadow: none !important;
-    outline: none !important;
-  }
+  width: 100%;
+  height: auto;
+  border-radius: 0.3rem;
+  padding: 0px 10px;
+  color: #808080;
+  max-height: 38px;
 }
 
 .searchBar {

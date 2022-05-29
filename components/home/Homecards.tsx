@@ -80,13 +80,13 @@ function Homecards({
           )}
         </div>
       </div>
-      <div className='p-3 h-64 flex flex-col justify-between'>
+      <div className='p-3 featuredCardInfo flex flex-col justify-between'>
         <div>
           <h4 className='font-bold'>{title}</h4>
           <p>{short_description}</p>
         </div>
         <div className=''>
-          <div className='flex flex-col justify-between mt-2 xs:flex-row'>
+          <div className='flex h-full flex-col justify-between mt-2 xs:flex-row'>
             <div className='flex text-primary items-end'>
               <div className='flex items-end'>
                 <Icon icon='fa-solid:bed' className='text-4xl mr-1' />

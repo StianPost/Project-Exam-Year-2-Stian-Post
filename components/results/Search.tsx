@@ -1,11 +1,10 @@
-import React, { TouchEvent, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-import { BaseURL } from '../../lib/const';
 import DropDownFilter from './DropDownFilter';
 import { Icon } from '@iconify/react';
 import MoneySlider from './MoneySlider';
 import Resultcards from './Resultcards';
-import axios from 'axios';
+
 import { cabinInterface } from '../../lib/types';
 
 function Search({
@@ -88,6 +87,9 @@ function Search({
                   }}
                 />
               </div>
+              <div className='w-full flex mt-2 sm:max-w-xs  sm:mt-0 sm:ml-4'>
+                <input className='datePicker' type={'date'} />
+              </div>
               <div className='w-full mt-2 sm:max-w-xs  sm:mt-0 sm:ml-4'>
                 <DropDownFilter
                   selectOptions={[
@@ -136,8 +138,10 @@ function Search({
                 className='search search__filter !w-48 sm:ml-2'
                 onClick={() => {
                   handleOnSearch(filters);
-                }}
-              >
+                  setQuery('');
+                  onChange(null);
+                  displayValue();
+                }}>
                 Filter
               </button>
               <button
@@ -146,8 +150,7 @@ function Search({
                   setQuery('');
                   onChange(null);
                   displayValue();
-                }}
-              >
+                }}>
                 Clear
               </button>
             </div>
@@ -184,8 +187,7 @@ function Search({
                 <ul
                   className={`${
                     open ? 'searchBar__dropDown z-20' : 'hidden'
-                  } absolute`}
-                >
+                  } absolute`}>
                   {filterCabins().map((cabin: cabinInterface) => {
                     return (
                       <li
@@ -196,8 +198,7 @@ function Search({
                         }}
                         onTouchEnd={() => {
                           selectCabin(cabin);
-                        }}
-                      >
+                        }}>
                         {cabin.title}
                       </li>
                     );
@@ -210,8 +211,7 @@ function Search({
                   setQuery('');
                   onChange(null);
                   displayValue();
-                }}
-              >
+                }}>
                 Clear
               </button>
             </div>
@@ -226,10 +226,10 @@ function Search({
             Showing {filterCabins().length} out of {cabinArrayLength} Cabins
           </p>
 
-          <div className='button button__secondary flex items-center'>
+          <div className='button button__secondary flex items-center hover:cursor-pointer'>
             Sort
             <Icon
-              className=' text-primary text-2xl'
+              className='text-primary text-2xl'
               icon='ant-design:caret-down-outlined'
             />
           </div>
@@ -249,11 +249,7 @@ function Search({
                   ]}
                   filterType={'Amenities'}
                   isMulti={true}
-                  handleOnChange={(value: any) => {
-                    const Amenities = value.map((val: any) => {
-                      console.log('neAmenitiesnities', val.value);
-                    });
-                  }}
+                  handleOnChange={(value: any) => {}}
                 />
               </div>
               <div className='w-full mt-2 md:mt-0 md:max-w-xs md:ml-1 md:mr-1 lg:ml-0 lg:mr-0 lg:mt-2'>
@@ -267,11 +263,7 @@ function Search({
                   ]}
                   filterType={'Locations'}
                   isMulti={true}
-                  handleOnChange={(value: any) => {
-                    const Locations = value.map(({ val }: any) => {
-                      setFilters({ ...filters, [val]: true });
-                    });
-                  }}
+                  handleOnChange={(value: any) => {}}
                 />
               </div>
               <div className='w-full mt-2 md:mt-0 md:max-w-xs md:ml-1 lg:ml-0 lg:mt-2'>
@@ -286,16 +278,7 @@ function Search({
                   ]}
                   filterType={'Activities'}
                   isMulti={true}
-                  handleOnChange={(value: any) => {
-                    const Activities = value.map((val: any) => {
-                      if (filters) {
-                        // 'value', val.value;
-                      }
-                      setFilters({ ...filters, [val.value]: true });
-                      console.log('filters', filters);
-                    });
-                    console.log('Array', Activities);
-                  }}
+                  handleOnChange={(value: any) => {}}
                 />
               </div>
             </div>
