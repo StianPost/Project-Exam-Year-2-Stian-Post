@@ -1,8 +1,7 @@
 import Login, { LoginModal } from '../Login';
 import React, { useEffect, useState } from 'react';
-import { Router, useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 
-import type { AppProps } from 'next/app';
 import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,7 +10,6 @@ import { parseCookies } from 'nookies';
 function Header(): any {
   const [menuActive, setMenuState] = useState(false);
   const [toggleLogin, setToggleLogin] = useState(false);
-  const router = useRouter();
 
   const toggleMenu = (): void => {
     setMenuState(!menuActive);
@@ -42,8 +40,7 @@ function Header(): any {
           <div
             className={`fixed w-full z-20 left-0 top-0 p-2 sm:hidden ${
               menuActive ? 'bg-secondary' : 'bg-white'
-            }`}
-          >
+            }`}>
             <div className='flex justify-between items-center'>
               <Link href='/'>
                 <a>
@@ -112,8 +109,7 @@ function DesktopNav({ jwt, toggleLogin }: { jwt: string; toggleLogin: any }) {
           <a
             className={`desktopNavA ${
               router.pathname === '/' ? 'active' : 'inActive'
-            }`}
-          >
+            }`}>
             Home
           </a>
         </Link>
@@ -121,8 +117,7 @@ function DesktopNav({ jwt, toggleLogin }: { jwt: string; toggleLogin: any }) {
           <a
             className={`desktopNavA ${
               router.pathname === '/cabins' ? 'active ' : 'inActive'
-            }`}
-          >
+            }`}>
             Cabins
           </a>
         </Link>
@@ -130,8 +125,7 @@ function DesktopNav({ jwt, toggleLogin }: { jwt: string; toggleLogin: any }) {
           <a
             className={`desktopNavA ${
               router.pathname === '/Contact' ? 'active' : 'inActive '
-            }`}
-          >
+            }`}>
             Contact
           </a>
         </Link>
@@ -140,8 +134,7 @@ function DesktopNav({ jwt, toggleLogin }: { jwt: string; toggleLogin: any }) {
             <a
               className={`desktopNavA ${
                 router.pathname === '/Admin' ? 'active ' : 'inActive'
-              }`}
-            >
+              }`}>
               Admin
             </a>
           </Link>
@@ -175,31 +168,27 @@ function MobileNav({
     <div
       className={`bg-secondary z-10 fixed w-full h-screen top-0 left-0 ${
         menuActive ? '' : 'hidden'
-      }`}
-    >
+      }`}>
       <div className='h-full py-24'>
         <ul className='flex flex-col h-full text-primary items-center justify-evenly text-2xl'>
           <Link href='/'>
             <a
               className={router.pathname === '/' ? 'active' : 'inActive'}
-              onClick={toggleMenu}
-            >
+              onClick={toggleMenu}>
               Home
             </a>
           </Link>
           <Link href='/cabins'>
             <a
               className={router.pathname === '/cabins' ? 'active' : 'inActive'}
-              onClick={toggleMenu}
-            >
+              onClick={toggleMenu}>
               Cabins
             </a>
           </Link>
           <Link href='/Contact'>
             <a
               className={router.pathname === '/Contact' ? 'active' : 'inActive'}
-              onClick={toggleMenu}
-            >
+              onClick={toggleMenu}>
               Contact
             </a>
           </Link>
@@ -207,8 +196,7 @@ function MobileNav({
             <Link href='/Admin'>
               <a
                 className={router.pathname === '/Admin' ? 'active' : 'inActive'}
-                onClick={toggleMenu}
-              >
+                onClick={toggleMenu}>
                 Admin
               </a>
             </Link>

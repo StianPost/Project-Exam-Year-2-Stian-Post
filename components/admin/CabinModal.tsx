@@ -204,8 +204,7 @@ export const CabinModal = ({
                 }
               }
               editProd(values);
-            }}
-          >
+            }}>
             {({ errors, touched, values }) => (
               <Form>
                 <div className='flex flex-wrap justify-between sm:flex-row'>
@@ -364,8 +363,7 @@ export const CabinModal = ({
                       id='county'
                       name='county'
                       type='text'
-                      className='w-full p-2 border-solid border-primary border-2 rounded-lg'
-                    >
+                      className='w-full p-2 border-solid border-primary border-2 rounded-lg'>
                       <option value='Agder'>Agder</option>
                       <option value='Finnmark'>Finnmark</option>
                       <option value='Innlandet'>Innlandet</option>
@@ -507,15 +505,13 @@ export const CabinModal = ({
                               <button
                                 className='mr-3 hover:font-semibold'
                                 type='button'
-                                onClick={() => arrayHelpers.insert(index, '')}
-                              >
+                                onClick={() => arrayHelpers.insert(index, '')}>
                                 + Add more
                               </button>
                               <button
                                 className='hover:font-semibold'
                                 type='button'
-                                onClick={() => arrayHelpers.remove(index)}
-                              >
+                                onClick={() => arrayHelpers.remove(index)}>
                                 - Remove
                               </button>
                             </div>
@@ -524,8 +520,7 @@ export const CabinModal = ({
                       ) : (
                         <button
                           type='button'
-                          onClick={() => arrayHelpers.push('')}
-                        >
+                          onClick={() => arrayHelpers.push('')}>
                           Add an Image
                         </button>
                       )}
@@ -558,8 +553,7 @@ export const CabinModal = ({
         </div>
         <button
           onClick={closeModal}
-          className='button button__secondary mt-2 w-full'
-        >
+          className='button button__secondary mt-2 w-full'>
           Close
         </button>
       </div>

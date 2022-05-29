@@ -19,7 +19,6 @@ export async function getStaticProps() {
 
 const Results = ({ cabins }: any) => {
   const [searchValue, setSearchValue] = useState(null);
-  const [searchParams, setSearchParams] = useState('');
   const [cabinArray, setCabinArray] = useState(cabins);
 
   const [filteredCabins, setFilteredCabins] = useState(cabinArray);

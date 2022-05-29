@@ -28,7 +28,7 @@ const ContactForm = () => {
   const [isError, setIsError] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
-  const handleSubmit = async (values: any) => {
+  const handleSubmit = async (values: MyFormValueTypes) => {
     try {
       let response = await axios.post(BaseURL + '/contact-messages', values);
       setIsError(false);
@@ -50,8 +50,7 @@ const ContactForm = () => {
         validationSchema={SignupSchema}
         onSubmit={(values) => {
           handleSubmit(values);
-        }}
-      >
+        }}>
         {({ errors, touched }) => (
           <Form>
             <div>

@@ -4,7 +4,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 
 import { FreeMode, Navigation, Thumbs } from 'swiper';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Image from 'next/image';
@@ -31,8 +31,7 @@ export default function SwiperComponent({ heroImg, imgArray }) {
         loop
         modules={[FreeMode, Navigation, Thumbs]}
         className='mySwiper2'
-        draggable
-      >
+        draggable>
         <SwiperSlide>
           <div className='w-full h-full loadingBG'>
             <Image
@@ -75,8 +74,7 @@ export default function SwiperComponent({ heroImg, imgArray }) {
         watchSlidesProgress
         modules={[FreeMode, Navigation, Thumbs]}
         loop={true}
-        className='mySwiper'
-      >
+        className='mySwiper'>
         <SwiperSlide>
           <div className='w-full h-full loadingBG'>
             <Image

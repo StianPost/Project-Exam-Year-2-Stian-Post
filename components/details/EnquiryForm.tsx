@@ -5,8 +5,6 @@ import React, { useState } from 'react';
 
 import { BaseURL } from '../../lib/const';
 import axios from 'axios';
-import { cabinInterface } from '../../lib/types';
-import { useRouter } from 'next/router';
 
 const SignupSchema = Yup.object().shape({
   firstName: Yup.string()
@@ -32,14 +30,7 @@ const SignupSchema = Yup.object().shape({
     .notRequired(),
 });
 
-interface MyFormValueTypes {
-  email: string;
-  subject: string;
-  message: string;
-}
-
-const EnquiryForm = ({ cabin }: { cabin: cabinInterface }) => {
-  const router = useRouter();
+const EnquiryForm = () => {
   const [isError, setIsError] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
@@ -66,10 +57,8 @@ const EnquiryForm = ({ cabin }: { cabin: cabinInterface }) => {
         }}
         validationSchema={SignupSchema}
         onSubmit={(values) => {
-          // same shape as initial values
           handleSubmit(values);
-        }}
-      >
+        }}>
         {({ errors, touched }) => (
           <Form>
             <div className='flex flex-col w-full sm:flex-row'>

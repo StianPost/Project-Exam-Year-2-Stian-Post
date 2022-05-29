@@ -1,14 +1,12 @@
 import { Icon } from '@iconify/react';
 import LoginComponent from './LoginComponent';
 import React from 'react';
-import { useState } from 'react';
 
 function Login({ toggleLogin }: any) {
   return (
     <button
       className='desktopNavA inActive !text-quaterary !font-semibold'
-      onClick={toggleLogin}
-    >
+      onClick={toggleLogin}>
       Login
     </button>
   );
@@ -26,8 +24,7 @@ export function LoginModal({ toggleModal }: any) {
         </div>
         <button
           className='absolute top-2 right-3 hover:cursor-pointer'
-          onClick={() => toggleModal()}
-        >
+          onClick={() => toggleModal()}>
           <Icon icon='bi:x-lg' className='text-3xl' />
         </button>
       </div>

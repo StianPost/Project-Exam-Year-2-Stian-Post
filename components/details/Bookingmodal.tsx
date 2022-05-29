@@ -274,8 +274,6 @@ function BookingInfo({
   open: boolean;
   bookingData: any;
 }) {
-  const [bookingInfo, setBookingInfo] = useState();
-
   if (open) return null;
 
   const SignupSchema = Yup.object().shape({
@@ -335,8 +333,7 @@ function BookingInfo({
         onSubmit={(values: any) => {
           onSubmit(values);
           closed(true);
-        }}
-      >
+        }}>
         {({ errors, touched }) => (
           <Form>
             <div className='flex flex-wrap justify-between sm:flex-row'>
@@ -517,8 +514,7 @@ function CardDetails({
         onSubmit={(values: any): void => {
           onSubmit({ ...values, price: totalTaxesPrice });
           closed(true);
-        }}
-      >
+        }}>
         {({ errors, touched }) => (
           <Form>
             <div className='flex'>
@@ -529,8 +525,7 @@ function CardDetails({
                   id='paymentType'
                   name='paymentType'
                   type='paymentType'
-                  className='w-full p-2 border-solid border-primary border-2 rounded-lg'
-                >
+                  className='w-full p-2 border-solid border-primary border-2 rounded-lg'>
                   <option value={''}></option>
                   <option value={'Visa'}>Visa</option>
                   <option value={'MasterCard'}>Mastercard</option>
@@ -630,8 +625,7 @@ function CardDetails({
               type='button'
               onClick={() => {
                 back();
-              }}
-            >
+              }}>
               Back
             </button>
             <button className='button button__primary mt-4' type='submit'>
