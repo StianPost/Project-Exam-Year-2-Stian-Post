@@ -38,7 +38,7 @@ export default function MoneySlider() {
           getAriaValueText={valuetext}
           disableSwap
           min={0}
-          max={500}
+          max={1000}
         />
       </Box>
       <div className='flex justify-between'>
