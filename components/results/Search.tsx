@@ -288,63 +288,67 @@ function Search({
             </div>
           </div>
           <div>
-            {filterCabins().map(
-              ({
-                title,
-                id,
-                description,
-                extra_description,
-                price,
-                adress,
-                heroImg,
-                map,
-                imgArray,
-                county,
-                people_rooms,
-                short_description,
-                isFire,
-                isElectricity,
-                isPool,
-                isToilet,
-                isHiking,
-                isSlalom,
-                isSkiing,
-                isWinterActivities,
-                isWateractives,
-                isPets,
-                rooms,
-                beds,
-              }: cabinInterface): any => {
-                return (
-                  <Resultcards
-                    key={id}
-                    title={title}
-                    heroImg={heroImg}
-                    id={id}
-                    price={price}
-                    description={description}
-                    extra_description={extra_description}
-                    short_description={short_description}
-                    adress={adress}
-                    map={map}
-                    imgArray={imgArray}
-                    county={county}
-                    people_rooms={people_rooms}
-                    isFire={isFire}
-                    isElectricity={isElectricity}
-                    isPool={isPool}
-                    isToilet={isToilet}
-                    isHiking={isHiking}
-                    isSlalom={isSlalom}
-                    isSkiing={isSkiing}
-                    isWinterActivities={isWinterActivities}
-                    isWateractives={isWateractives}
-                    isPets={isPets}
-                    rooms={rooms}
-                    beds={beds}
-                  />
-                );
-              }
+            {filterCabins().length > 0 ? (
+              filterCabins().map(
+                ({
+                  title,
+                  id,
+                  description,
+                  extra_description,
+                  price,
+                  adress,
+                  heroImg,
+                  map,
+                  imgArray,
+                  county,
+                  people_rooms,
+                  short_description,
+                  isFire,
+                  isElectricity,
+                  isPool,
+                  isToilet,
+                  isHiking,
+                  isSlalom,
+                  isSkiing,
+                  isWinterActivities,
+                  isWateractives,
+                  isPets,
+                  rooms,
+                  beds,
+                }: cabinInterface): any => {
+                  return (
+                    <Resultcards
+                      key={id}
+                      title={title}
+                      heroImg={heroImg}
+                      id={id}
+                      price={price}
+                      description={description}
+                      extra_description={extra_description}
+                      short_description={short_description}
+                      adress={adress}
+                      map={map}
+                      imgArray={imgArray}
+                      county={county}
+                      people_rooms={people_rooms}
+                      isFire={isFire}
+                      isElectricity={isElectricity}
+                      isPool={isPool}
+                      isToilet={isToilet}
+                      isHiking={isHiking}
+                      isSlalom={isSlalom}
+                      isSkiing={isSkiing}
+                      isWinterActivities={isWinterActivities}
+                      isWateractives={isWateractives}
+                      isPets={isPets}
+                      rooms={rooms}
+                      beds={beds}
+                    />
+                  );
+                }
+              )
+            ) : (
+              <p className='font-semibold'>No matching results...</p>
             )}
           </div>
         </div>
