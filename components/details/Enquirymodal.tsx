@@ -3,15 +3,7 @@ import { Icon } from '@iconify/react';
 import React from 'react';
 import { cabinInterface } from '../../lib/types';
 
-function Enquirymodal({
-  onClose,
-  open,
-  cabin,
-}: {
-  onClose: any;
-  open: boolean;
-  cabin: cabinInterface;
-}) {
+function Enquirymodal({ onClose, open, cabin }: any) {
   if (!open) return null;
   return (
     <>
@@ -29,8 +21,7 @@ function Enquirymodal({
         </button>
         <button
           className='button button__secondary w-full mt-2'
-          onClick={onClose}
-        >
+          onClick={onClose}>
           Close
         </button>
       </div>
