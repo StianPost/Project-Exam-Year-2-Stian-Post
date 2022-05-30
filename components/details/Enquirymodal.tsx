@@ -3,7 +3,15 @@ import { Icon } from '@iconify/react';
 import React from 'react';
 import { cabinInterface } from '../../lib/types';
 
-function Enquirymodal({ onClose, open, cabin }: any) {
+function Enquirymodal({
+  onClose,
+  open,
+  cabin,
+}: {
+  onClose: any;
+  open: boolean;
+  cabin: cabinInterface;
+}) {
   if (!open) return null;
   return (
     <>
@@ -13,7 +21,7 @@ function Enquirymodal({ onClose, open, cabin }: any) {
           <h2 className='text-center'>Questions?</h2>
           <h3 className='text-center'>{cabin.title}</h3>
           <div className='w-full md:pl-1'>
-            <EnquiryForm cabin={cabin} />
+            <EnquiryForm />
           </div>
         </div>
         <button className='absolute top-2 right-3' onClick={onClose}>
