@@ -12,26 +12,73 @@ Email: user@admin.com
 Password: Pass123
 ```
 
+
+# Cabin Fever
+
+![image](https://hopeful-sinoussi-ede96f.netlify.app/Postfolio%20imgs/y2-proj-exam.png)
+
+This project was my project exam for my 2nd year on Noroff, it's a cabin booking website where you can search/filter through cabins and book them.
+
+## Description
+
+I was given the task of designing and creating a booking site using a JS framework, that being Next JS or React.
+
+The site must have:
+- Homepage
+- Results page
+- Details [id] page
+- Contact page
+- Admin page
+
+On the admin page you must be able to create and delete cabins, one should also be able to read enquiries and messages that get sent to the site
+
+## Built With
+
+You can list a the tech stack that you've used over here
+
+- [Figma](https://www.figma.com/)
+- TypeScript
+- JavaScript
+- Next JS
+- Tailwind CSS
+- SCSS
+- [Heroku](https://www.heroku.com/)
+- [Strapi](https://strapi.io/)
+
+## Getting Started
+
+### Installing
+
+1. Clone the repo:
+
+```bash
+git clone git@github.com/StianPost/Project-Exam-Year-2-Stian-Post.git
 ```
-Strapi uses Yarn
+
+2. Install the dependencies:
+
+```
+npm install
 ```
 
-## Info
+### Running
 
-This project is my final project exam while studying front-end at noroff, it will be built using Next.JS using Typescript.
-The styling will be made using TailwindCSS and some custom SCSS styling and maybe some styled components.
+Here is where you detail how to run the app. It typically involves the commands you'd need to run to start the project e.g.
 
-This site is a cabin booking site where you'll be able to book cabins from all over Norway, the design is made using figma.
+To run the app, run the following commands:
 
-### More info
+```bash
+npm run start
+```
 
-There must be a home, search results, details, contact and admin page.
-You'll be able to log in as an Admin and add new cabins, look at messages both from the enquiries and from the contact page. I will also see if I can add a booking system so that you can see available rooms and if they've been booked.
+### Running
 
-####
+This is built using html so just open up the index.html with liveserver
 
-Links to use:
 
-apiCAll: https://www.youtube.com/watch?v=zueyEdRZQlk
+## Contact
 
-typeAhead: https://www.youtube.com/watch?v=elC357w9VOA
+[My LinkedIn page](https://www.linkedin.com/in/stian-post-a211201b5/)
+
+[Portfolio](https://postfolio.netlify.app/)
+
